@@ -1,0 +1,21 @@
+{
+  "companyName": "Ziheng International",
+  "siteUrl": "https://ziheng-int.com",
+  "tagline": "Independent distributor of hard-to-find, military and obsolete electronic components",
+  "email": "contact@ziheng-int.com",
+  "wechatId": "",
+  "wechatQr": "",
+  "whatsapp": "",
+  "phone": "",
+  "address": "",
+  "about": [
+    "[Placeholder] Ziheng International is an independent distributor of integrated circuits and electronic components, specializing in military, hi-rel, obsolete and hard-to-find parts.",
+    "[Placeholder] We support OEMs, contract manufacturers and brokers worldwide with fast quotes and reliable sourcing. Add your founding year, location and specialties here."
+  ],
+  "highlights": [
+    { "title": "Stock on hand", "text": "[Placeholder] Every part listed on this site is held in our own inventory." },
+    { "title": "Military & hi-rel", "text": "[Placeholder] MIL-STD-883, QML, JAN/JANTX and 54-series parts from leading manufacturers." },
+    { "title": "Obsolete & EOL", "text": "[Placeholder] Hard-to-find and end-of-life components for long-lifecycle programs." },
+    { "title": "Fast response", "text": "[Placeholder] Send us a part number and quantity, and we reply with a quote." }
+  ]
+}
