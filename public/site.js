@@ -1,5 +1,19 @@
 // Inventory filter, WeChat dialog, quote request form, and lead tracking.
 (function () {
+  var ZH = (window.SITE || {}).lang === "zh";
+  var M = ZH ? {
+    part: "零件", parts: "个型号", add: "请填写：", pn: "型号", qty: "数量", name: "姓名", email: "有效的邮箱", sep: "、",
+    sending: "正在发送…", fallback: function (e) { return "已为您打开邮件应用并填好询价内容。如未打开，请发邮件至 " + e + "。"; },
+    ok: function (p, e) { return "谢谢！型号 " + p + " 的询价已发送，我们将回复至 " + e + "。"; }, check: "请检查表单内容。",
+    body: function (d) { return "型号：" + d.part + "\n数量：" + d.quantity + "\n需求时间：" + (d.needed_by || "") + "\n\n姓名：" + d.name + "\n公司：" + (d.company || "") + "\n邮箱：" + d.email + "\n国家/地区：" + (d.country || "") + (d.message ? "\n\n备注：" + d.message : ""); },
+    subject: "询价："
+  } : {
+    part: "part", parts: "parts", add: "Please add ", pn: "part number", qty: "quantity", name: "name", email: "a valid email", sep: ", ",
+    sending: "Sending…", fallback: function (e) { return "Your email app should open with the request filled in. If it doesn't, email " + e + "."; },
+    ok: function (p, e) { return "Thank you. Your request for " + p + " was sent. We'll reply to " + e + "."; }, check: "Please check the form.",
+    body: function (d) { return "Part number: " + d.part + "\nQuantity: " + d.quantity + "\nNeeded by: " + (d.needed_by || "") + "\n\nName: " + d.name + "\nCompany: " + (d.company || "") + "\nEmail: " + d.email + "\nCountry: " + (d.country || "") + (d.message ? "\n\nNotes: " + d.message : ""); },
+    subject: "RFQ: "
+  };
   var track = function (method, part) {
     try { if (window.gtag) window.gtag("event", "generate_lead", { method: method, part_number: part || "" }); } catch (e) {}
   };
@@ -20,7 +34,7 @@
         r.hidden = !ok;
         if (ok) shown++;
       });
-      if (count) count.textContent = shown + (shown === 1 ? " part" : " parts");
+      if (count) count.textContent = ZH ? shown + " " + M.parts : shown + (shown === 1 ? " part" : " parts");
       if (empty) empty.hidden = shown !== 0;
     };
     var q = new URLSearchParams(location.search).get("q");
@@ -55,32 +69,30 @@
       var data = {};
       new FormData(form).forEach(function (v, k) { data[k] = String(v).trim(); });
       var missing = [];
-      if (!data.part) missing.push("part number");
-      if (!data.quantity) missing.push("quantity");
-      if (!data.name) missing.push("name");
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email || "")) missing.push("a valid email");
-      if (missing.length) { status.textContent = "Please add " + missing.join(", ") + "."; status.className = "form-status small err"; return; }
-      btn.disabled = true; status.className = "form-status small"; status.textContent = "Sending…";
+      if (!data.part) missing.push(M.pn);
+      if (!data.quantity) missing.push(M.qty);
+      if (!data.name) missing.push(M.name);
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email || "")) missing.push(M.email);
+      if (missing.length) { status.textContent = M.add + missing.join(M.sep) + (ZH ? "。" : "."); status.className = "form-status small err"; return; }
+      btn.disabled = true; status.className = "form-status small"; status.textContent = M.sending;
       var fallback = function () {
         var S = window.SITE || {};
-        var body = "Part number: " + data.part + "\nQuantity: " + data.quantity + "\nNeeded by: " + (data.needed_by || "") +
-          "\n\nName: " + data.name + "\nCompany: " + (data.company || "") + "\nEmail: " + data.email + "\nCountry: " + (data.country || "") +
-          (data.message ? "\n\nNotes: " + data.message : "");
-        location.href = "mailto:" + S.email + "?subject=" + encodeURIComponent("RFQ: " + data.part) + "&body=" + encodeURIComponent(body);
-        status.textContent = "Your email app should open with the request filled in. If it doesn't, email " + S.email + ".";
+        location.href = "mailto:" + S.email + "?subject=" + encodeURIComponent(M.subject + data.part) + "&body=" + encodeURIComponent(M.body(data));
+        status.textContent = M.fallback(S.email);
         btn.disabled = false;
         track("form_email_fallback", data.part);
       };
+      data.lang = ZH ? "zh" : "en";
       fetch("/api/rfq", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
         .then(function (r) {
           if (r.ok) {
             form.reset(); form.querySelector("[name=part]").value = data.part;
             status.className = "form-status small ok";
-            status.textContent = "Thank you. Your request for " + data.part + " was sent. We'll reply to " + data.email + ".";
+            status.textContent = M.ok(data.part, data.email);
             btn.disabled = false;
             track("form", data.part);
           } else if (r.status === 400) {
-            r.json().then(function (j) { status.textContent = j.error || "Please check the form."; status.className = "form-status small err"; btn.disabled = false; },
+            r.json().then(function (j) { status.textContent = ZH ? M.check : (j.error || M.check); status.className = "form-status small err"; btn.disabled = false; },
                           function () { fallback(); });
           } else fallback();
         })

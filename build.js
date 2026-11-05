@@ -1,4 +1,5 @@
 // Static site generator for ziheng-int.com. No dependencies: `node build.js` -> dist/
+// English pages at /..., Chinese pages at /cn/... (same paths otherwise), linked with hreflang.
 // Inventory source: data/inventory.csv (synced from Google Sheets by .github/workflows/sync-inventory.yml)
 const fs = require("fs");
 const path = require("path");
@@ -32,8 +33,12 @@ function parseCSV(text) {
 const raw = parseCSV(fs.readFileSync(path.join(ROOT, "data", "inventory.csv"), "utf8"));
 const header = raw[0].map(h => h.trim().toLowerCase());
 const col = name => header.findIndex(h => h.startsWith(name));
-const C = { pn: col("part"), mfr: col("manufacturer"), cat: col("category"), desc: col("description"), dc: col("date"), show: col("show"),
-  grade: col("grade"), life: col("lifecycle"), smd: col("smd"), nsn: col("nsn"), alt: col("alternate"), mpage: col("manufacturer page") };
+const colExact = name => header.findIndex(h => h === name);
+const C = {
+  pn: col("part"), mfr: col("manufacturer"), cat: col("category"), desc: colExact("description"), descZh: col("description (chinese)"),
+  dc: col("date"), show: col("show"), grade: col("grade"), life: col("lifecycle"), smd: col("smd"), nsn: col("nsn"),
+  alt: col("alternate"), mpage: col("manufacturer page"),
+};
 if (C.pn < 0) throw new Error("inventory.csv needs a 'Part Number' column");
 
 const slugify = s => s.toUpperCase().replace(/[^A-Z0-9.]+/g, "-").replace(/^-+|-+$/g, "") || "PART";
@@ -54,6 +59,7 @@ for (const r of raw.slice(1)) {
     mfr: get(r, C.mfr) || "Other",
     cat: get(r, C.cat) || "Other Components",
     desc: get(r, C.desc),
+    descZh: get(r, C.descZh),
     dc: get(r, C.dc),
     grade: get(r, C.grade),
     life: get(r, C.life),
@@ -63,6 +69,7 @@ for (const r of raw.slice(1)) {
     mpage: /^https?:\/\//.test(get(r, C.mpage)) ? get(r, C.mpage) : "",
   });
 }
+parts.sort((a, b) => a.pn.localeCompare(b.pn, "en", { numeric: true }));
 
 // Spelling variants buyers type for the same part number (OP07AZ/883 -> OP07AZ883, OP07AZ-883 ...)
 function aliases(p) {
@@ -79,18 +86,7 @@ function aliases(p) {
   if (p.smd) { add(p.smd); add(p.smd.replace(/-/g, "")); }
   return [...out].filter(v => !/[()]/.test(v)).slice(0, 10);
 }
-// Former / current owner names, so pages match searches for either brand
-const MFR_ALSO = {
-  "Maxim Integrated": "now part of Analog Devices", "Microsemi": "now part of Microchip Technology",
-  "International Rectifier": "now part of Infineon Technologies", "Intersil (Renesas)": "now part of Renesas Electronics",
-  "IDT (Renesas)": "Integrated Device Technology, now part of Renesas Electronics", "Avago (Broadcom)": "Avago Technologies, now Broadcom",
-  "Atmel (Microchip)": "now part of Microchip Technology", "Altera (Intel)": "Altera, formerly part of Intel", "Xilinx (AMD)": "now part of AMD",
-  "Freescale (NXP)": "now part of NXP Semiconductors", "National Semiconductor": "now part of Texas Instruments",
-  "Harris / Intersil": "Harris Semiconductor, later Intersil, now Renesas", "Teledyne e2v": "Teledyne e2v (formerly e2v technologies)",
-  "Data Device Corp. (DDC)": "Data Device Corporation", "Device Engineering Inc. (DEI)": "Device Engineering Incorporated",
-};
 for (const p of parts) p.aliases = aliases(p);
-parts.sort((a, b) => a.pn.localeCompare(b.pn, "en", { numeric: true }));
 
 // Part photos: drop a file named <slug>.jpg / .png / .webp into public/images/parts/
 const IMG_DIR = path.join(ROOT, "public", "images", "parts");
@@ -105,30 +101,150 @@ const gradeSlug = g => catSlug(g.replace(/\(.*?\)/g, "")) || "military";
 const groupBy = (arr, k) => arr.reduce((m, p) => (m.get(p[k]) ? m.get(p[k]).push(p) : m.set(p[k], [p]), m), new Map());
 const cats = [...groupBy(parts, "cat")].sort((a, b) => b[1].length - a[1].length);
 const mfrs = [...groupBy(parts, "mfr")].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
+const byCat = groupBy(parts, "cat");
+const milParts = parts.filter(isMil);
+const grades = [...groupBy(milParts, "grade")].sort((a, b) => b[1].length - a[1].length);
+const eolParts = parts.filter(p => p.life);
+
+// ---------- Translations ----------
+// Former / current owner names, so pages match searches for either brand (Chinese adds the Chinese brand name)
+const MFR_ALSO = {
+  en: {
+    "Maxim Integrated": "now part of Analog Devices", "Microsemi": "now part of Microchip Technology",
+    "International Rectifier": "now part of Infineon Technologies", "Intersil (Renesas)": "now part of Renesas Electronics",
+    "IDT (Renesas)": "Integrated Device Technology, now part of Renesas Electronics", "Avago (Broadcom)": "Avago Technologies, now Broadcom",
+    "Atmel (Microchip)": "now part of Microchip Technology", "Altera (Intel)": "Altera, formerly part of Intel", "Xilinx (AMD)": "now part of AMD",
+    "Freescale (NXP)": "now part of NXP Semiconductors", "National Semiconductor": "now part of Texas Instruments",
+    "Harris / Intersil": "Harris Semiconductor, later Intersil, now Renesas", "Teledyne e2v": "Teledyne e2v (formerly e2v technologies)",
+    "Data Device Corp. (DDC)": "Data Device Corporation", "Device Engineering Inc. (DEI)": "Device Engineering Incorporated",
+  },
+  zh: {
+    "Texas Instruments": "德州仪器 TI", "Analog Devices": "亚德诺半导体 ADI", "Maxim Integrated": "美信，现属亚德诺半导体 ADI",
+    "Microsemi": "美高森美，现属微芯科技 Microchip", "International Rectifier": "国际整流器 IR，现属英飞凌 Infineon",
+    "Intersil (Renesas)": "英特矽尔，现属瑞萨电子 Renesas", "IDT (Renesas)": "艾迪悌 IDT，现属瑞萨电子 Renesas",
+    "Avago (Broadcom)": "安华高，现为博通 Broadcom", "Atmel (Microchip)": "爱特梅尔，现属微芯科技 Microchip",
+    "Altera (Intel)": "阿尔特拉 Altera", "Xilinx (AMD)": "赛灵思，现属 AMD", "Freescale (NXP)": "飞思卡尔，现属恩智浦 NXP",
+    "National Semiconductor": "美国国家半导体，现属德州仪器 TI", "Harris / Intersil": "哈里斯半导体，后为英特矽尔，现属瑞萨",
+    "Micron": "美光", "STMicroelectronics": "意法半导体 ST", "Intel": "英特尔", "Lattice Semiconductor": "莱迪思",
+    "NXP": "恩智浦", "Infineon": "英飞凌", "Broadcom": "博通", "Vicor": "怀格",
+  },
+};
+const CAT_ZH = {
+  "Logic ICs": "逻辑芯片", "Amplifiers & Comparators": "放大器与比较器", "Avionics Bus (MIL-STD-1553 / ARINC 429)": "航空总线（MIL-STD-1553 / ARINC 429）",
+  "Interface ICs": "接口芯片", "DC-DC Converter Modules": "DC-DC 电源模块", "Programmable Logic (FPGA / CPLD / PLD)": "可编程逻辑（FPGA / CPLD / PLD）",
+  "Memory": "存储器", "Diodes & TVS": "二极管与 TVS", "Microcontrollers & Processors": "微控制器与处理器", "Power MOSFETs": "功率 MOSFET",
+  "Voltage Regulators": "稳压器", "Optocouplers": "光耦", "Analog Switches & Multiplexers": "模拟开关与多路复用器",
+  "Supervisors & Monitors": "监控与复位芯片", "Other Components": "其他元器件", "Drivers & Darlington Arrays": "驱动器与达林顿阵列",
+  "Voltage References": "电压基准", "Data Converters": "数据转换器（ADC/DAC）", "Displays & LED Drivers": "显示器与 LED 驱动",
+  "Power Transistors": "功率晶体管", "Connectors": "连接器", "Sensors": "传感器", "Clock & Timing": "时钟与定时",
+};
+const GRADE_ZH = {
+  "MIL-STD-883": "MIL-STD-883 军品筛选", "MIL-STD-883 / QML": "MIL-STD-883 / QML", "QML (MIL-PRF-38535)": "QML（MIL-PRF-38535）",
+  "JANTX (MIL-PRF-19500)": "JANTX（MIL-PRF-19500）", "Military (-55°C to +125°C)": "军品级（-55°C 至 +125°C）",
+  "Military / aerospace": "军品 / 航空航天", "Military": "军品级", "Military temperature": "军品级温度", "Industrial temperature": "工业级温度",
+};
+const LIFE_ZH = { "Obsolete / EOL": "已停产 / EOL", "Mature (EOL risk)": "成熟期（有停产风险）" };
+
+const T = {
+  en: {
+    htmlLang: "en", ogLocale: "en_US", prefix: "", other: "zh", switchLabel: "中文", switchTitle: "切换到中文",
+    nav: [["/parts/", "Inventory"], ["/military-parts/", "Military"], ["/obsolete-parts/", "Obsolete"], ["/quality/", "Quality"], ["/about/", "About"], ["/contact/", "Contact"]],
+    cat: c => c, grade: g => g, life: l => l, desc: p => p.desc,
+    inStock: "In stock", home: "Home", inventory: "Inventory",
+    homeTitle: c => `${c} | Military, Obsolete & Hard-to-Find Electronic Components`,
+    homeDesc: (c, n, m, top) => `${c}: ${cfg.tagline}. ${n} part numbers in stock from ${m} manufacturers including ${top}.`,
+    eyebrow: "Independent electronic component distributor", heroH1: "Hard-to-find, military &amp; obsolete ICs. In stock.",
+    heroLead: (n, m) => `Search ${n} part numbers from ${m} manufacturers. Find your part, then contact us for a fast quote.`,
+    searchPh: "Enter a part number, e.g. HCPL-5731", searchBtn: "Search stock",
+    specialties: "Our specialties", milTile: ["Military &amp; hi-rel", "MIL-STD-883, QML, JANTX, 54-series"],
+    eolTile: ["Obsolete &amp; EOL", "Discontinued and hard-to-find parts"], aviTile: ["Avionics bus", "MIL-STD-1553 and ARINC 429"],
+    byCat: "Browse by category", byMfr: "Browse by manufacturer",
+    ctaH: "Can't find your part?", ctaP: "Our listed stock changes often. Send us the part number and quantity you need.",
+    invTitle: "Electronic Components in Stock", invDesc: n => `Full list of ${n} integrated circuits and electronic components in stock at ${cfg.companyName}. Contact us for a quote.`,
+    invH1: "Inventory", invLead: "All parts below are in stock. Click a part number for details and to request a quote.",
+    filterPh: "Filter by part number, manufacturer or keyword", partsN: n => `${n} part${n === 1 ? "" : "s"}`,
+    thPn: "Part number", thMfr: "Manufacturer", thDesc: "Description", thStatus: "Status",
+    noMatch: "No match in our listed stock.", noMatchLink: "Email us the part number", noMatchTail: ", as we may still be able to source it.",
+    listTitle: name => `${name} in Stock`, listDesc: (name, n, ex) => `${n} ${name} parts in stock at ${cfg.companyName}: ${ex}.`,
+    andMore: " and more", listLead: (n, mfr) => `${n} part${n === 1 ? "" : "s"} in stock${mfr ? ` from ${esc(mfr)}` : ""}.`,
+    partTitle: p => `${p.pn} ${p.mfr} - In Stock | ${cfg.companyName}`,
+    partDesc: (p, d) => `${p.pn} by ${p.mfr} in stock. ${d}${p.dc ? ` Date code ${p.dc}.` : ""} Request a quote from ${cfg.companyName}.`,
+    photoRef: "Image for reference", photoPh: "Photo on request",
+    lbl: { pn: "Part number", mfr: "Manufacturer", cat: "Category", grade: "Grade / screening", smd: "SMD number", nsn: "NSN", life: "Lifecycle", dc: "Date code", avail: "Availability", minfo: "Manufacturer info", minfoLink: "Product page and datasheet ↗", alias: "Also listed as" },
+    rfqH: "Request a quote", rfqP: "We usually reply within one business day.", orDirect: "Or contact us directly:",
+    related: c => `Related ${c} in stock`, viewAll: c => `View all ${c} →`,
+    form: { pn: "Part number", qty: "Quantity", date: "Needed by", datePh: "e.g. ASAP, March", name: "Your name", company: "Company", email: "Email", country: "Country", msg: "Notes (optional)", msgPh: "Date code, packaging, other parts", send: "Send quote request" },
+    btnEmail: "Email for a quote", wechatH: "Contact us on WeChat", wechatId: "WeChat ID", close: "Close",
+    milTitle: "Military & Hi-Rel Components", milH1: "Military & hi-rel components",
+    milLead: n => `${n} military-grade and screened parts in stock: MIL-STD-883, QML (MIL-PRF-38535), JANTX (MIL-PRF-19500) and military-temperature devices.`,
+    gradeTitle: g => `${g} Parts`, gradeLead: (g, n) => `${n} ${esc(g)} part${n === 1 ? "" : "s"} in stock.`, allMil: "All military parts",
+    eolTitle: "Obsolete & EOL Electronic Components", eolH1: "Obsolete & end-of-life components",
+    eolLead: n => `${n} discontinued, end-of-life and hard-to-find parts in stock for repair, sustainment and long-lifecycle programs.`,
+    hubDesc: (t, n, ex) => `${n} ${t.toLowerCase()} in stock at ${cfg.companyName}, including ${ex}. Request a quote.`,
+    qTitle: "Quality & Anti-Counterfeit", qH1: "Quality &amp; anti-counterfeit", qDesc: `How ${cfg.companyName} sources, inspects and documents electronic components to avoid counterfeit parts.`,
+    aboutTitle: "About Us", aboutH1: c => `About ${c}`,
+    contactTitle: "Contact Us", contactH1: "Contact us", contactLead: "For a quote, send us the part number, quantity and target date. We usually reply within one business day.",
+    contactDesc: `Contact ${cfg.companyName} for quotes on electronic components. Email ${cfg.email}.`,
+    lblEmail: "Email", lblWeChat: "WeChat", lblWhatsApp: "WhatsApp", lblPhone: "Phone", lblAddress: "Address",
+    footContact: "Contact", footBrowse: "Browse", footLinks: [["/parts/", "Full inventory"], ["/#categories", "By category"], ["/#manufacturers", "By manufacturer"], ["/military-parts/", "Military &amp; hi-rel parts"], ["/obsolete-parts/", "Obsolete &amp; EOL parts"], ["/quality/", "Quality &amp; anti-counterfeit"]],
+    legal: c => `All trademarks belong to their respective owners. ${c} is an independent distributor and is not affiliated with the manufacturers listed.`,
+    mailSubject: pn => pn ? `RFQ: ${pn}` : `Inquiry - ${cfg.companyName}`,
+    mailBody: pn => pn ? `Hello ${cfg.companyName},\n\nPlease quote the following part:\n\nPart number: ${pn}\nQuantity needed: \nTarget date: \n\nCompany: \nName: \nCountry: \n\nThank you.` : `Hello ${cfg.companyName},\n\n`,
+    wa: pn => pn ? `Hello, I'm interested in part ${pn}.` : "Hello, I have an inquiry.",
+    text: cfg,
+  },
+  zh: {
+    htmlLang: "zh-CN", ogLocale: "zh_CN", prefix: "/cn", other: "en", switchLabel: "EN", switchTitle: "Switch to English",
+    nav: [["/parts/", "库存"], ["/military-parts/", "军品"], ["/obsolete-parts/", "停产器件"], ["/quality/", "质量保证"], ["/about/", "关于我们"], ["/contact/", "联系我们"]],
+    cat: c => CAT_ZH[c] || c, grade: g => GRADE_ZH[g] || g, life: l => LIFE_ZH[l] || l, desc: p => p.descZh || p.desc,
+    inStock: "现货", home: "首页", inventory: "库存",
+    homeTitle: c => `${c} | 军品、停产及稀缺电子元器件现货`,
+    homeDesc: (c, n, m, top) => `${c}：${(cfg.zh || cfg).tagline}。现货 ${n} 个型号，涵盖 ${m} 个品牌，包括 ${top}。`,
+    eyebrow: "独立电子元器件分销商", heroH1: "军品、停产及稀缺芯片，现货供应。",
+    heroLead: (n, m) => `搜索 ${n} 个现货型号，涵盖 ${m} 个品牌。找到所需型号后联系我们，快速报价。`,
+    searchPh: "输入型号，例如 HCPL-5731", searchBtn: "搜索库存",
+    specialties: "主营方向", milTile: ["军品与高可靠性", "MIL-STD-883、QML、JANTX、54 系列"],
+    eolTile: ["停产与 EOL 器件", "已停产及稀缺器件"], aviTile: ["航空总线", "MIL-STD-1553 与 ARINC 429"],
+    byCat: "按类别浏览", byMfr: "按品牌浏览",
+    ctaH: "没有找到所需型号？", ctaP: "我们的库存经常更新。请将型号和需求数量发给我们。",
+    invTitle: "电子元器件现货库存", invDesc: n => `${cfg.companyName} 现货 ${n} 个集成电路及电子元器件型号完整列表。欢迎询价。`,
+    invH1: "库存", invLead: "以下所有型号均有现货。点击型号查看详情并询价。",
+    filterPh: "按型号、品牌或关键词筛选", partsN: n => `${n} 个型号`,
+    thPn: "型号", thMfr: "品牌", thDesc: "描述", thStatus: "状态",
+    noMatch: "现有库存中未找到该型号。", noMatchLink: "请将型号发邮件给我们", noMatchTail: "，我们可能仍可为您寻货。",
+    listTitle: name => `${name} 现货`, listDesc: (name, n, ex) => `${cfg.companyName} 现货 ${n} 个${name}型号：${ex}。`,
+    andMore: " 等", listLead: (n, mfr) => `${mfr ? `${esc(mfr)} ` : ""}现货 ${n} 个型号。`,
+    partTitle: p => `${p.pn} ${p.mfr} 现货 | ${cfg.companyName}`,
+    partDesc: (p, d) => `${p.pn}（${p.mfr}）现货。${d}${p.dc ? `批号 ${p.dc}。` : ""}欢迎向 ${cfg.companyName} 询价。`,
+    photoRef: "图片仅供参考", photoPh: "可索取实物照片",
+    lbl: { pn: "型号", mfr: "品牌", cat: "类别", grade: "等级 / 筛选", smd: "SMD 编号", nsn: "NSN 编号", life: "生命周期", dc: "批号", avail: "库存状态", minfo: "原厂资料", minfoLink: "产品页面及规格书 ↗", alias: "其他写法" },
+    rfqH: "询价", rfqP: "我们通常在一个工作日内回复。", orDirect: "或直接联系我们：",
+    related: c => `相关${c}现货`, viewAll: c => `查看全部${c} →`,
+    form: { pn: "型号", qty: "数量", date: "需求时间", datePh: "例如：尽快、3 月", name: "姓名", company: "公司", email: "邮箱", country: "国家/地区", msg: "备注（选填）", msgPh: "批号、包装、其他型号", send: "提交询价" },
+    btnEmail: "邮件询价", wechatH: "微信联系我们", wechatId: "微信号", close: "关闭",
+    milTitle: "军品及高可靠性元器件", milH1: "军品及高可靠性元器件",
+    milLead: n => `现货 ${n} 个军品级及筛选器件：MIL-STD-883、QML（MIL-PRF-38535）、JANTX（MIL-PRF-19500）及军品级温度器件。`,
+    gradeTitle: g => `${g} 器件`, gradeLead: (g, n) => `${esc(g)} 现货 ${n} 个型号。`, allMil: "全部军品器件",
+    eolTitle: "停产及 EOL 电子元器件", eolH1: "停产及生命周期末期（EOL）元器件",
+    eolLead: n => `现货 ${n} 个已停产、EOL 及稀缺器件，适用于维修、保障及长生命周期项目。`,
+    hubDesc: (t, n, ex) => `${cfg.companyName} 现货 ${n} 个${t}，包括 ${ex}。欢迎询价。`,
+    qTitle: "质量保证与防伪", qH1: "质量保证与防伪", qDesc: `${cfg.companyName} 如何采购、检验并记录电子元器件，杜绝假冒器件。`,
+    aboutTitle: "关于我们", aboutH1: c => `关于 ${c}`,
+    contactTitle: "联系我们", contactH1: "联系我们", contactLead: "询价请提供型号、数量及需求时间。我们通常在一个工作日内回复。",
+    contactDesc: `联系 ${cfg.companyName} 获取电子元器件报价。邮箱 ${cfg.email}。`,
+    lblEmail: "邮箱", lblWeChat: "微信", lblWhatsApp: "WhatsApp", lblPhone: "电话", lblAddress: "地址",
+    footContact: "联系方式", footBrowse: "浏览", footLinks: [["/parts/", "全部库存"], ["/#categories", "按类别"], ["/#manufacturers", "按品牌"], ["/military-parts/", "军品及高可靠性器件"], ["/obsolete-parts/", "停产及 EOL 器件"], ["/quality/", "质量保证与防伪"]],
+    legal: c => `所有商标归其各自所有者所有。${c} 为独立分销商，与所列原厂无隶属关系。`,
+    mailSubject: pn => pn ? `询价：${pn}` : `咨询 - ${cfg.companyName}`,
+    mailBody: pn => pn ? `您好，\n\n请报价以下型号：\n\n型号：${pn}\n需求数量：\n需求时间：\n\n公司：\n姓名：\n国家/地区：\n\n谢谢。` : `您好，\n\n`,
+    wa: pn => pn ? `您好，我想咨询型号 ${pn}。` : "您好，我想咨询。",
+    text: Object.assign({}, cfg, cfg.zh || {}),
+  },
+};
 
 // ---------- HTML helpers ----------
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const url = p => cfg.siteUrl.replace(/\/$/, "") + p;
-const mailto = pn => {
-  const subject = pn ? `RFQ: ${pn}` : `Inquiry - ${cfg.companyName}`;
-  const body = pn
-    ? `Hello ${cfg.companyName},\n\nPlease quote the following part:\n\nPart number: ${pn}\nQuantity needed: \nTarget date: \n\nCompany: \nName: \nCountry: \n\nThank you.`
-    : `Hello ${cfg.companyName},\n\n`;
-  return `mailto:${cfg.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-};
-const waLink = pn => {
-  const num = cfg.whatsapp.replace(/[^0-9]/g, "");
-  const text = pn ? `Hello, I'm interested in part ${pn}.` : "Hello, I have an inquiry.";
-  return `https://wa.me/${num}?text=${encodeURIComponent(text)}`;
-};
-
-function contactButtons(pn) {
-  let h = `<a class="btn btn-primary" href="${esc(mailto(pn))}">${icon("mail")}Email for a quote</a>`;
-  if (cfg.whatsapp) h += `<a class="btn" href="${esc(waLink(pn))}" target="_blank" rel="noopener">${icon("chat")}WhatsApp</a>`;
-  if (cfg.wechatId) h += `<button class="btn" type="button" data-wechat>${icon("chat")}WeChat</button>`;
-  if (cfg.phone) h += `<a class="btn" href="tel:${esc(cfg.phone.replace(/[^+0-9]/g, ""))}">${icon("phone")}${esc(cfg.phone)}</a>`;
-  return `<div class="btn-row">${h}</div>`;
-}
 
 function icon(name) {
   const d = {
@@ -137,26 +253,59 @@ function icon(name) {
     phone: '<path d="M6 3h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 4 5a2 2 0 0 1 2-2z"/>',
     search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
     check: '<path d="m5 12 5 5 9-10"/>',
+    globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
   }[name];
   return `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${d}</svg>`;
 }
 
-function layout({ title, description, canonical, body, jsonld, active, image }) {
-  const nav = [["/parts/", "Inventory"], ["/military-parts/", "Military"], ["/obsolete-parts/", "Obsolete"], ["/quality/", "Quality"], ["/about/", "About"], ["/contact/", "Contact"]]
-    .map(([h, t]) => `<a href="${h}"${active === h ? ' aria-current="page"' : ""}>${t}</a>`).join("");
-  return `<!doctype html>
-<html lang="en">
+const pages = []; // language-neutral paths for the sitemap
+function write(L, p, html) {
+  const file = path.join(OUT, L.prefix + p, "index.html");
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, html);
+}
+
+fs.rmSync(OUT, { recursive: true, force: true });
+fs.mkdirSync(OUT, { recursive: true });
+fs.cpSync(path.join(ROOT, "public"), OUT, { recursive: true });
+
+function buildLanguage(L) {
+  const X = L.text; // company text in this language
+  const company = X.companyName;
+  const isEn = L.htmlLang === "en";
+  const lp = p => L.prefix + p; // localized path
+  const mailto = pn => `mailto:${cfg.email}?subject=${encodeURIComponent(L.mailSubject(pn))}&body=${encodeURIComponent(L.mailBody(pn))}`;
+  const waLink = pn => `https://wa.me/${cfg.whatsapp.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(L.wa(pn))}`;
+  const mfrNote = m => (isEn ? MFR_ALSO.en[m] : MFR_ALSO.zh[m]) || "";
+
+  function contactButtons(pn) {
+    let h = `<a class="btn btn-primary" href="${esc(mailto(pn))}">${icon("mail")}${L.btnEmail}</a>`;
+    if (cfg.whatsapp) h += `<a class="btn" href="${esc(waLink(pn))}" target="_blank" rel="noopener">${icon("chat")}WhatsApp</a>`;
+    if (cfg.wechatId) h += `<button class="btn" type="button" data-wechat>${icon("chat")}${L.lblWeChat}</button>`;
+    if (cfg.phone) h += `<a class="btn" href="tel:${esc(cfg.phone.replace(/[^+0-9]/g, ""))}">${icon("phone")}${esc(cfg.phone)}</a>`;
+    return `<div class="btn-row">${h}</div>`;
+  }
+
+  function layout({ title, description, p, body, jsonld, active, image }) {
+    const other = T[L.other];
+    const nav = L.nav.map(([h, t]) => `<a href="${lp(h)}"${active === h ? ' aria-current="page"' : ""}>${t}</a>`).join("");
+    return `<!doctype html>
+<html lang="${L.htmlLang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
-<link rel="canonical" href="${esc(url(canonical))}">
+<link rel="canonical" href="${esc(url(lp(p)))}">
+<link rel="alternate" hreflang="en" href="${esc(url(p))}">
+<link rel="alternate" hreflang="zh-Hans" href="${esc(url("/cn" + p))}">
+<link rel="alternate" hreflang="x-default" href="${esc(url(p))}">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="${esc(cfg.companyName)}">
+<meta property="og:locale" content="${L.ogLocale}">
+<meta property="og:site_name" content="${esc(company)}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
-<meta property="og:url" content="${esc(url(canonical))}">
+<meta property="og:url" content="${esc(url(lp(p)))}">
 ${image ? `<meta property="og:image" content="${esc(url(image))}">` : ""}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/styles.css">
@@ -167,8 +316,8 @@ ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(
 <body>
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">Z</span><span>${esc(cfg.companyName)}</span></a>
-    <nav class="nav">${nav}</nav>
+    <a class="brand" href="${lp("/")}"><span class="brand-mark" aria-hidden="true">Z</span><span>${esc(company)}</span></a>
+    <nav class="nav">${nav}<a class="lang-switch" href="${other.prefix + p}" hreflang="${other.htmlLang}" lang="${other.htmlLang}" title="${other.switchTitle}">${icon("globe")}${L.switchLabel}</a></nav>
   </div>
 </header>
 <main>
@@ -177,292 +326,294 @@ ${body}
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <div>
-      <div class="brand footer-brand"><span class="brand-mark" aria-hidden="true">Z</span><span>${esc(cfg.companyName)}</span></div>
-      <p class="muted">${esc(cfg.tagline)}.</p>
+      <div class="brand footer-brand"><span class="brand-mark" aria-hidden="true">Z</span><span>${esc(company)}</span></div>
+      <p class="muted">${esc(X.tagline)}${isEn ? "." : "。"}</p>
+      <p><a href="${other.prefix + p}" hreflang="${other.htmlLang}" lang="${other.htmlLang}">${isEn ? "中文版" : "English version"}</a></p>
     </div>
     <div>
-      <h2 class="footer-h">Contact</h2>
+      <h2 class="footer-h">${L.footContact}</h2>
       <p><a href="${esc(mailto(""))}">${esc(cfg.email)}</a></p>
       ${cfg.phone ? `<p>${esc(cfg.phone)}</p>` : ""}
-      ${cfg.wechatId ? `<p>WeChat: ${esc(cfg.wechatId)}</p>` : ""}
+      ${cfg.wechatId ? `<p>${L.lblWeChat}: ${esc(cfg.wechatId)}</p>` : ""}
       ${cfg.address ? `<p class="muted">${esc(cfg.address)}</p>` : ""}
     </div>
     <div>
-      <h2 class="footer-h">Browse</h2>
-      <p><a href="/parts/">Full inventory</a></p>
-      <p><a href="/#categories">By category</a></p>
-      <p><a href="/#manufacturers">By manufacturer</a></p>
-      <p><a href="/military-parts/">Military &amp; hi-rel parts</a></p>
-      <p><a href="/obsolete-parts/">Obsolete &amp; EOL parts</a></p>
-      <p><a href="/quality/">Quality &amp; anti-counterfeit</a></p>
+      <h2 class="footer-h">${L.footBrowse}</h2>
+      ${L.footLinks.map(([h, t]) => `<p><a href="${lp(h)}">${t}</a></p>`).join("")}
     </div>
   </div>
-  <div class="wrap legal muted">© ${YEAR} ${esc(cfg.companyName)}. All trademarks belong to their respective owners. ${esc(cfg.companyName)} is an independent distributor and is not affiliated with the manufacturers listed.</div>
+  <div class="wrap legal muted">© ${YEAR} ${esc(company)}. ${esc(L.legal(company))}</div>
 </footer>
-${cfg.wechatId ? wechatDialog() : ""}
-<script>window.SITE=${JSON.stringify({ email: cfg.email, company: cfg.companyName })};</script>
+${cfg.wechatId ? `<dialog id="wechat-dialog" class="dialog">
+  <h2>${L.wechatH}</h2>
+  ${cfg.wechatQr ? `<img src="${esc(cfg.wechatQr)}" alt="WeChat QR code" width="200" height="200">` : ""}
+  <p>${L.wechatId}: <strong>${esc(cfg.wechatId)}</strong></p>
+  <form method="dialog"><button class="btn">${L.close}</button></form>
+</dialog>` : ""}
+<script>window.SITE=${JSON.stringify({ email: cfg.email, company, lang: isEn ? "en" : "zh" })};</script>
 <script src="/site.js" defer></script>
 </body>
 </html>`;
-}
+  }
 
-function wechatDialog() {
-  return `<dialog id="wechat-dialog" class="dialog">
-  <h2>Contact us on WeChat</h2>
-  ${cfg.wechatQr ? `<img src="${esc(cfg.wechatQr)}" alt="WeChat QR code" width="200" height="200">` : ""}
-  <p>WeChat ID: <strong>${esc(cfg.wechatId)}</strong></p>
-  <form method="dialog"><button class="btn">Close</button></form>
-</dialog>`;
-}
-
-function rfqForm(pn) {
-  const id = s => "rfq-" + s;
-  return `<form class="rfq-form" data-rfq novalidate>
-  <div class="field"><label for="${id("pn")}">Part number</label><input id="${id("pn")}" name="part" required maxlength="80" value="${esc(pn)}" autocomplete="off"></div>
+  function rfqForm(pn) {
+    const f = L.form, id = s => "rfq-" + s;
+    return `<form class="rfq-form" data-rfq novalidate>
+  <div class="field"><label for="${id("pn")}">${f.pn}</label><input id="${id("pn")}" name="part" required maxlength="80" value="${esc(pn)}" autocomplete="off"></div>
   <div class="field-row">
-    <div class="field"><label for="${id("qty")}">Quantity</label><input id="${id("qty")}" name="quantity" inputmode="numeric" maxlength="20" required></div>
-    <div class="field"><label for="${id("date")}">Needed by</label><input id="${id("date")}" name="needed_by" maxlength="40" placeholder="e.g. ASAP, March"></div>
+    <div class="field"><label for="${id("qty")}">${f.qty}</label><input id="${id("qty")}" name="quantity" inputmode="numeric" maxlength="20" required></div>
+    <div class="field"><label for="${id("date")}">${f.date}</label><input id="${id("date")}" name="needed_by" maxlength="40" placeholder="${f.datePh}"></div>
   </div>
-  <div class="field"><label for="${id("name")}">Your name</label><input id="${id("name")}" name="name" required maxlength="80" autocomplete="name"></div>
-  <div class="field"><label for="${id("company")}">Company</label><input id="${id("company")}" name="company" maxlength="120" autocomplete="organization"></div>
-  <div class="field"><label for="${id("email")}">Email</label><input id="${id("email")}" name="email" type="email" required maxlength="120" autocomplete="email"></div>
-  <div class="field"><label for="${id("country")}">Country</label><input id="${id("country")}" name="country" maxlength="60" autocomplete="country-name"></div>
-  <div class="field"><label for="${id("msg")}">Notes (optional)</label><textarea id="${id("msg")}" name="message" rows="3" maxlength="2000" placeholder="Date code, packaging, other parts"></textarea></div>
+  <div class="field"><label for="${id("name")}">${f.name}</label><input id="${id("name")}" name="name" required maxlength="80" autocomplete="name"></div>
+  <div class="field"><label for="${id("company")}">${f.company}</label><input id="${id("company")}" name="company" maxlength="120" autocomplete="organization"></div>
+  <div class="field"><label for="${id("email")}">${f.email}</label><input id="${id("email")}" name="email" type="email" required maxlength="120" autocomplete="email"></div>
+  <div class="field"><label for="${id("country")}">${f.country}</label><input id="${id("country")}" name="country" maxlength="60" autocomplete="country-name"></div>
+  <div class="field"><label for="${id("msg")}">${f.msg}</label><textarea id="${id("msg")}" name="message" rows="3" maxlength="2000" placeholder="${f.msgPh}"></textarea></div>
   <div class="hp" aria-hidden="true"><label for="${id("web")}">Website</label><input id="${id("web")}" name="website" tabindex="-1" autocomplete="off"></div>
-  <button class="btn btn-primary" type="submit">Send quote request</button>
+  <button class="btn btn-primary" type="submit">${f.send}</button>
   <p class="form-status small" role="status"></p>
 </form>`;
-}
+  }
 
-function partRows(list) {
-  return list.map(p => `<tr data-s="${esc([p.pn, ...p.aliases, p.mfr, MFR_ALSO[p.mfr] || "", p.cat, p.desc, p.grade, p.life, p.nsn].join(" ").toLowerCase())}">
-<td><a class="pn" href="/parts/${p.slug}/">${esc(p.pn)}</a></td>
+  function partRows(list) {
+    return list.map(p => `<tr data-s="${esc([p.pn, ...p.aliases, p.mfr, MFR_ALSO.en[p.mfr] || "", MFR_ALSO.zh[p.mfr] || "", p.cat, L.cat(p.cat), p.desc, p.descZh, p.grade, L.grade(p.grade), p.life, L.life(p.life), p.nsn].join(" ").toLowerCase())}">
+<td><a class="pn" href="${lp(`/parts/${p.slug}/`)}">${esc(p.pn)}</a></td>
 <td>${esc(p.mfr)}</td>
-<td class="hide-sm">${esc(p.desc)}</td>
-<td><span class="badge">${icon("check")}In stock</span></td>
+<td class="hide-sm">${esc(L.desc(p))}</td>
+<td><span class="badge">${icon("check")}${L.inStock}</span></td>
 </tr>`).join("\n");
-}
+  }
 
-function partTable(list, withFilter) {
-  return `${withFilter ? `<div class="filter"><label class="search">${icon("search")}<input type="search" id="filter" placeholder="Filter by part number, manufacturer or keyword" autocomplete="off" aria-label="Filter parts"></label><span class="muted" id="count">${list.length} parts</span></div>` : ""}
+  function partTable(list, withFilter) {
+    return `${withFilter ? `<div class="filter"><label class="search">${icon("search")}<input type="search" id="filter" placeholder="${L.filterPh}" autocomplete="off" aria-label="${L.filterPh}"></label><span class="muted" id="count">${L.partsN(list.length)}</span></div>` : ""}
 <div class="table-wrap"><table class="parts">
-<thead><tr><th>Part number</th><th>Manufacturer</th><th class="hide-sm">Description</th><th>Status</th></tr></thead>
+<thead><tr><th>${L.thPn}</th><th>${L.thMfr}</th><th class="hide-sm">${L.thDesc}</th><th>${L.thStatus}</th></tr></thead>
 <tbody>${partRows(list)}</tbody>
 </table></div>
-<p class="muted empty" id="empty" hidden>No match in our listed stock. <a href="${esc(mailto(""))}">Email us the part number</a>, as we may still be able to source it.</p>`;
-}
+<p class="muted empty" id="empty" hidden>${L.noMatch} <a href="${esc(mailto(""))}">${L.noMatchLink}</a>${L.noMatchTail}</p>`;
+  }
 
-// ---------- write ----------
-const pages = [];
-function write(p, html, priority = "0.5") {
-  const file = path.join(OUT, p, "index.html");
-  fs.mkdirSync(path.dirname(file), { recursive: true });
-  fs.writeFileSync(file, html);
-  pages.push({ p, priority });
-}
+  const crumbs = items => `<nav class="crumbs" aria-label="Breadcrumb"><a href="${lp("/")}">${L.home}</a> / ${items.map(([h, t]) => h ? `<a href="${lp(h)}">${esc(t)}</a>` : `<span>${esc(t)}</span>`).join(" / ")}</nav>`;
+  const orgLd = { "@context": "https://schema.org", "@type": "Organization", name: company, url: url(lp("/")), email: cfg.email };
+  const reg = (p, pr) => { if (isEn) pages.push({ p, priority: pr }); };
 
-fs.rmSync(OUT, { recursive: true, force: true });
-fs.mkdirSync(OUT, { recursive: true });
-fs.cpSync(path.join(ROOT, "public"), OUT, { recursive: true });
-
-const orgLd = { "@context": "https://schema.org", "@type": "Organization", name: cfg.companyName, url: cfg.siteUrl, email: cfg.email };
-
-// Home
-write("/", layout({
-  title: `${cfg.companyName} | Military, Obsolete & Hard-to-Find Electronic Components`,
-  description: `${cfg.companyName}: ${cfg.tagline}. ${parts.length} part numbers in stock from ${mfrs.length} manufacturers including ${mfrs.slice(0, 4).map(m => m[0]).join(", ")}.`,
-  canonical: "/", active: "/",
-  jsonld: [orgLd, { "@context": "https://schema.org", "@type": "WebSite", name: cfg.companyName, url: cfg.siteUrl,
-    potentialAction: { "@type": "SearchAction", target: url("/parts/?q={search_term_string}"), "query-input": "required name=search_term_string" } }],
-  body: `<section class="hero">
+  // Home
+  write(L, "/", layout({
+    title: L.homeTitle(company),
+    description: L.homeDesc(company, parts.length, mfrs.length, mfrs.slice(0, 4).map(m => m[0]).join(", ")),
+    p: "/", active: "/",
+    jsonld: [orgLd, { "@context": "https://schema.org", "@type": "WebSite", name: company, url: url(lp("/")), inLanguage: L.htmlLang,
+      potentialAction: { "@type": "SearchAction", target: url(lp("/parts/") + "?q={search_term_string}"), "query-input": "required name=search_term_string" } }],
+    body: `<section class="hero">
   <div class="wrap">
-    <p class="eyebrow">Independent electronic component distributor</p>
-    <h1>Hard-to-find, military &amp; obsolete ICs. In stock.</h1>
-    <p class="lead">Search ${parts.length} part numbers from ${mfrs.length} manufacturers. Find your part, then contact us for a fast quote.</p>
-    <form class="hero-search" action="/parts/" method="get" role="search">
-      <label class="search">${icon("search")}<input type="search" name="q" placeholder="Enter a part number, e.g. HCPL-5731" aria-label="Part number" required></label>
-      <button class="btn btn-primary" type="submit">Search stock</button>
+    <p class="eyebrow">${L.eyebrow}</p>
+    <h1>${L.heroH1}</h1>
+    <p class="lead">${L.heroLead(parts.length, mfrs.length)}</p>
+    <form class="hero-search" action="${lp("/parts/")}" method="get" role="search">
+      <label class="search">${icon("search")}<input type="search" name="q" placeholder="${L.searchPh}" aria-label="${L.thPn}" required></label>
+      <button class="btn btn-primary" type="submit">${L.searchBtn}</button>
     </form>
-    <p class="hero-meta">${mfrs.slice(0, 6).map(m => `<a href="/manufacturer/${catSlug(m[0])}/">${esc(m[0])}</a>`).join(" · ")}</p>
+    <p class="hero-meta">${mfrs.slice(0, 6).map(m => `<a href="${lp(`/manufacturer/${catSlug(m[0])}/`)}">${esc(m[0])}</a>`).join(" · ")}</p>
   </div>
 </section>
 <section class="wrap section">
-  <div class="highlights">${cfg.highlights.map(h => `<div class="card"><h3>${esc(h.title)}</h3><p>${esc(h.text)}</p></div>`).join("")}</div>
+  <div class="highlights">${X.highlights.map(h => `<div class="card"><h3>${esc(h.title)}</h3><p>${esc(h.text)}</p></div>`).join("")}</div>
 </section>
 <section class="wrap section">
-  <h2>Our specialties</h2>
+  <h2>${L.specialties}</h2>
   <div class="tiles spec-tiles">
-    <a class="tile" href="/military-parts/"><span><strong>Military &amp; hi-rel</strong><br><span class="muted small">MIL-STD-883, QML, JANTX, 54-series</span></span><span class="tile-n">${parts.filter(p => isMil(p)).length}</span></a>
-    <a class="tile" href="/obsolete-parts/"><span><strong>Obsolete &amp; EOL</strong><br><span class="muted small">Discontinued and hard-to-find parts</span></span><span class="tile-n">${parts.filter(p => p.life).length}</span></a>
-    <a class="tile" href="/category/${catSlug("Avionics Bus (MIL-STD-1553 / ARINC 429)")}/"><span><strong>Avionics bus</strong><br><span class="muted small">MIL-STD-1553 and ARINC 429</span></span><span class="tile-n">${(cats.find(c => c[0].startsWith("Avionics")) || [0, []])[1].length}</span></a>
+    <a class="tile" href="${lp("/military-parts/")}"><span><strong>${L.milTile[0]}</strong><br><span class="muted small">${L.milTile[1]}</span></span><span class="tile-n">${milParts.length}</span></a>
+    <a class="tile" href="${lp("/obsolete-parts/")}"><span><strong>${L.eolTile[0]}</strong><br><span class="muted small">${L.eolTile[1]}</span></span><span class="tile-n">${eolParts.length}</span></a>
+    <a class="tile" href="${lp(`/category/${catSlug("Avionics Bus (MIL-STD-1553 / ARINC 429)")}/`)}"><span><strong>${L.aviTile[0]}</strong><br><span class="muted small">${L.aviTile[1]}</span></span><span class="tile-n">${(cats.find(c => c[0].startsWith("Avionics")) || [0, []])[1].length}</span></a>
   </div>
 </section>
 <section class="wrap section" id="categories">
-  <h2>Browse by category</h2>
-  <div class="tiles">${cats.map(([c, l]) => `<a class="tile" href="/category/${catSlug(c)}/"><span>${esc(c)}</span><span class="tile-n">${l.length}</span></a>`).join("")}</div>
+  <h2>${L.byCat}</h2>
+  <div class="tiles">${cats.map(([c, l]) => `<a class="tile" href="${lp(`/category/${catSlug(c)}/`)}"><span>${esc(L.cat(c))}</span><span class="tile-n">${l.length}</span></a>`).join("")}</div>
 </section>
 <section class="wrap section" id="manufacturers">
-  <h2>Browse by manufacturer</h2>
-  <div class="chips">${mfrs.map(([m, l]) => `<a class="chip" href="/manufacturer/${catSlug(m)}/">${esc(m)} <span class="muted">${l.length}</span></a>`).join("")}</div>
+  <h2>${L.byMfr}</h2>
+  <div class="chips">${mfrs.map(([m, l]) => `<a class="chip" href="${lp(`/manufacturer/${catSlug(m)}/`)}">${esc(m)} <span class="muted">${l.length}</span></a>`).join("")}</div>
 </section>
 <section class="cta">
   <div class="wrap cta-inner">
-    <div><h2>Can't find your part?</h2><p>Our listed stock changes often. Send us the part number and quantity you need.</p></div>
+    <div><h2>${L.ctaH}</h2><p>${L.ctaP}</p></div>
     ${contactButtons("")}
   </div>
 </section>`,
-}), "1.0");
+  }));
+  reg("/", "1.0");
 
-// Inventory
-write("/parts/", layout({
-  title: `Electronic Components in Stock | ${cfg.companyName}`,
-  description: `Full list of ${parts.length} integrated circuits and electronic components in stock at ${cfg.companyName}. Contact us for a quote.`,
-  canonical: "/parts/", active: "/parts/",
-  body: `<section class="wrap section page-head"><h1>Inventory</h1><p class="lead">All parts below are in stock. Click a part number for details and to request a quote.</p></section>
+  // Inventory
+  write(L, "/parts/", layout({
+    title: `${L.invTitle} | ${company}`, description: L.invDesc(parts.length), p: "/parts/", active: "/parts/",
+    body: `<section class="wrap section page-head"><h1>${L.invH1}</h1><p class="lead">${L.invLead}</p></section>
 <section class="wrap">${partTable(parts, true)}</section>`,
-}), "0.9");
+  }));
+  reg("/parts/", "0.9");
 
-// Category & manufacturer pages
-for (const [kind, groups, label] of [["category", cats, "category"], ["manufacturer", mfrs, "manufacturer"]]) {
-  for (const [name, list] of groups) {
-    write(`/${kind}/${catSlug(name)}/`, layout({
-      title: `${name} in Stock | ${cfg.companyName}`,
-      description: `${list.length} ${name} parts in stock at ${cfg.companyName}: ${list.slice(0, 6).map(p => p.pn).join(", ")}${list.length > 6 ? " and more" : ""}.`,
-      canonical: `/${kind}/${catSlug(name)}/`,
-      body: `<section class="wrap section page-head">
-<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/parts/">Inventory</a> / <span>${esc(name)}</span></nav>
-<h1>${esc(name)}</h1><p class="lead">${list.length} part${list.length === 1 ? "" : "s"} in stock${kind === "manufacturer" ? ` from ${esc(name)}` : ""}.</p></section>
+  // Category & manufacturer pages
+  for (const [kind, groups] of [["category", cats], ["manufacturer", mfrs]]) {
+    for (const [name, list] of groups) {
+      const shown = kind === "category" ? L.cat(name) : name;
+      const note = kind === "manufacturer" ? mfrNote(name) : "";
+      const p = `/${kind}/${catSlug(name)}/`;
+      write(L, p, layout({
+        title: `${L.listTitle(shown)} | ${company}`,
+        description: L.listDesc(shown + (note ? ` (${note})` : ""), list.length, list.slice(0, 6).map(x => x.pn).join(", ") + (list.length > 6 ? L.andMore : "")),
+        p,
+        body: `<section class="wrap section page-head">
+${crumbs([["/parts/", L.inventory], [null, shown]])}
+<h1>${esc(shown)}</h1><p class="lead">${L.listLead(list.length, kind === "manufacturer" ? name : "")}${note ? ` <span class="muted">(${esc(note)})</span>` : ""}</p></section>
 <section class="wrap">${partTable(list, list.length > 12)}</section>`,
-    }), "0.7");
+      }));
+      reg(p, "0.7");
+    }
   }
-}
 
-// Part pages
-const byCat = groupBy(parts, "cat");
-for (const p of parts) {
-  const related = byCat.get(p.cat).filter(x => x !== p).slice(0, 8);
-  const desc = p.desc || `${p.pn} from ${p.mfr}.`;
-  write(`/parts/${p.slug}/`, layout({
-    title: `${p.pn} ${p.mfr} - In Stock | ${cfg.companyName}`,
-    description: `${p.pn} by ${p.mfr} in stock. ${desc}${p.dc ? ` Date code ${p.dc}.` : ""} Request a quote from ${cfg.companyName}.`,
-    canonical: `/parts/${p.slug}/`,
-    jsonld: [{
-      "@context": "https://schema.org", "@type": "Product", name: p.pn, mpn: p.pn, sku: p.pn,
-      brand: { "@type": "Brand", name: p.mfr }, category: p.cat, description: desc, url: url(`/parts/${p.slug}/`),
-      ...(p.aliases.length ? { alternateName: p.aliases } : {}),
-      ...(p.nsn ? { identifier: { "@type": "PropertyValue", propertyID: "NSN", value: p.nsn } } : {}),
-      ...(p.img ? { image: url(p.img) } : {}),
-    }, {
-      "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: url("/") },
-        { "@type": "ListItem", position: 2, name: p.cat, item: url(`/category/${catSlug(p.cat)}/`) },
-        { "@type": "ListItem", position: 3, name: p.pn, item: url(`/parts/${p.slug}/`) }],
-    }],
-    body: `<section class="wrap section">
-<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/category/${catSlug(p.cat)}/">${esc(p.cat)}</a> / <span>${esc(p.pn)}</span></nav>
+  // Part pages
+  for (const pt of parts) {
+    const related = byCat.get(pt.cat).filter(x => x !== pt).slice(0, 8);
+    const desc = L.desc(pt) || `${pt.pn} ${pt.mfr}`;
+    const catName = L.cat(pt.cat);
+    const p = `/parts/${pt.slug}/`;
+    const note = mfrNote(pt.mfr);
+    write(L, p, layout({
+      title: L.partTitle(pt), description: L.partDesc(pt, desc), p, image: pt.img,
+      jsonld: [{
+        "@context": "https://schema.org", "@type": "Product", name: pt.pn, mpn: pt.pn, sku: pt.pn,
+        brand: { "@type": "Brand", name: pt.mfr }, category: catName, description: desc, url: url(lp(p)),
+        ...(pt.img ? { image: url(pt.img) } : {}),
+        ...(pt.aliases.length ? { alternateName: pt.aliases } : {}),
+        ...(pt.nsn ? { identifier: { "@type": "PropertyValue", propertyID: "NSN", value: pt.nsn } } : {}),
+      }, {
+        "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+          { "@type": "ListItem", position: 1, name: L.home, item: url(lp("/")) },
+          { "@type": "ListItem", position: 2, name: catName, item: url(lp(`/category/${catSlug(pt.cat)}/`)) },
+          { "@type": "ListItem", position: 3, name: pt.pn, item: url(lp(p)) }],
+      }],
+      body: `<section class="wrap section">
+${crumbs([[`/category/${catSlug(pt.cat)}/`, catName], [null, pt.pn]])}
 <div class="part">
   <div class="part-main">
     <div class="part-top">
-    <figure class="part-photo">${p.img
-      ? `<img src="${esc(p.img)}" alt="${esc(p.pn + " " + p.mfr)}" width="240" height="240" loading="eager"><figcaption>Image for reference</figcaption>`
-      : `<div class="photo-ph" role="img" aria-label="Photo not yet available"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="16" y="16" width="32" height="32" rx="3"/><path d="M22 16v-6M30 16v-6M38 16v-6M46 16v-6M22 48v6M30 48v6M38 48v6M46 48v6M16 24h-6M16 32h-6M16 40h-6M48 24h6M48 32h6M48 40h6"/></svg><span>Photo on request</span></div>`}</figure>
+    <figure class="part-photo">${pt.img
+      ? `<img src="${esc(pt.img)}" alt="${esc(pt.pn + " " + pt.mfr)}" width="240" height="240" loading="eager"><figcaption>${L.photoRef}</figcaption>`
+      : `<div class="photo-ph" role="img" aria-label="${L.photoPh}"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="16" y="16" width="32" height="32" rx="3"/><path d="M22 16v-6M30 16v-6M38 16v-6M46 16v-6M22 48v6M30 48v6M38 48v6M46 48v6M16 24h-6M16 32h-6M16 40h-6M48 24h6M48 32h6M48 40h6"/></svg><span>${L.photoPh}</span></div>`}</figure>
     <div>
-    <span class="badge badge-lg">${icon("check")}In stock</span>
-    <h1 class="part-pn">${esc(p.pn)}</h1>
-    <p class="part-mfr"><a href="/manufacturer/${catSlug(p.mfr)}/">${esc(p.mfr)}</a></p>
+    <span class="badge badge-lg">${icon("check")}${L.inStock}</span>
+    <h1 class="part-pn">${esc(pt.pn)}</h1>
+    <p class="part-mfr"><a href="${lp(`/manufacturer/${catSlug(pt.mfr)}/`)}">${esc(pt.mfr)}</a></p>
     </div>
     </div>
     <p class="lead">${esc(desc)}</p>
     <dl class="specs">
-      <div><dt>Part number</dt><dd>${esc(p.pn)}</dd></div>
-      <div><dt>Manufacturer</dt><dd><a href="/manufacturer/${catSlug(p.mfr)}/">${esc(p.mfr)}</a>${MFR_ALSO[p.mfr] ? ` <span class="muted">(${esc(MFR_ALSO[p.mfr])})</span>` : ""}</dd></div>
-      <div><dt>Category</dt><dd><a href="/category/${catSlug(p.cat)}/">${esc(p.cat)}</a></dd></div>
-      ${p.grade ? `<div><dt>Grade / screening</dt><dd>${isMil(p) ? `<a href="/military-parts/${gradeSlug(p.grade)}/">${esc(p.grade)}</a>` : esc(p.grade)}</dd></div>` : ""}
-      ${p.smd ? `<div><dt>SMD number</dt><dd>${esc(p.smd)}</dd></div>` : ""}
-      ${p.nsn ? `<div><dt>NSN</dt><dd>${esc(p.nsn)}</dd></div>` : ""}
-      ${p.life ? `<div><dt>Lifecycle</dt><dd><a href="/obsolete-parts/">${esc(p.life)}</a></dd></div>` : ""}
-      ${p.dc ? `<div><dt>Date code</dt><dd>${esc(p.dc)}</dd></div>` : ""}
-      <div><dt>Availability</dt><dd>In stock</dd></div>
-      ${p.mpage ? `<div><dt>Manufacturer info</dt><dd><a href="${esc(p.mpage)}" target="_blank" rel="noopener nofollow">Product page and datasheet ↗</a></dd></div>` : ""}
-      ${p.aliases.length ? `<div><dt>Also listed as</dt><dd class="aliases">${p.aliases.map(esc).join(", ")}</dd></div>` : ""}
+      <div><dt>${L.lbl.pn}</dt><dd>${esc(pt.pn)}</dd></div>
+      <div><dt>${L.lbl.mfr}</dt><dd><a href="${lp(`/manufacturer/${catSlug(pt.mfr)}/`)}">${esc(pt.mfr)}</a>${note ? ` <span class="muted">(${esc(note)})</span>` : ""}</dd></div>
+      <div><dt>${L.lbl.cat}</dt><dd><a href="${lp(`/category/${catSlug(pt.cat)}/`)}">${esc(catName)}</a></dd></div>
+      ${pt.grade ? `<div><dt>${L.lbl.grade}</dt><dd>${isMil(pt) ? `<a href="${lp(`/military-parts/${gradeSlug(pt.grade)}/`)}">${esc(L.grade(pt.grade))}</a>` : esc(L.grade(pt.grade))}</dd></div>` : ""}
+      ${pt.smd ? `<div><dt>${L.lbl.smd}</dt><dd>${esc(pt.smd)}</dd></div>` : ""}
+      ${pt.nsn ? `<div><dt>${L.lbl.nsn}</dt><dd>${esc(pt.nsn)}</dd></div>` : ""}
+      ${pt.life ? `<div><dt>${L.lbl.life}</dt><dd><a href="${lp("/obsolete-parts/")}">${esc(L.life(pt.life))}</a></dd></div>` : ""}
+      ${pt.dc ? `<div><dt>${L.lbl.dc}</dt><dd>${esc(pt.dc)}</dd></div>` : ""}
+      <div><dt>${L.lbl.avail}</dt><dd>${L.inStock}</dd></div>
+      ${pt.mpage ? `<div><dt>${L.lbl.minfo}</dt><dd><a href="${esc(pt.mpage)}" target="_blank" rel="noopener nofollow">${L.lbl.minfoLink}</a></dd></div>` : ""}
+      ${pt.aliases.length ? `<div><dt>${L.lbl.alias}</dt><dd class="aliases">${pt.aliases.map(esc).join(", ")}</dd></div>` : ""}
     </dl>
   </div>
   <aside class="rfq card">
-    <h2>Request a quote</h2>
-    <p>We usually reply within one business day.</p>
-    ${rfqForm(p.pn)}
-    <p class="muted small or">Or contact us directly:</p>
-    ${contactButtons(p.pn)}
+    <h2>${L.rfqH}</h2>
+    <p>${L.rfqP}</p>
+    ${rfqForm(pt.pn)}
+    <p class="muted small or">${L.orDirect}</p>
+    ${contactButtons(pt.pn)}
   </aside>
 </div>
 </section>
-${related.length ? `<section class="wrap section"><h2>Related ${esc(p.cat)} in stock</h2>${partTable(related, false)}<p><a href="/category/${catSlug(p.cat)}/">View all ${esc(p.cat)} →</a></p></section>` : ""}`,
-  }), "0.8");
-}
+${related.length ? `<section class="wrap section"><h2>${esc(L.related(catName))}</h2>${partTable(related, false)}<p><a href="${lp(`/category/${catSlug(pt.cat)}/`)}">${esc(L.viewAll(catName))}</a></p></section>` : ""}`,
+    }));
+    reg(p, "0.8");
+  }
 
-// About & contact
-write("/about/", layout({
-  title: `About Us | ${cfg.companyName}`,
-  description: `About ${cfg.companyName}, ${cfg.tagline.toLowerCase()}.`,
-  canonical: "/about/", active: "/about/",
-  body: `<section class="wrap section page-head narrow"><h1>About ${esc(cfg.companyName)}</h1>${cfg.about.map(t => `<p class="lead">${esc(t)}</p>`).join("")}</section>
-<section class="wrap section"><div class="highlights">${cfg.highlights.map(h => `<div class="card"><h3>${esc(h.title)}</h3><p>${esc(h.text)}</p></div>`).join("")}</div></section>`,
-}), "0.5");
+  // Military & obsolete hubs
+  function hub(p, title, h1, lead, list, intro) {
+    write(L, p, layout({
+      title: `${title} | ${company}`,
+      description: L.hubDesc(title, list.length, list.slice(0, 5).map(x => x.pn).join(", ")),
+      p, active: p.split("/").slice(0, 2).join("/") + "/",
+      body: `<section class="wrap section page-head">
+${crumbs([[null, h1]])}
+<h1>${esc(h1)}</h1><p class="lead">${lead}</p>${intro || ""}</section>
+<section class="wrap">${partTable(list, list.length > 12)}</section>`,
+    }));
+    reg(p, "0.8");
+  }
+  hub("/military-parts/", L.milTitle, L.milH1, L.milLead(milParts.length), milParts,
+    `<div class="chips">${grades.map(([g, l]) => `<a class="chip" href="${lp(`/military-parts/${gradeSlug(g)}/`)}">${esc(L.grade(g))} <span class="muted">${l.length}</span></a>`).join("")}</div>`);
+  for (const [g, l] of grades) {
+    hub(`/military-parts/${gradeSlug(g)}/`, L.gradeTitle(L.grade(g)), L.gradeTitle(L.grade(g)),
+      `${L.gradeLead(L.grade(g), l.length)} <a href="${lp("/military-parts/")}">${L.allMil}</a>`, l);
+  }
+  hub("/obsolete-parts/", L.eolTitle, L.eolH1, L.eolLead(eolParts.length), eolParts);
 
-write("/contact/", layout({
-  title: `Contact Us | ${cfg.companyName}`,
-  description: `Contact ${cfg.companyName} for quotes on electronic components. Email ${cfg.email}.`,
-  canonical: "/contact/", active: "/contact/",
-  body: `<section class="wrap section page-head narrow"><h1>Contact us</h1>
-<p class="lead">For a quote, send us the part number, quantity and target date. We usually reply within one business day.</p>
+  // Quality, About, Contact
+  const q = X.quality || { intro: "", steps: [], certifications: "" };
+  write(L, "/quality/", layout({
+    title: `${L.qTitle} | ${company}`, description: L.qDesc, p: "/quality/", active: "/quality/",
+    body: `<section class="wrap section page-head narrow"><h1>${L.qH1}</h1><p class="lead">${esc(q.intro)}</p></section>
+<section class="wrap section narrow"><ol class="steps">${q.steps.map(x => `<li><h2>${esc(x.title)}</h2><p>${esc(x.text)}</p></li>`).join("")}</ol>
+${q.certifications ? `<p class="card">${esc(q.certifications)}</p>` : ""}</section>`,
+  }));
+  reg("/quality/", "0.5");
+
+  write(L, "/about/", layout({
+    title: `${L.aboutTitle} | ${company}`, description: `${L.aboutH1(company)}: ${X.tagline}`, p: "/about/", active: "/about/",
+    body: `<section class="wrap section page-head narrow"><h1>${esc(L.aboutH1(company))}</h1>${X.about.map(t => `<p class="lead">${esc(t)}</p>`).join("")}</section>
+<section class="wrap section"><div class="highlights">${X.highlights.map(h => `<div class="card"><h3>${esc(h.title)}</h3><p>${esc(h.text)}</p></div>`).join("")}</div></section>`,
+  }));
+  reg("/about/", "0.5");
+
+  write(L, "/contact/", layout({
+    title: `${L.contactTitle} | ${company}`, description: L.contactDesc, p: "/contact/", active: "/contact/",
+    body: `<section class="wrap section page-head narrow"><h1>${L.contactH1}</h1>
+<p class="lead">${L.contactLead}</p>
 <div class="card contact-card">
   <dl class="specs">
-    <div><dt>Email</dt><dd><a href="${esc(mailto(""))}">${esc(cfg.email)}</a></dd></div>
-    ${cfg.wechatId ? `<div><dt>WeChat</dt><dd>${esc(cfg.wechatId)}</dd></div>` : ""}
-    ${cfg.whatsapp ? `<div><dt>WhatsApp</dt><dd><a href="${esc(waLink(""))}" target="_blank" rel="noopener">${esc(cfg.whatsapp)}</a></dd></div>` : ""}
-    ${cfg.phone ? `<div><dt>Phone</dt><dd>${esc(cfg.phone)}</dd></div>` : ""}
-    ${cfg.address ? `<div><dt>Address</dt><dd>${esc(cfg.address)}</dd></div>` : ""}
+    <div><dt>${L.lblEmail}</dt><dd><a href="${esc(mailto(""))}">${esc(cfg.email)}</a></dd></div>
+    ${cfg.wechatId ? `<div><dt>${L.lblWeChat}</dt><dd>${esc(cfg.wechatId)}</dd></div>` : ""}
+    ${cfg.whatsapp ? `<div><dt>${L.lblWhatsApp}</dt><dd><a href="${esc(waLink(""))}" target="_blank" rel="noopener">${esc(cfg.whatsapp)}</a></dd></div>` : ""}
+    ${cfg.phone ? `<div><dt>${L.lblPhone}</dt><dd>${esc(cfg.phone)}</dd></div>` : ""}
+    ${cfg.address ? `<div><dt>${L.lblAddress}</dt><dd>${esc(cfg.address)}</dd></div>` : ""}
   </dl>
   ${contactButtons("")}
 </div>
-<div class="card contact-card"><h2>Request a quote</h2>${rfqForm("")}</div></section>`,
-}), "0.6");
-
-// Military & obsolete hubs
-function hub(pathName, title, h1, lead, list, intro) {
-  write(pathName, layout({
-    title: `${title} | ${cfg.companyName}`,
-    description: `${list.length} ${title.toLowerCase()} in stock at ${cfg.companyName}, including ${list.slice(0, 5).map(p => p.pn).join(", ")}. Request a quote.`,
-    canonical: pathName, active: pathName.split("/").slice(0, 2).join("/") + "/",
-    body: `<section class="wrap section page-head">
-<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>${esc(h1)}</span></nav>
-<h1>${esc(h1)}</h1><p class="lead">${lead}</p>${intro || ""}</section>
-<section class="wrap">${partTable(list, list.length > 12)}</section>`,
-  }), "0.8");
+<div class="card contact-card"><h2>${L.rfqH}</h2>${rfqForm("")}</div></section>`,
+  }));
+  reg("/contact/", "0.6");
 }
-const milParts = parts.filter(isMil);
-const grades = [...groupBy(milParts, "grade")].sort((a, b) => b[1].length - a[1].length);
-hub("/military-parts/", "Military & Hi-Rel Components", "Military & hi-rel components",
-  `${milParts.length} military-grade and screened parts in stock: MIL-STD-883, QML (MIL-PRF-38535), JANTX (MIL-PRF-19500) and military-temperature devices.`,
-  milParts, `<div class="chips">${grades.map(([g, l]) => `<a class="chip" href="/military-parts/${gradeSlug(g)}/">${esc(g)} <span class="muted">${l.length}</span></a>`).join("")}</div>`);
-for (const [g, l] of grades) {
-  hub(`/military-parts/${gradeSlug(g)}/`, `${g} Parts`, `${g} parts`, `${l.length} ${esc(g)} part${l.length === 1 ? "" : "s"} in stock. <a href="/military-parts/">All military parts</a>`, l);
-}
-const eolParts = parts.filter(p => p.life);
-hub("/obsolete-parts/", "Obsolete & EOL Electronic Components", "Obsolete & end-of-life components",
-  `${eolParts.length} discontinued, end-of-life and hard-to-find parts in stock for repair, sustainment and long-lifecycle programs.`, eolParts);
 
-const q = cfg.quality || { intro: "", steps: [], certifications: "" };
-write("/quality/", layout({
-  title: `Quality & Anti-Counterfeit | ${cfg.companyName}`,
-  description: `How ${cfg.companyName} sources, inspects and documents electronic components to avoid counterfeit parts.`,
-  canonical: "/quality/", active: "/quality/",
-  body: `<section class="wrap section page-head narrow"><h1>Quality &amp; anti-counterfeit</h1><p class="lead">${esc(q.intro)}</p></section>
-<section class="wrap section narrow"><ol class="steps">${q.steps.map(x => `<li><h2>${esc(x.title)}</h2><p>${esc(x.text)}</p></li>`).join("")}</ol>
-${q.certifications ? `<p class="card">${esc(q.certifications)}</p>` : ""}</section>`,
-}), "0.5");
+buildLanguage(T.en);
+buildLanguage(T.zh);
 
-// Google Ads helpers (docs/ads/): Dynamic Search Ads page feed + keyword lists
+// 404 (one file, both languages)
+fs.writeFileSync(path.join(OUT, "404.html"), `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found | ${esc(cfg.companyName)}</title><meta name="robots" content="noindex"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css"></head>
+<body><main><section class="wrap section page-head narrow"><h1>Page not found</h1>
+<p class="lead">This part may no longer be listed. <a href="/parts/">Search our inventory</a> or email <a href="mailto:${esc(cfg.email)}">${esc(cfg.email)}</a>.</p>
+<p class="lead" lang="zh-CN">页面不存在，该型号可能已下架。<a href="/cn/parts/">搜索库存</a>，或发邮件至 <a href="mailto:${esc(cfg.email)}">${esc(cfg.email)}</a>。</p>
+</section></main></body></html>`);
+
+// sitemap (both languages, with hreflang alternates), robots
+const today = new Date().toISOString().slice(0, 10);
+const alt = p => `<xhtml:link rel="alternate" hreflang="en" href="${esc(url(p))}"/><xhtml:link rel="alternate" hreflang="zh-Hans" href="${esc(url("/cn" + p))}"/><xhtml:link rel="alternate" hreflang="x-default" href="${esc(url(p))}"/>`;
+fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${pages.map(x => [x.p, "/cn" + x.p].map(u => `<url><loc>${esc(url(u))}</loc><lastmod>${today}</lastmod><priority>${x.priority}</priority>${alt(x.p)}</url>`).join("\n")).join("\n")}
+</urlset>
+`);
+fs.writeFileSync(path.join(OUT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${url("/sitemap.xml")}\n`);
+
+// Google Ads helpers (docs/ads/): Dynamic Search Ads page feed + keyword lists (English site)
 const ADS = path.join(ROOT, "docs", "ads");
 fs.mkdirSync(ADS, { recursive: true });
 const csvq = v => `"${String(v).replace(/"/g, '""')}"`;
@@ -472,19 +623,4 @@ const kw = new Set();
 for (const p of parts.filter(p => isMil(p) || p.life)) for (const v of [p.pn, ...p.aliases.slice(0, 2)]) kw.add(`[${v.toLowerCase()}]`);
 fs.writeFileSync(path.join(ADS, "exact-match-keywords.txt"), [...kw].join("\n") + "\n");
 
-// 404
-fs.writeFileSync(path.join(OUT, "404.html"), layout({
-  title: `Page not found | ${cfg.companyName}`, description: "Page not found.", canonical: "/404.html",
-  body: `<section class="wrap section page-head narrow"><h1>Page not found</h1><p class="lead">This part may no longer be listed. <a href="/parts/">Search our inventory</a> or <a href="${esc(mailto(""))}">email us the part number</a>.</p></section>`,
-}));
-
-// sitemap, robots
-const today = new Date().toISOString().slice(0, 10);
-fs.writeFileSync(path.join(OUT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pages.map(x => `<url><loc>${esc(url(x.p))}</loc><lastmod>${today}</lastmod><priority>${x.priority}</priority></url>`).join("\n")}
-</urlset>
-`);
-fs.writeFileSync(path.join(OUT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${url("/sitemap.xml")}\n`);
-
-console.log(`Built ${pages.length} pages (${parts.length} parts, ${cats.length} categories, ${mfrs.length} manufacturers) -> dist/`);
+console.log(`Built ${pages.length} pages x 2 languages (${parts.length} parts, ${cats.length} categories, ${mfrs.length} manufacturers) -> dist/`);

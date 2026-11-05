@@ -1,12 +1,14 @@
 # ziheng-int.com
 
-Static website for Ziheng International: a home page, a searchable inventory, and one page per part number.
+Static website for Ziheng International: a home page, a searchable inventory, and one page per part number,
+in English (`/`) and Chinese (`/cn/`), with a language switch on every page.
 
 ## How it works
 
 - `data/inventory.csv` holds the parts (Part Number, Manufacturer, Category, Description, Date Code, Show on Website,
   Grade / Screening, Lifecycle, SMD Number, NSN, Alternate Part Numbers, Manufacturer Page).
   It contains **public information only**: never add quantity, cost or buyer data.
+- Chinese text: the inventory's `Description (Chinese)` column, `zh` in `site.config.json`, and the translation tables in `build.js`.
 - `site.config.json` holds the company name, email, WeChat, WhatsApp, phone, address and About text.
   Empty fields are hidden on the site.
 - `node build.js` generates the site into `dist/` (no dependencies to install).
