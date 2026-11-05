@@ -83,7 +83,6 @@ function aliases(p) {
     add(x.replace(/[\/#:+\s]/g, ""));
   }
   for (const x of p.altManual) add(x);
-  if (p.smd) { add(p.smd); add(p.smd.replace(/-/g, "")); }
   return [...out].filter(v => !/[()]/.test(v)).slice(0, 10);
 }
 for (const p of parts) p.aliases = aliases(p);
@@ -96,14 +95,10 @@ for (const p of parts) {
   p.img = f ? `/images/parts/${f}` : "";
 }
 
-const isMil = p => !!p.grade && !/industrial/i.test(p.grade);
-const gradeSlug = g => catSlug(g.replace(/\(.*?\)/g, "")) || "military";
 const groupBy = (arr, k) => arr.reduce((m, p) => (m.get(p[k]) ? m.get(p[k]).push(p) : m.set(p[k], [p]), m), new Map());
 const cats = [...groupBy(parts, "cat")].sort((a, b) => b[1].length - a[1].length);
 const mfrs = [...groupBy(parts, "mfr")].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
 const byCat = groupBy(parts, "cat");
-const milParts = parts.filter(isMil);
-const grades = [...groupBy(milParts, "grade")].sort((a, b) => b[1].length - a[1].length);
 const eolParts = parts.filter(p => p.life);
 
 // ---------- Translations ----------
@@ -130,7 +125,7 @@ const MFR_ALSO = {
   },
 };
 const CAT_ZH = {
-  "Logic ICs": "逻辑芯片", "Amplifiers & Comparators": "放大器与比较器", "Avionics Bus (MIL-STD-1553 / ARINC 429)": "航空总线（MIL-STD-1553 / ARINC 429）",
+  "Logic ICs": "逻辑芯片", "Amplifiers & Comparators": "放大器与比较器", "Avionics Data Bus (ARINC 429 / 1553)": "航空数据总线（ARINC 429 / 1553）",
   "Interface ICs": "接口芯片", "DC-DC Converter Modules": "DC-DC 电源模块", "Programmable Logic (FPGA / CPLD / PLD)": "可编程逻辑（FPGA / CPLD / PLD）",
   "Memory": "存储器", "Diodes & TVS": "二极管与 TVS", "Microcontrollers & Processors": "微控制器与处理器", "Power MOSFETs": "功率 MOSFET",
   "Voltage Regulators": "稳压器", "Optocouplers": "光耦", "Analog Switches & Multiplexers": "模拟开关与多路复用器",
@@ -138,26 +133,21 @@ const CAT_ZH = {
   "Voltage References": "电压基准", "Data Converters": "数据转换器（ADC/DAC）", "Displays & LED Drivers": "显示器与 LED 驱动",
   "Power Transistors": "功率晶体管", "Connectors": "连接器", "Sensors": "传感器", "Clock & Timing": "时钟与定时",
 };
-const GRADE_ZH = {
-  "MIL-STD-883": "MIL-STD-883 军品筛选", "MIL-STD-883 / QML": "MIL-STD-883 / QML", "QML (MIL-PRF-38535)": "QML（MIL-PRF-38535）",
-  "JANTX (MIL-PRF-19500)": "JANTX（MIL-PRF-19500）", "Military (-55°C to +125°C)": "军品级（-55°C 至 +125°C）",
-  "Military / aerospace": "军品 / 航空航天", "Military": "军品级", "Military temperature": "军品级温度", "Industrial temperature": "工业级温度",
-};
 const LIFE_ZH = { "Obsolete / EOL": "已停产 / EOL", "Mature (EOL risk)": "成熟期（有停产风险）" };
 
 const T = {
   en: {
     htmlLang: "en", ogLocale: "en_US", prefix: "", other: "zh", switchLabel: "中文", switchTitle: "切换到中文",
-    nav: [["/parts/", "Inventory"], ["/military-parts/", "Military"], ["/obsolete-parts/", "Obsolete"], ["/quality/", "Quality"], ["/about/", "About"], ["/contact/", "Contact"]],
-    cat: c => c, grade: g => g, life: l => l, desc: p => p.desc,
+    nav: [["/parts/", "Inventory"], ["/obsolete-parts/", "Obsolete"], ["/quality/", "Quality"], ["/about/", "About"], ["/contact/", "Contact"]],
+    cat: c => c, life: l => l, desc: p => p.desc,
     inStock: "In stock", home: "Home", inventory: "Inventory",
-    homeTitle: c => `${c} | Military, Obsolete & Hard-to-Find Electronic Components`,
-    homeDesc: (c, n, m, top) => `${c}: ${cfg.tagline}. ${n} part numbers in stock from ${m} manufacturers including ${top}.`,
-    eyebrow: "Independent electronic component distributor", heroH1: "Hard-to-find, military &amp; obsolete ICs. In stock.",
-    heroLead: (n, m) => `Search ${n} part numbers from ${m} manufacturers. Find your part, then contact us for a fast quote.`,
+    homeTitle: c => `${c} | Obsolete & Hard-to-Find Electronic Components`,
+    homeDesc: (c, top) => `${c}: ${cfg.tagline}. Integrated circuits in stock from manufacturers including ${top}. Request a quote.`,
+    eyebrow: "Independent electronic component distributor", heroH1: "Hard-to-find &amp; obsolete ICs. In stock.",
+    heroLead: "Integrated circuits and electronic components from leading manufacturers, held in our own stock. Search by part number, then contact us for a fast quote.",
     searchPh: "Enter a part number, e.g. HCPL-5731", searchBtn: "Search stock",
-    specialties: "Our specialties", milTile: ["Military &amp; hi-rel", "MIL-STD-883, QML, JANTX, 54-series"],
-    eolTile: ["Obsolete &amp; EOL", "Discontinued and hard-to-find parts"], aviTile: ["Avionics bus", "MIL-STD-1553 and ARINC 429"],
+    specialties: "Our specialties", invTile: ["Full inventory", "Search every part we hold in stock"],
+    eolTile: ["Obsolete &amp; EOL", "Discontinued and hard-to-find parts"], aviTile: ["Avionics data bus", "ARINC 429 and 1553 interface ICs"],
     byCat: "Browse by category", byMfr: "Browse by manufacturer",
     ctaH: "Can't find your part?", ctaP: "Our listed stock changes often. Send us the part number and quantity you need.",
     invTitle: "Electronic Components in Stock", invDesc: n => `Full list of ${n} integrated circuits and electronic components in stock at ${cfg.companyName}. Contact us for a quote.`,
@@ -170,14 +160,11 @@ const T = {
     partTitle: p => `${p.pn} ${p.mfr} - In Stock | ${cfg.companyName}`,
     partDesc: (p, d) => `${p.pn} by ${p.mfr} in stock. ${d}${p.dc ? ` Date code ${p.dc}.` : ""} Request a quote from ${cfg.companyName}.`,
     photoRef: "Image for reference", photoPh: "Photo on request",
-    lbl: { pn: "Part number", mfr: "Manufacturer", cat: "Category", grade: "Grade / screening", smd: "SMD number", nsn: "NSN", life: "Lifecycle", dc: "Date code", avail: "Availability", minfo: "Manufacturer info", minfoLink: "Product page and datasheet ↗", alias: "Also listed as" },
+    lbl: { pn: "Part number", mfr: "Manufacturer", cat: "Category", life: "Lifecycle", dc: "Date code", avail: "Availability", minfo: "Manufacturer info", minfoLink: "Product page and datasheet ↗", alias: "Also listed as" },
     rfqH: "Request a quote", rfqP: "We usually reply within one business day.", orDirect: "Or contact us directly:",
     related: c => `Related ${c} in stock`, viewAll: c => `View all ${c} →`,
     form: { pn: "Part number", qty: "Quantity", date: "Needed by", datePh: "e.g. ASAP, March", name: "Your name", company: "Company", email: "Email", country: "Country", msg: "Notes (optional)", msgPh: "Date code, packaging, other parts", send: "Send quote request" },
     btnEmail: "Email for a quote", wechatH: "Contact us on WeChat", wechatId: "WeChat ID", close: "Close",
-    milTitle: "Military & Hi-Rel Components", milH1: "Military & hi-rel components",
-    milLead: n => `${n} military-grade and screened parts in stock: MIL-STD-883, QML (MIL-PRF-38535), JANTX (MIL-PRF-19500) and military-temperature devices.`,
-    gradeTitle: g => `${g} Parts`, gradeLead: (g, n) => `${n} ${esc(g)} part${n === 1 ? "" : "s"} in stock.`, allMil: "All military parts",
     eolTitle: "Obsolete & EOL Electronic Components", eolH1: "Obsolete & end-of-life components",
     eolLead: n => `${n} discontinued, end-of-life and hard-to-find parts in stock for repair, sustainment and long-lifecycle programs.`,
     hubDesc: (t, n, ex) => `${n} ${t.toLowerCase()} in stock at ${cfg.companyName}, including ${ex}. Request a quote.`,
@@ -186,7 +173,7 @@ const T = {
     contactTitle: "Contact Us", contactH1: "Contact us", contactLead: "For a quote, send us the part number, quantity and target date. We usually reply within one business day.",
     contactDesc: `Contact ${cfg.companyName} for quotes on electronic components. Email ${cfg.email}.`,
     lblEmail: "Email", lblWeChat: "WeChat", lblWhatsApp: "WhatsApp", lblPhone: "Phone", lblAddress: "Address",
-    footContact: "Contact", footBrowse: "Browse", footLinks: [["/parts/", "Full inventory"], ["/#categories", "By category"], ["/#manufacturers", "By manufacturer"], ["/military-parts/", "Military &amp; hi-rel parts"], ["/obsolete-parts/", "Obsolete &amp; EOL parts"], ["/quality/", "Quality &amp; anti-counterfeit"]],
+    footContact: "Contact", footBrowse: "Browse", footLinks: [["/parts/", "Full inventory"], ["/#categories", "By category"], ["/#manufacturers", "By manufacturer"], ["/obsolete-parts/", "Obsolete &amp; EOL parts"], ["/quality/", "Quality &amp; anti-counterfeit"]],
     legal: c => `All trademarks belong to their respective owners. ${c} is an independent distributor and is not affiliated with the manufacturers listed.`,
     mailSubject: pn => pn ? `RFQ: ${pn}` : `Inquiry - ${cfg.companyName}`,
     mailBody: pn => pn ? `Hello ${cfg.companyName},\n\nPlease quote the following part:\n\nPart number: ${pn}\nQuantity needed: \nTarget date: \n\nCompany: \nName: \nCountry: \n\nThank you.` : `Hello ${cfg.companyName},\n\n`,
@@ -195,16 +182,16 @@ const T = {
   },
   zh: {
     htmlLang: "zh-CN", ogLocale: "zh_CN", prefix: "/cn", other: "en", switchLabel: "EN", switchTitle: "Switch to English",
-    nav: [["/parts/", "库存"], ["/military-parts/", "军品"], ["/obsolete-parts/", "停产器件"], ["/quality/", "质量保证"], ["/about/", "关于我们"], ["/contact/", "联系我们"]],
-    cat: c => CAT_ZH[c] || c, grade: g => GRADE_ZH[g] || g, life: l => LIFE_ZH[l] || l, desc: p => p.descZh || p.desc,
+    nav: [["/parts/", "库存"], ["/obsolete-parts/", "停产器件"], ["/quality/", "质量保证"], ["/about/", "关于我们"], ["/contact/", "联系我们"]],
+    cat: c => CAT_ZH[c] || c, life: l => LIFE_ZH[l] || l, desc: p => p.descZh || p.desc,
     inStock: "现货", home: "首页", inventory: "库存",
-    homeTitle: c => `${c} | 军品、停产及稀缺电子元器件现货`,
-    homeDesc: (c, n, m, top) => `${c}：${(cfg.zh || cfg).tagline}。现货 ${n} 个型号，涵盖 ${m} 个品牌，包括 ${top}。`,
-    eyebrow: "独立电子元器件分销商", heroH1: "军品、停产及稀缺芯片，现货供应。",
-    heroLead: (n, m) => `搜索 ${n} 个现货型号，涵盖 ${m} 个品牌。找到所需型号后联系我们，快速报价。`,
+    homeTitle: c => `${c} | 停产及稀缺电子元器件现货`,
+    homeDesc: (c, top) => `${c}：${(cfg.zh || cfg).tagline}。现货供应 ${top} 等品牌集成电路，欢迎询价。`,
+    eyebrow: "独立电子元器件分销商", heroH1: "停产及稀缺芯片，现货供应。",
+    heroLead: "自有库存的知名品牌集成电路及电子元器件。按型号搜索，联系我们即可快速报价。",
     searchPh: "输入型号，例如 HCPL-5731", searchBtn: "搜索库存",
-    specialties: "主营方向", milTile: ["军品与高可靠性", "MIL-STD-883、QML、JANTX、54 系列"],
-    eolTile: ["停产与 EOL 器件", "已停产及稀缺器件"], aviTile: ["航空总线", "MIL-STD-1553 与 ARINC 429"],
+    specialties: "主营方向", invTile: ["全部库存", "搜索我们的全部现货型号"],
+    eolTile: ["停产与 EOL 器件", "已停产及稀缺器件"], aviTile: ["航空数据总线", "ARINC 429 与 1553 接口芯片"],
     byCat: "按类别浏览", byMfr: "按品牌浏览",
     ctaH: "没有找到所需型号？", ctaP: "我们的库存经常更新。请将型号和需求数量发给我们。",
     invTitle: "电子元器件现货库存", invDesc: n => `${cfg.companyName} 现货 ${n} 个集成电路及电子元器件型号完整列表。欢迎询价。`,
@@ -217,14 +204,11 @@ const T = {
     partTitle: p => `${p.pn} ${p.mfr} 现货 | ${cfg.companyName}`,
     partDesc: (p, d) => `${p.pn}（${p.mfr}）现货。${d}${p.dc ? `批号 ${p.dc}。` : ""}欢迎向 ${cfg.companyName} 询价。`,
     photoRef: "图片仅供参考", photoPh: "可索取实物照片",
-    lbl: { pn: "型号", mfr: "品牌", cat: "类别", grade: "等级 / 筛选", smd: "SMD 编号", nsn: "NSN 编号", life: "生命周期", dc: "批号", avail: "库存状态", minfo: "原厂资料", minfoLink: "产品页面及规格书 ↗", alias: "其他写法" },
+    lbl: { pn: "型号", mfr: "品牌", cat: "类别", life: "生命周期", dc: "批号", avail: "库存状态", minfo: "原厂资料", minfoLink: "产品页面及规格书 ↗", alias: "其他写法" },
     rfqH: "询价", rfqP: "我们通常在一个工作日内回复。", orDirect: "或直接联系我们：",
     related: c => `相关${c}现货`, viewAll: c => `查看全部${c} →`,
     form: { pn: "型号", qty: "数量", date: "需求时间", datePh: "例如：尽快、3 月", name: "姓名", company: "公司", email: "邮箱", country: "国家/地区", msg: "备注（选填）", msgPh: "批号、包装、其他型号", send: "提交询价" },
     btnEmail: "邮件询价", wechatH: "微信联系我们", wechatId: "微信号", close: "关闭",
-    milTitle: "军品及高可靠性元器件", milH1: "军品及高可靠性元器件",
-    milLead: n => `现货 ${n} 个军品级及筛选器件：MIL-STD-883、QML（MIL-PRF-38535）、JANTX（MIL-PRF-19500）及军品级温度器件。`,
-    gradeTitle: g => `${g} 器件`, gradeLead: (g, n) => `${esc(g)} 现货 ${n} 个型号。`, allMil: "全部军品器件",
     eolTitle: "停产及 EOL 电子元器件", eolH1: "停产及生命周期末期（EOL）元器件",
     eolLead: n => `现货 ${n} 个已停产、EOL 及稀缺器件，适用于维修、保障及长生命周期项目。`,
     hubDesc: (t, n, ex) => `${cfg.companyName} 现货 ${n} 个${t}，包括 ${ex}。欢迎询价。`,
@@ -233,7 +217,7 @@ const T = {
     contactTitle: "联系我们", contactH1: "联系我们", contactLead: "询价请提供型号、数量及需求时间。我们通常在一个工作日内回复。",
     contactDesc: `联系 ${cfg.companyName} 获取电子元器件报价。邮箱 ${cfg.email}。`,
     lblEmail: "邮箱", lblWeChat: "微信", lblWhatsApp: "WhatsApp", lblPhone: "电话", lblAddress: "地址",
-    footContact: "联系方式", footBrowse: "浏览", footLinks: [["/parts/", "全部库存"], ["/#categories", "按类别"], ["/#manufacturers", "按品牌"], ["/military-parts/", "军品及高可靠性器件"], ["/obsolete-parts/", "停产及 EOL 器件"], ["/quality/", "质量保证与防伪"]],
+    footContact: "联系方式", footBrowse: "浏览", footLinks: [["/parts/", "全部库存"], ["/#categories", "按类别"], ["/#manufacturers", "按品牌"], ["/obsolete-parts/", "停产及 EOL 器件"], ["/quality/", "质量保证与防伪"]],
     legal: c => `所有商标归其各自所有者所有。${c} 为独立分销商，与所列原厂无隶属关系。`,
     mailSubject: pn => pn ? `询价：${pn}` : `咨询 - ${cfg.companyName}`,
     mailBody: pn => pn ? `您好，\n\n请报价以下型号：\n\n型号：${pn}\n需求数量：\n需求时间：\n\n公司：\n姓名：\n国家/地区：\n\n谢谢。` : `您好，\n\n`,
@@ -376,7 +360,7 @@ ${cfg.wechatId ? `<dialog id="wechat-dialog" class="dialog">
   }
 
   function partRows(list) {
-    return list.map(p => `<tr data-s="${esc([p.pn, ...p.aliases, p.mfr, MFR_ALSO.en[p.mfr] || "", MFR_ALSO.zh[p.mfr] || "", p.cat, L.cat(p.cat), p.desc, p.descZh, p.grade, L.grade(p.grade), p.life, L.life(p.life), p.nsn].join(" ").toLowerCase())}">
+    return list.map(p => `<tr data-s="${esc([p.pn, ...p.aliases, p.mfr, MFR_ALSO.en[p.mfr] || "", MFR_ALSO.zh[p.mfr] || "", p.cat, L.cat(p.cat), p.desc, p.descZh, p.life, L.life(p.life)].join(" ").toLowerCase())}">
 <td><a class="pn" href="${lp(`/parts/${p.slug}/`)}">${esc(p.pn)}</a></td>
 <td>${esc(p.mfr)}</td>
 <td class="hide-sm">${esc(L.desc(p))}</td>
@@ -400,7 +384,7 @@ ${cfg.wechatId ? `<dialog id="wechat-dialog" class="dialog">
   // Home
   write(L, "/", layout({
     title: L.homeTitle(company),
-    description: L.homeDesc(company, parts.length, mfrs.length, mfrs.slice(0, 4).map(m => m[0]).join(", ")),
+    description: L.homeDesc(company, mfrs.slice(0, 4).map(m => m[0]).join(", ")),
     p: "/", active: "/",
     jsonld: [orgLd, { "@context": "https://schema.org", "@type": "WebSite", name: company, url: url(lp("/")), inLanguage: L.htmlLang,
       potentialAction: { "@type": "SearchAction", target: url(lp("/parts/") + "?q={search_term_string}"), "query-input": "required name=search_term_string" } }],
@@ -408,7 +392,7 @@ ${cfg.wechatId ? `<dialog id="wechat-dialog" class="dialog">
   <div class="wrap">
     <p class="eyebrow">${L.eyebrow}</p>
     <h1>${L.heroH1}</h1>
-    <p class="lead">${L.heroLead(parts.length, mfrs.length)}</p>
+    <p class="lead">${L.heroLead}</p>
     <form class="hero-search" action="${lp("/parts/")}" method="get" role="search">
       <label class="search">${icon("search")}<input type="search" name="q" placeholder="${L.searchPh}" aria-label="${L.thPn}" required></label>
       <button class="btn btn-primary" type="submit">${L.searchBtn}</button>
@@ -422,18 +406,18 @@ ${cfg.wechatId ? `<dialog id="wechat-dialog" class="dialog">
 <section class="wrap section">
   <h2>${L.specialties}</h2>
   <div class="tiles spec-tiles">
-    <a class="tile" href="${lp("/military-parts/")}"><span><strong>${L.milTile[0]}</strong><br><span class="muted small">${L.milTile[1]}</span></span><span class="tile-n">${milParts.length}</span></a>
-    <a class="tile" href="${lp("/obsolete-parts/")}"><span><strong>${L.eolTile[0]}</strong><br><span class="muted small">${L.eolTile[1]}</span></span><span class="tile-n">${eolParts.length}</span></a>
-    <a class="tile" href="${lp(`/category/${catSlug("Avionics Bus (MIL-STD-1553 / ARINC 429)")}/`)}"><span><strong>${L.aviTile[0]}</strong><br><span class="muted small">${L.aviTile[1]}</span></span><span class="tile-n">${(cats.find(c => c[0].startsWith("Avionics")) || [0, []])[1].length}</span></a>
+    <a class="tile" href="${lp("/parts/")}"><span><strong>${L.invTile[0]}</strong><br><span class="muted small">${L.invTile[1]}</span></span></a>
+    <a class="tile" href="${lp("/obsolete-parts/")}"><span><strong>${L.eolTile[0]}</strong><br><span class="muted small">${L.eolTile[1]}</span></span></a>
+    <a class="tile" href="${lp(`/category/${catSlug("Avionics Data Bus (ARINC 429 / 1553)")}/`)}"><span><strong>${L.aviTile[0]}</strong><br><span class="muted small">${L.aviTile[1]}</span></span></a>
   </div>
 </section>
 <section class="wrap section" id="categories">
   <h2>${L.byCat}</h2>
-  <div class="tiles">${cats.map(([c, l]) => `<a class="tile" href="${lp(`/category/${catSlug(c)}/`)}"><span>${esc(L.cat(c))}</span><span class="tile-n">${l.length}</span></a>`).join("")}</div>
+  <div class="tiles">${cats.map(([c, l]) => `<a class="tile" href="${lp(`/category/${catSlug(c)}/`)}"><span>${esc(L.cat(c))}</span></a>`).join("")}</div>
 </section>
 <section class="wrap section" id="manufacturers">
   <h2>${L.byMfr}</h2>
-  <div class="chips">${mfrs.map(([m, l]) => `<a class="chip" href="${lp(`/manufacturer/${catSlug(m)}/`)}">${esc(m)} <span class="muted">${l.length}</span></a>`).join("")}</div>
+  <div class="chips">${mfrs.map(([m, l]) => `<a class="chip" href="${lp(`/manufacturer/${catSlug(m)}/`)}">${esc(m)}</a>`).join("")}</div>
 </section>
 <section class="cta">
   <div class="wrap cta-inner">
@@ -485,7 +469,6 @@ ${crumbs([["/parts/", L.inventory], [null, shown]])}
         brand: { "@type": "Brand", name: pt.mfr }, category: catName, description: desc, url: url(lp(p)),
         ...(pt.img ? { image: url(pt.img) } : {}),
         ...(pt.aliases.length ? { alternateName: pt.aliases } : {}),
-        ...(pt.nsn ? { identifier: { "@type": "PropertyValue", propertyID: "NSN", value: pt.nsn } } : {}),
       }, {
         "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
           { "@type": "ListItem", position: 1, name: L.home, item: url(lp("/")) },
@@ -511,9 +494,6 @@ ${crumbs([[`/category/${catSlug(pt.cat)}/`, catName], [null, pt.pn]])}
       <div><dt>${L.lbl.pn}</dt><dd>${esc(pt.pn)}</dd></div>
       <div><dt>${L.lbl.mfr}</dt><dd><a href="${lp(`/manufacturer/${catSlug(pt.mfr)}/`)}">${esc(pt.mfr)}</a>${note ? ` <span class="muted">(${esc(note)})</span>` : ""}</dd></div>
       <div><dt>${L.lbl.cat}</dt><dd><a href="${lp(`/category/${catSlug(pt.cat)}/`)}">${esc(catName)}</a></dd></div>
-      ${pt.grade ? `<div><dt>${L.lbl.grade}</dt><dd>${isMil(pt) ? `<a href="${lp(`/military-parts/${gradeSlug(pt.grade)}/`)}">${esc(L.grade(pt.grade))}</a>` : esc(L.grade(pt.grade))}</dd></div>` : ""}
-      ${pt.smd ? `<div><dt>${L.lbl.smd}</dt><dd>${esc(pt.smd)}</dd></div>` : ""}
-      ${pt.nsn ? `<div><dt>${L.lbl.nsn}</dt><dd>${esc(pt.nsn)}</dd></div>` : ""}
       ${pt.life ? `<div><dt>${L.lbl.life}</dt><dd><a href="${lp("/obsolete-parts/")}">${esc(L.life(pt.life))}</a></dd></div>` : ""}
       ${pt.dc ? `<div><dt>${L.lbl.dc}</dt><dd>${esc(pt.dc)}</dd></div>` : ""}
       <div><dt>${L.lbl.avail}</dt><dd>${L.inStock}</dd></div>
@@ -547,12 +527,6 @@ ${crumbs([[null, h1]])}
 <section class="wrap">${partTable(list, list.length > 12)}</section>`,
     }));
     reg(p, "0.8");
-  }
-  hub("/military-parts/", L.milTitle, L.milH1, L.milLead(milParts.length), milParts,
-    `<div class="chips">${grades.map(([g, l]) => `<a class="chip" href="${lp(`/military-parts/${gradeSlug(g)}/`)}">${esc(L.grade(g))} <span class="muted">${l.length}</span></a>`).join("")}</div>`);
-  for (const [g, l] of grades) {
-    hub(`/military-parts/${gradeSlug(g)}/`, L.gradeTitle(L.grade(g)), L.gradeTitle(L.grade(g)),
-      `${L.gradeLead(L.grade(g), l.length)} <a href="${lp("/military-parts/")}">${L.allMil}</a>`, l);
   }
   hub("/obsolete-parts/", L.eolTitle, L.eolH1, L.eolLead(eolParts.length), eolParts);
 
@@ -592,6 +566,11 @@ ${q.certifications ? `<p class="card">${esc(q.certifications)}</p>` : ""}</secti
   reg("/contact/", "0.6");
 }
 
+// Guard: the site must not mention military / defense topics. Warn if the inventory sheet reintroduces them.
+const BANNED = /military|mil-std|mil-prf|\bqml\b|defen[cs]e|aerospace|军品|军用|军工|国防|航天/i;
+for (const p of parts) for (const [k, v] of [["Description", p.desc], ["Description (Chinese)", p.descZh], ["Category", p.cat]])
+  if (BANNED.test(v)) console.warn(`WARNING: ${p.pn} ${k} mentions a banned topic: "${v}"`);
+
 buildLanguage(T.en);
 buildLanguage(T.zh);
 
@@ -618,9 +597,9 @@ const ADS = path.join(ROOT, "docs", "ads");
 fs.mkdirSync(ADS, { recursive: true });
 const csvq = v => `"${String(v).replace(/"/g, '""')}"`;
 fs.writeFileSync(path.join(ADS, "page-feed.csv"), ["Page URL,Custom label",
-  ...parts.map(p => [url(`/parts/${p.slug}/`), [catSlug(p.cat), isMil(p) ? "military" : "", p.life ? "obsolete" : ""].filter(Boolean).join(";")].map(csvq).join(","))].join("\n") + "\n");
+  ...parts.map(p => [url(`/parts/${p.slug}/`), [catSlug(p.cat), p.life ? "obsolete" : ""].filter(Boolean).join(";")].map(csvq).join(","))].join("\n") + "\n");
 const kw = new Set();
-for (const p of parts.filter(p => isMil(p) || p.life)) for (const v of [p.pn, ...p.aliases.slice(0, 2)]) kw.add(`[${v.toLowerCase()}]`);
+for (const p of parts.filter(p => p.life)) for (const v of [p.pn, ...p.aliases.slice(0, 2)]) kw.add(`[${v.toLowerCase()}]`);
 fs.writeFileSync(path.join(ADS, "exact-match-keywords.txt"), [...kw].join("\n") + "\n");
 
 console.log(`Built ${pages.length} pages x 2 languages (${parts.length} parts, ${cats.length} categories, ${mfrs.length} manufacturers) -> dist/`);

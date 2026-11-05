@@ -6,7 +6,8 @@ in English (`/`) and Chinese (`/cn/`), with a language switch on every page.
 ## How it works
 
 - `data/inventory.csv` holds the parts (Part Number, Manufacturer, Category, Description, Date Code, Show on Website,
-  Grade / Screening, Lifecycle, SMD Number, NSN, Alternate Part Numbers, Manufacturer Page).
+  Lifecycle, Alternate Part Numbers, Manufacturer Page). The Grade / Screening, SMD Number and NSN columns are internal
+  only and are not shown on the website.
   It contains **public information only**: never add quantity, cost or buyer data.
 - Chinese text: the inventory's `Description (Chinese)` column, `zh` in `site.config.json`, and the translation tables in `build.js`.
 - `site.config.json` holds the company name, email, WeChat, WhatsApp, phone, address and About text.

@@ -1,7 +1,7 @@
 {
   "companyName": "Ziheng International",
   "siteUrl": "https://ziheng-int.com",
-  "tagline": "Independent distributor of hard-to-find, military and obsolete electronic components",
+  "tagline": "Independent distributor of hard-to-find and obsolete electronic components",
   "email": "contact@ziheng-int.com",
   "wechatId": "",
   "wechatQr": "",
@@ -9,7 +9,7 @@
   "phone": "",
   "address": "",
   "about": [
-    "[Placeholder] Ziheng International is an independent distributor of integrated circuits and electronic components, specializing in military, hi-rel, obsolete and hard-to-find parts.",
+    "[Placeholder] Ziheng International is an independent distributor of integrated circuits and electronic components, specializing in obsolete, end-of-life and hard-to-find parts.",
     "[Placeholder] We support OEMs, contract manufacturers and brokers worldwide with fast quotes and reliable sourcing. Add your founding year, location and specialties here."
   ],
   "highlights": [
@@ -18,8 +18,8 @@
       "text": "[Placeholder] Every part listed on this site is held in our own inventory."
     },
     {
-      "title": "Military & hi-rel",
-      "text": "[Placeholder] MIL-STD-883, QML, JAN/JANTX and 54-series parts from leading manufacturers."
+      "title": "Leading manufacturers",
+      "text": "[Placeholder] Parts from Texas Instruments, Analog Devices, Microchip, Infineon, Renesas, Broadcom and more."
     },
     {
       "title": "Obsolete & EOL",
@@ -59,9 +59,9 @@
   },
   "zh": {
     "companyName": "Ziheng International",
-    "tagline": "专营军品、停产及稀缺电子元器件的独立分销商",
+    "tagline": "专营停产及稀缺电子元器件的独立分销商",
     "about": [
-      "【占位文字】Ziheng International 是一家独立的集成电路及电子元器件分销商，专注于军品、高可靠性、停产及稀缺器件。",
+      "【占位文字】Ziheng International 是一家独立的集成电路及电子元器件分销商，专注于停产、生命周期末期及稀缺器件。",
       "【占位文字】我们为全球 OEM、代工厂及贸易商提供快速报价和可靠货源。请在此补充公司成立年份、所在地及主营方向。"
     ],
     "highlights": [
@@ -70,8 +70,8 @@
         "text": "【占位文字】本网站所列器件均为我司自有库存。"
       },
       {
-        "title": "军品与高可靠性",
-        "text": "【占位文字】MIL-STD-883、QML、JAN/JANTX 及 54 系列器件，来自各大原厂。"
+        "title": "知名原厂品牌",
+        "text": "【占位文字】涵盖德州仪器、亚德诺、微芯、英飞凌、瑞萨、博通等品牌器件。"
       },
       {
         "title": "停产与 EOL 器件",

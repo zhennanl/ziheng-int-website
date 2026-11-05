@@ -4,15 +4,15 @@ These files are regenerated every time the site builds, so they always match the
 
 | File | Use |
 |---|---|
-| `page-feed.csv` | Page feed for **Dynamic Search Ads**: one row per part page. Custom labels: category slug, `military`, `obsolete`. |
-| `exact-match-keywords.txt` | Exact-match keywords for military and obsolete parts (the part number plus common spellings). |
+| `page-feed.csv` | Page feed for **Dynamic Search Ads**: one row per part page. Custom labels: category slug, `obsolete`. |
+| `exact-match-keywords.txt` | Exact-match keywords for obsolete parts (the part number plus common spellings). |
 | `negative-keywords.txt` | Negative keywords to block engineers and students searching for datasheets, pinouts or substitutes. |
 
 ## Suggested setup
 
 1. Google Ads > **Tools > Shared library > Business data > Page feeds**: upload `page-feed.csv`.
 2. Create a **Search** campaign, goal "Leads". Add a **Dynamic ad group** targeting the page feed.
-   Start with all pages; later split by custom label (`military`, `obsolete`) to set different bids.
+   Start with all pages; later split by custom label (`obsolete`) to set different bids.
 3. Add a normal ad group with `exact-match-keywords.txt` for the highest-value parts.
 4. **Tools > Shared library > Negative keyword lists**: create a list from `negative-keywords.txt` and apply it to the campaign.
 5. Locations: the countries you sell to. Language: English (add Chinese if you target China; note Google does not serve mainland China).

@@ -1,8 +1,8 @@
 # Search visibility setup (one-time steps)
 
 The website already includes: one page per part with alternate spellings of the part number, former manufacturer
-names, grade/screening, lifecycle, SMD/NSN numbers, product structured data, a sitemap, hub pages for military and
-obsolete parts, a Quality page and a quote request form. These steps connect it to search engines and tracking.
+names, lifecycle, product structured data, a sitemap, an obsolete-parts page, a Quality page and a quote request form,
+in English and Chinese. These steps connect it to search engines and tracking.
 
 ## 1. Google Search Console (free, most important)
 1. Go to https://search.google.com/search-console and add a **Domain** property: `ziheng-int.com`.
@@ -38,9 +38,8 @@ Google is not used in mainland China. For domestic buyers, submit the site at ht
 and consider listing stock on Chinese platforms. Baidu indexes sites hosted outside China slowly.
 
 ## 7. Links from other sites
-Add your website link to: your TBF/BrokerForum profile and any other broker marketplace (NetComponents, IC Source,
-PartsBase), LinkedIn company page, ERAI profile (if a member), Thomasnet and industry directories.
+Add your website link to: your TBF/BrokerForum profile and any other broker marketplace (NetComponents, IC Source), LinkedIn company page, ERAI profile (if a member), Thomasnet and industry directories.
 
 ## 8. Fill in the data that helps ranking
-In the inventory sheet: **NSN** (if known), **Alternate Part Numbers**, and replace every "[Placeholder]" text in
+In the inventory sheet: **Alternate Part Numbers**, and replace every "[Placeholder]" text in
 `site.config.json` (About, Quality, highlights) with real information.
