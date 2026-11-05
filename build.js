@@ -58,6 +58,14 @@ for (const r of raw.slice(1)) {
 }
 parts.sort((a, b) => a.pn.localeCompare(b.pn, "en", { numeric: true }));
 
+// Part photos: drop a file named <slug>.jpg / .png / .webp into public/images/parts/
+const IMG_DIR = path.join(ROOT, "public", "images", "parts");
+const imgFiles = fs.existsSync(IMG_DIR) ? fs.readdirSync(IMG_DIR) : [];
+for (const p of parts) {
+  const f = imgFiles.find(n => /\.(jpe?g|png|webp)$/i.test(n) && n.replace(/\.[^.]+$/, "").toUpperCase() === p.slug);
+  p.img = f ? `/images/parts/${f}` : "";
+}
+
 const groupBy = (arr, k) => arr.reduce((m, p) => (m.get(p[k]) ? m.get(p[k]).push(p) : m.set(p[k], [p]), m), new Map());
 const cats = [...groupBy(parts, "cat")].sort((a, b) => b[1].length - a[1].length);
 const mfrs = [...groupBy(parts, "mfr")].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
@@ -97,7 +105,7 @@ function icon(name) {
   return `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${d}</svg>`;
 }
 
-function layout({ title, description, canonical, body, jsonld, active }) {
+function layout({ title, description, canonical, body, jsonld, active, image }) {
   const nav = [["/", "Home"], ["/parts/", "Inventory"], ["/about/", "About"], ["/contact/", "Contact"]]
     .map(([h, t]) => `<a href="${h}"${active === h ? ' aria-current="page"' : ""}>${t}</a>`).join("");
   return `<!doctype html>
@@ -113,6 +121,7 @@ function layout({ title, description, canonical, body, jsonld, active }) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(url(canonical))}">
+${image ? `<meta property="og:image" content="${esc(url(image))}">` : ""}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/styles.css">
 ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, "\\u003c")}</script>` : ""}
@@ -271,6 +280,7 @@ for (const p of parts) {
     jsonld: [{
       "@context": "https://schema.org", "@type": "Product", name: p.pn, mpn: p.pn, sku: p.pn,
       brand: { "@type": "Brand", name: p.mfr }, category: p.cat, description: desc, url: url(`/parts/${p.slug}/`),
+      ...(p.img ? { image: url(p.img) } : {}),
     }, {
       "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: url("/") },
@@ -281,9 +291,16 @@ for (const p of parts) {
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/category/${catSlug(p.cat)}/">${esc(p.cat)}</a> / <span>${esc(p.pn)}</span></nav>
 <div class="part">
   <div class="part-main">
+    <div class="part-top">
+    <figure class="part-photo">${p.img
+      ? `<img src="${esc(p.img)}" alt="${esc(p.pn + " " + p.mfr)}" width="240" height="240" loading="eager"><figcaption>Image for reference</figcaption>`
+      : `<div class="photo-ph" role="img" aria-label="Photo not yet available"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="16" y="16" width="32" height="32" rx="3"/><path d="M22 16v-6M30 16v-6M38 16v-6M46 16v-6M22 48v6M30 48v6M38 48v6M46 48v6M16 24h-6M16 32h-6M16 40h-6M48 24h6M48 32h6M48 40h6"/></svg><span>Photo on request</span></div>`}</figure>
+    <div>
     <span class="badge badge-lg">${icon("check")}In stock</span>
     <h1 class="part-pn">${esc(p.pn)}</h1>
     <p class="part-mfr"><a href="/manufacturer/${catSlug(p.mfr)}/">${esc(p.mfr)}</a></p>
+    </div>
+    </div>
     <p class="lead">${esc(desc)}</p>
     <dl class="specs">
       <div><dt>Part number</dt><dd>${esc(p.pn)}</dd></div>

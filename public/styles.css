@@ -145,3 +145,16 @@ table.parts { width: 100%; border-collapse: collapse; font-size: .95rem; }
   .header-inner { padding-top: 8px; padding-bottom: 8px; }
   .nav a { padding: 6px 8px; }
 }
+
+/* Part photo */
+.part-top { display: flex; gap: 24px; align-items: center; margin-bottom: 8px; }
+.part-photo { margin: 0; flex: none; width: 168px; }
+.part-photo img { width: 168px; height: 168px; object-fit: contain; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; display: block; }
+.part-photo figcaption { font-size: .75rem; color: var(--muted); margin-top: 6px; text-align: center; }
+.photo-ph { width: 168px; height: 168px; border: 1px dashed #c8d0da; border-radius: var(--radius); background: var(--bg-2); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--muted); font-size: .8rem; }
+.photo-ph svg { width: 64px; height: 64px; fill: none; stroke: #9aa6b5; stroke-width: 2; stroke-linecap: round; }
+@media (max-width: 640px) {
+  .part-top { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .part-photo, .part-photo img, .photo-ph { width: 140px; }
+  .part-photo img, .photo-ph { height: 140px; }
+}
