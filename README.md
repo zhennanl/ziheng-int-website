@@ -14,7 +14,7 @@ in English (`/`) and Chinese (`/cn/`), with a language switch on every page.
   Empty fields are hidden on the site.
 - `node build.js` generates the site into `dist/` (no dependencies to install).
 - Cloudflare Workers Builds runs the build and deploy on every push to `main`.
-- `.github/workflows/sync-inventory.yml` copies the Google Sheet into `data/inventory.csv` daily.
+- `.github/workflows/sync-inventory.yml` copies the Google Sheet into `data/inventory.csv` weekly (Mondays).
 - `worker/` is the Cloudflare Worker: it serves `dist/` and handles the quote form at `/api/rfq` (emails via Resend; see `docs/SEO-SETUP.md`).
 - `wrangler.jsonc`: Worker settings used by Cloudflare Workers Builds.
 - `scripts/filter-inventory.js`: used by the sheet sync; keeps only the approved website columns.
@@ -28,7 +28,7 @@ in English (`/`) and Chinese (`/cn/`), with a language switch on every page.
 
 ## Updating inventory
 
-Edit the Google Sheet. The site updates within a day. To update immediately:
+Edit the Google Sheet. The site updates every Monday. To update immediately:
 GitHub > Actions > Sync inventory > Run workflow.
 
 To hide a part, set "Show on Website" to `No` or delete the row.

@@ -1,5 +1,5 @@
 # Pulls the inventory from Google Sheets into data/inventory.csv.
-# Runs daily, or on demand from GitHub > Actions > "Sync inventory" > Run workflow.
+# Runs weekly (Monday), or on demand from GitHub > Actions > "Sync inventory" > Run workflow.
 # A changed CSV is committed, and Cloudflare Pages redeploys the site automatically.
 #
 # Setup: Settings > Secrets and variables > Actions > Variables > New variable
@@ -8,7 +8,7 @@
 name: Sync inventory
 on:
   schedule:
-    - cron: "17 1 * * *"   # daily at 01:17 UTC (09:17 Beijing time)
+    - cron: "17 1 * * 1"   # weekly, Monday 01:17 UTC (09:17 Beijing time)
   workflow_dispatch:
 permissions:
   contents: write
