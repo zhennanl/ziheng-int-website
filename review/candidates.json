@@ -1,0 +1,486 @@
+[
+ {
+  "pn": "MAX3491ESD+T",
+  "slug": "MAX3491ESD-T",
+  "tier": "match",
+  "note": "Identical picture on 2 sites (a clean 14-pin SOIC render). LCSC, Promelec and Mymectronic show real photos of the same 14-pin SOIC package.",
+  "rec": "approve",
+  "chosenSite": "microchipusa.com",
+  "chosenPage": "https://www.microchipusa.com/product/analog-devices-inc-maxim-integrated/drivers-receivers-transceivers/MAX3491ESD-T",
+  "photo": "review/photos/MAX3491ESD-T.jpg",
+  "sources": [
+   {
+    "site": "microchipusa.com",
+    "page": "https://www.microchipusa.com/product/analog-devices-inc-maxim-integrated/drivers-receivers-transceivers/MAX3491ESD-T"
+   },
+   {
+    "site": "amaxchip.com",
+    "page": "https://amaxchip.com/product/MAX3491ESD-T"
+   },
+   {
+    "site": "lcsc.com",
+    "page": "https://www.lcsc.com/product-detail/C61053.html"
+   },
+   {
+    "site": "jlcpcb.com",
+    "page": "https://jlcpcb.com/partdetail/62105-MAX3491ESDT/C61053"
+   },
+   {
+    "site": "promelec.ru",
+    "page": "https://www.promelec.ru/product/304605/"
+   },
+   {
+    "site": "mymectronic.com",
+    "page": "https://www.mymectronic.com/part-detail/MAXIM-INTEGRATED---ANALOG-DEVICES/MAX3491ESDT"
+   }
+  ]
+ },
+ {
+  "pn": "ADM2491EBRWZ",
+  "slug": "ADM2491EBRWZ",
+  "tier": "match",
+  "note": "Identical picture on 3 sites. The Hotenda and ichome copies carry a watermark, so the clean Microchip USA copy is used.",
+  "rec": "approve",
+  "chosenSite": "microchipusa.com",
+  "chosenPage": "https://www.microchipusa.com/product/analog-devices-inc/digital-isolators/ADM2491EBRWZ",
+  "photo": "review/photos/ADM2491EBRWZ.jpg",
+  "sources": [
+   {
+    "site": "microchipusa.com",
+    "page": "https://www.microchipusa.com/product/analog-devices-inc/digital-isolators/ADM2491EBRWZ"
+   },
+   {
+    "site": "hotenda.com",
+    "page": "https://www.hotenda.com/product-detail/analog-devices-inc-359/adm2491ebrwz"
+   },
+   {
+    "site": "ichome.com",
+    "page": "https://ichome.com/product-detail/analog-devices/adm2491ebrwz"
+   }
+  ]
+ },
+ {
+  "pn": "ST10F276Z5Q3",
+  "slug": "ST10F276Z5Q3",
+  "tier": "match",
+  "note": "Identical picture on 2 sites. Generic 144-pin QFP render, no ST marking.",
+  "rec": "approve",
+  "chosenSite": "microchipusa.com",
+  "chosenPage": "https://www.microchipusa.com/product/stmicroelectronics/microcontrollers/ST10F276Z5Q3",
+  "photo": "review/photos/ST10F276Z5Q3.jpg",
+  "sources": [
+   {
+    "site": "microchipusa.com",
+    "page": "https://www.microchipusa.com/product/stmicroelectronics/microcontrollers/ST10F276Z5Q3"
+   },
+   {
+    "site": "amaxchip.com",
+    "page": "https://amaxchip.com/product/ST10F276Z5Q3"
+   }
+  ]
+ },
+ {
+  "pn": "ST10F276Z5Q3TR",
+  "slug": "ST10F276Z5Q3TR",
+  "tier": "match",
+  "note": "Identical picture on 2 sites. Same generic QFP render as ST10F276Z5Q3 (tape-and-reel version).",
+  "rec": "approve",
+  "chosenSite": "microchipusa.com",
+  "chosenPage": "https://www.microchipusa.com/product/stmicroelectronics/microcontrollers/ST10F276Z5Q3TR",
+  "photo": "review/photos/ST10F276Z5Q3TR.jpg",
+  "sources": [
+   {
+    "site": "amaxchip.com",
+    "page": "https://amaxchip.com/product/ST10F276Z5Q3TR"
+   },
+   {
+    "site": "microchipusa.com",
+    "page": "https://www.microchipusa.com/product/stmicroelectronics/microcontrollers/ST10F276Z5Q3TR"
+   }
+  ]
+ },
+ {
+  "pn": "MPC8280CZUUPEA",
+  "slug": "MPC8280CZUUPEA",
+  "tier": "match",
+  "note": "Identical picture on 3 sites, but the chip in the picture is marked MPC8260, a sibling part. Recommend rejecting.",
+  "rec": "reject",
+  "chosenSite": "microchipusa.com",
+  "chosenPage": "https://www.microchipusa.com/product/nxp-usa-inc/microprocessors/MPC8280CZUQLDA",
+  "photo": "review/photos/MPC8280CZUUPEA.jpg",
+  "sources": [
+   {
+    "site": "de.ichome.com",
+    "page": "https://de.ichome.com/product-detail/nxp-semiconductors/mpc8280czuupea"
+   },
+   {
+    "site": "microchipusa.com",
+    "page": "https://www.microchipusa.com/product/nxp-usa-inc/microprocessors/MPC8280CZUQLDA"
+   },
+   {
+    "site": "amaxchip.com",
+    "page": "https://amaxchip.com/product/MPC8280CZUUPEA"
+   }
+  ]
+ },
+ {
+  "pn": "MAX488MJA",
+  "slug": "MAX488MJA",
+  "tier": "match",
+  "note": "Identical picture on 2 sites, but it shows a plastic DIP. The MJA suffix is a ceramic DIP (CERDIP). Recommend rejecting.",
+  "rec": "reject",
+  "chosenSite": "microchipusa.com",
+  "chosenPage": "https://www.microchipusa.com/product/analog-devices-inc-maxim-integrated/drivers-receivers-transceivers/MAX488MJA",
+  "photo": "review/photos/MAX488MJA.jpg",
+  "sources": [
+   {
+    "site": "amaxchip.com",
+    "page": "https://amaxchip.com/product/MAX488MJA"
+   },
+   {
+    "site": "microchipusa.com",
+    "page": "https://www.microchipusa.com/product/analog-devices-inc-maxim-integrated/drivers-receivers-transceivers/MAX488MJA"
+   }
+  ]
+ },
+ {
+  "pn": "ADM2582EBRWZ-REEL7",
+  "slug": "ADM2582EBRWZ-REEL7",
+  "tier": "consistent",
+  "note": "Two independent sources show the same 20-pin wide SOIC: an LCSC photo with ADI marking and a Microchip USA render.",
+  "rec": "approve",
+  "chosenSite": "lcsc.com",
+  "chosenPage": "https://www.lcsc.com/product-detail/C39494.html",
+  "photo": "review/photos/ADM2582EBRWZ-REEL7.jpg",
+  "sources": [
+   {
+    "site": "lcsc.com",
+    "page": "https://www.lcsc.com/product-detail/C39494.html"
+   },
+   {
+    "site": "microchipusa.com",
+    "page": "https://www.microchipusa.com/product/analog-devices-inc/digital-isolators/ADM2582EBRWZ-REEL7"
+   },
+   {
+    "site": "lcsc.com",
+    "page": "https://www.lcsc.com/product-detail/ADI_Analog-Devices_ADM2582EBRWZ_Analog-Devices-ADI-ADM2582EBRWZ_C18532.html"
+   }
+  ]
+ },
+ {
+  "pn": "MAX6818EAP+",
+  "slug": "MAX6818EAP",
+  "tier": "consistent",
+  "note": "Two independent sources show the same 20-pin SSOP: an LCSC photo and a Microchip USA render.",
+  "rec": "approve",
+  "chosenSite": "lcsc.com",
+  "chosenPage": "https://www.lcsc.com/product-detail/C880681.html",
+  "photo": "review/photos/MAX6818EAP.jpg",
+  "sources": [
+   {
+    "site": "jlcpcb.com",
+    "page": "https://jlcpcb.com/partdetail/154901-MAX6818EAP/C143570"
+   },
+   {
+    "site": "lcsc.com",
+    "page": "https://www.lcsc.com/product-detail/C880681.html"
+   },
+   {
+    "site": "lcsc.com",
+    "page": "https://www.lcsc.com/product-detail/Monitors-Reset-Circuits_Maxim-Integrated-MAX6818EAP_C38200.html"
+   },
+   {
+    "site": "microchipusa.com",
+    "page": "https://www.microchipusa.com/product/analog-devices-inc-maxim-integrated/specialized-ics/MAX6818EAP"
+   }
+  ]
+ },
+ {
+  "pn": "MT48LC4M32B2P-6A IT:L TR",
+  "slug": "MT48LC4M32B2P-6A-IT-L-TR",
+  "tier": "consistent",
+  "note": "Microchip USA render and LCSC photo both show the 86-pin TSOP. Note: Microchip USA also shows a wrong PLCC picture on a related listing.",
+  "rec": "approve",
+  "chosenSite": "microchipusa.com",
+  "chosenPage": "https://www.microchipusa.com/product/micron-technology-inc/memory-2/MT48LC4M32B2P-6A-IT-L",
+  "photo": "review/photos/MT48LC4M32B2P-6A-IT-L-TR.jpg",
+  "sources": [
+   {
+    "site": "microchipusa.com",
+    "page": "https://www.microchipusa.com/product/micron-technology-inc/memory-2/MT48LC4M32B2P-6A-IT-L"
+   },
+   {
+    "site": "microchipusa.com",
+    "page": "https://www.microchipusa.com/product/micron-technology-inc/memory-2/MT48LC4M32B2P-6A-L"
+   },
+   {
+    "site": "lcsc.com",
+    "page": "https://www.lcsc.com/product-detail/SDRAM_Micron-Tech-MT48LC4M32B2P-6A-L-TR_C2062038.html"
+   }
+  ]
+ },
+ {
+  "pn": "X5045PIZ",
+  "slug": "X5045PIZ",
+  "tier": "consistent",
+  "note": "Amaxchip render (Intersil 8-pin DIP) and an LCSC photo of the same 8-pin DIP (X5045PZ listing).",
+  "rec": "approve",
+  "chosenSite": "amaxchip.com",
+  "chosenPage": "https://amaxchip.com/product/X5045PIZ",
+  "photo": "review/photos/X5045PIZ.jpg",
+  "sources": [
+   {
+    "site": "amaxchip.com",
+    "page": "https://amaxchip.com/product/X5045PIZ"
+   },
+   {
+    "site": "lcsc.com",
+    "page": "https://lcsc.com/product-detail/Microprocessor-Microcontroller-Supervisors_Renesas-Electronics-Intersil-X5045PZ_C81783.html"
+   }
+  ]
+ },
+ {
+  "pn": "AD8062ARZ",
+  "slug": "AD8062ARZ",
+  "tier": "single",
+  "note": "LCSC and JLCPCB show the same photo, but they are sister companies sharing one image library.",
+  "rec": "none",
+  "chosenSite": "lcsc.com",
+  "chosenPage": "https://www.lcsc.com/product-detail/Operational-Amplifiers_Analog-Devices_AD8062ARZ-R7_Analog-Devices-ADI-AD8062ARZ-R7_C206882.html",
+  "photo": "review/photos/AD8062ARZ.jpg",
+  "sources": [
+   {
+    "site": "lcsc.com",
+    "page": "https://www.lcsc.com/product-detail/Operational-Amplifiers_Analog-Devices_AD8062ARZ-R7_Analog-Devices-ADI-AD8062ARZ-R7_C206882.html"
+   },
+   {
+    "site": "jlcpcb.com",
+    "page": "https://jlcpcb.com/partdetail/C206882"
+   }
+  ]
+ },
+ {
+  "pn": "AD823ARZ",
+  "slug": "AD823ARZ",
+  "tier": "single",
+  "note": "LCSC and JLCPCB only (sister companies, one image library).",
+  "rec": "none",
+  "chosenSite": "lcsc.com",
+  "chosenPage": "https://www.lcsc.com/product-detail/C578668.html",
+  "photo": "review/photos/AD823ARZ.jpg",
+  "sources": [
+   {
+    "site": "lcsc.com",
+    "page": "https://www.lcsc.com/product-detail/C578668.html"
+   },
+   {
+    "site": "jlcpcb.com",
+    "page": "https://jlcpcb.com/partdetail/AnalogDevices-AD823ARZ/C578668"
+   },
+   {
+    "site": "lcsc.com",
+    "page": "https://www.lcsc.com/product-detail/C93795.html"
+   }
+  ]
+ },
+ {
+  "pn": "DS1683S+",
+  "slug": "DS1683S",
+  "tier": "single",
+  "note": "LCSC and JLCPCB only (sister companies, one image library).",
+  "rec": "none",
+  "chosenSite": "lcsc.com",
+  "chosenPage": "https://www.lcsc.com/product-detail/C1520449.html",
+  "photo": "review/photos/DS1683S.jpg",
+  "sources": [
+   {
+    "site": "jlcpcb.com",
+    "page": "https://jlcpcb.com/partdetail/1611247-DS1683S/C1520449"
+   },
+   {
+    "site": "lcsc.com",
+    "page": "https://www.lcsc.com/product-detail/C1520449.html"
+   },
+   {
+    "site": "lcsc.com",
+    "page": "https://www.lcsc.com/product-detail/real-time-clocks_analog-devices-inc-maxim-integrated-ds1683s-t-r_C2651494.html"
+   }
+  ]
+ },
+ {
+  "pn": "AD8138ARZ",
+  "slug": "AD8138ARZ",
+  "tier": "single",
+  "note": "LCSC only.",
+  "rec": "none",
+  "chosenSite": "lcsc.com",
+  "chosenPage": "https://lcsc.com/product-detail/Pre-ordered-Products_Analog-Devices_AD8138ARZ-RL_Analog-Devices-ADI-LINEAR-AD8138ARZ-RL_C652360.html",
+  "photo": "review/photos/AD8138ARZ.jpg",
+  "sources": [
+   {
+    "site": "lcsc.com",
+    "page": "https://lcsc.com/product-detail/Pre-ordered-Products_Analog-Devices_AD8138ARZ-RL_Analog-Devices-ADI-LINEAR-AD8138ARZ-RL_C652360.html"
+   }
+  ]
+ },
+ {
+  "pn": "70V27L20PFGI",
+  "slug": "70V27L20PFGI",
+  "tier": "single",
+  "note": "Only one site has a picture.",
+  "rec": "none",
+  "chosenSite": "amaxchip.com",
+  "chosenPage": "https://amaxchip.com/product/70V27L20PFGI",
+  "photo": "review/photos/70V27L20PFGI.jpg",
+  "sources": [
+   {
+    "site": "amaxchip.com",
+    "page": "https://amaxchip.com/product/70V27L20PFGI"
+   }
+  ]
+ },
+ {
+  "pn": "HI-1573PSI",
+  "slug": "HI-1573PSI",
+  "tier": "single",
+  "note": "Only one site has a picture.",
+  "rec": "none",
+  "chosenSite": "promelec.ru",
+  "chosenPage": "https://www.promelec.ru/product/423613/",
+  "photo": "review/photos/HI-1573PSI.jpg",
+  "sources": [
+   {
+    "site": "promelec.ru",
+    "page": "https://www.promelec.ru/product/423613/"
+   }
+  ]
+ },
+ {
+  "pn": "SAA1064T",
+  "slug": "SAA1064T",
+  "tier": "single",
+  "note": "Only one site has a picture.",
+  "rec": "none",
+  "chosenSite": "promelec.ru",
+  "chosenPage": "https://www.promelec.ru/product/107830/",
+  "photo": "review/photos/SAA1064T.jpg",
+  "sources": [
+   {
+    "site": "promelec.ru",
+    "page": "https://www.promelec.ru/product/107830/"
+   }
+  ]
+ },
+ {
+  "pn": "MAX489MJD",
+  "slug": "MAX489MJD",
+  "tier": "single",
+  "note": "Only one site has a picture.",
+  "rec": "none",
+  "chosenSite": "amaxchip.com",
+  "chosenPage": "https://amaxchip.com/product/MAX489MJD",
+  "photo": "review/photos/MAX489MJD.jpg",
+  "sources": [
+   {
+    "site": "amaxchip.com",
+    "page": "https://amaxchip.com/product/MAX489MJD"
+   }
+  ]
+ },
+ {
+  "pn": "MAX490MJA",
+  "slug": "MAX490MJA",
+  "tier": "single",
+  "note": "Only one site has a picture.",
+  "rec": "none",
+  "chosenSite": "amaxchip.com",
+  "chosenPage": "https://amaxchip.com/product/MAX490MJA",
+  "photo": "review/photos/MAX490MJA.jpg",
+  "sources": [
+   {
+    "site": "amaxchip.com",
+    "page": "https://amaxchip.com/product/MAX490MJA"
+   }
+  ]
+ },
+ {
+  "pn": "AD9731BRS",
+  "slug": "AD9731BRS",
+  "tier": "single",
+  "note": "Only one site has a picture.",
+  "rec": "none",
+  "chosenSite": "amaxchip.com",
+  "chosenPage": "https://amaxchip.com/product/AD9731BRS",
+  "photo": "review/photos/AD9731BRS.jpg",
+  "sources": [
+   {
+    "site": "amaxchip.com",
+    "page": "https://amaxchip.com/product/AD9731BRS"
+   }
+  ]
+ },
+ {
+  "pn": "AD9626BCPZ-250",
+  "slug": "AD9626BCPZ-250",
+  "tier": "single",
+  "note": "Only one site has a picture.",
+  "rec": "none",
+  "chosenSite": "amaxchip.com",
+  "chosenPage": "https://amaxchip.com/product/AD9626BCPZ-250",
+  "photo": "review/photos/AD9626BCPZ-250.jpg",
+  "sources": [
+   {
+    "site": "amaxchip.com",
+    "page": "https://amaxchip.com/product/AD9626BCPZ-250"
+   }
+  ]
+ },
+ {
+  "pn": "AD8513ARUZ-REEL",
+  "slug": "AD8513ARUZ-REEL",
+  "tier": "single",
+  "note": "Only one site has a picture.",
+  "rec": "none",
+  "chosenSite": "amaxchip.com",
+  "chosenPage": "https://amaxchip.com/product/AD8513ARUZ-REEL",
+  "photo": "review/photos/AD8513ARUZ-REEL.jpg",
+  "sources": [
+   {
+    "site": "amaxchip.com",
+    "page": "https://amaxchip.com/product/AD8513ARUZ-REEL"
+   }
+  ]
+ },
+ {
+  "pn": "7025L20PFGI",
+  "slug": "7025L20PFGI",
+  "tier": "single",
+  "note": "Only one site has a picture.",
+  "rec": "none",
+  "chosenSite": "amaxchip.com",
+  "chosenPage": "https://amaxchip.com/product/7025L20PFGI",
+  "photo": "review/photos/7025L20PFGI.jpg",
+  "sources": [
+   {
+    "site": "amaxchip.com",
+    "page": "https://amaxchip.com/product/7025L20PFGI"
+   }
+  ]
+ },
+ {
+  "pn": "MT29F64G08AJABAWP-IT:B",
+  "slug": "MT29F64G08AJABAWP-IT-B",
+  "tier": "single",
+  "note": "Microchip USA only. LCSC shows a placeholder.",
+  "rec": "none",
+  "chosenSite": "microchipusa.com",
+  "chosenPage": "https://www.microchipusa.com/product/micron-technology-inc/memory-2/MT29F64G08AJABAWP-IT-B",
+  "photo": "review/photos/MT29F64G08AJABAWP-IT-B.jpg",
+  "sources": [
+   {
+    "site": "microchipusa.com",
+    "page": "https://www.microchipusa.com/product/micron-technology-inc/memory-2/MT29F64G08AJABAWP-IT-B"
+   }
+  ]
+ }
+]
