@@ -212,7 +212,7 @@ const T = {
     heroLead: "Integrated circuits and electronic components from leading manufacturers, held in our own stock. Search by part number, then contact us for a fast quote.",
     searchPh: "Enter a part number, e.g. HCPL-5731", searchBtn: "Search stock",
     specialties: "Our specialties", invTile: ["Full inventory", "Search every part we hold in stock"],
-    eolTile: ["Obsolete &amp; EOL", "Discontinued and hard-to-find parts"], aviTile: ["Avionics data bus", "ARINC 429 and 1553 interface ICs"],
+    eolTile: ["Obsolete &amp; EOL", "Discontinued and hard-to-find parts"],
     byCat: "Browse by category", byMfr: "Browse by manufacturer",
     ctaH: "Can't find your part?", ctaP: "Our listed stock changes often. Send us the part number and quantity you need.",
     invTitle: "Electronic Components in Stock", invDesc: n => `Full list of ${n} integrated circuits and electronic components in stock at ${cfg.companyName}. Contact us for a quote.`,
@@ -274,7 +274,7 @@ const T = {
     heroLead: "自有库存的知名品牌集成电路及电子元器件。按型号搜索，联系我们即可快速报价。",
     searchPh: "输入型号，例如 HCPL-5731", searchBtn: "搜索库存",
     specialties: "主营方向", invTile: ["全部库存", "搜索我们的全部现货型号"],
-    eolTile: ["停产与 EOL 器件", "已停产及稀缺器件"], aviTile: ["航空数据总线", "ARINC 429 与 1553 接口芯片"],
+    eolTile: ["停产与 EOL 器件", "已停产及稀缺器件"],
     byCat: "按类别浏览", byMfr: "按品牌浏览",
     ctaH: "没有找到所需型号？", ctaP: "我们的库存经常更新。请将型号和需求数量发给我们。",
     invTitle: "电子元器件现货库存", invDesc: n => `${cfg.companyName} 现货 ${n} 个集成电路及电子元器件型号完整列表。欢迎询价。`,
@@ -532,7 +532,6 @@ ${withFilter ? `<div class="card source-block" id="empty" hidden>
   <div class="tiles spec-tiles">
     <a class="tile" href="${lp("/parts/")}"><span><strong>${L.invTile[0]}</strong><br><span class="muted small">${L.invTile[1]}</span></span></a>
     <a class="tile" href="${lp("/obsolete-parts/")}"><span><strong>${L.eolTile[0]}</strong><br><span class="muted small">${L.eolTile[1]}</span></span></a>
-    <a class="tile" href="${lp(`/category/${catSlug("Avionics Data Bus (ARINC 429 / 1553)")}/`)}"><span><strong>${L.aviTile[0]}</strong><br><span class="muted small">${L.aviTile[1]}</span></span></a>
   </div>
 </section>
 <section class="wrap section" id="categories">
