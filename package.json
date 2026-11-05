@@ -1,0 +1,13 @@
+{
+  "name": "ziheng-int-website",
+  "private": true,
+  "description": "Static site for ziheng-int.com. `node build.js` needs no dependencies; the packages below are only used by scripts/og-images.js.",
+  "scripts": {
+    "build": "node build.js",
+    "og": "node scripts/og-images.js"
+  },
+  "devDependencies": {
+    "@expo-google-fonts/inter": "0.4.2",
+    "@resvg/resvg-js": "2.6.2"
+  }
+}

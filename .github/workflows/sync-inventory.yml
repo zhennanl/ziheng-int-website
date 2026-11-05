@@ -28,13 +28,19 @@ jobs:
           curl -fsSL "$SHEET_CSV_URL" -o /tmp/inventory.csv
           # Keep only the approved website columns; everything else (stock, cost...) is dropped here.
           node scripts/filter-inventory.js /tmp/inventory.csv
-      - name: Check the site still builds
+      - name: Draw link-preview images for new or changed parts
+        if: ${{ vars.SHEET_CSV_URL != '' }}
+        run: |
+          if git diff --quiet -- data/inventory.csv; then echo "No inventory changes."; exit 0; fi
+          npm ci --no-audit --no-fund
+          node scripts/og-images.js
+      - name: Check the site still builds (also updates sitemap dates and listing kit)
         run: node build.js
       - name: Commit if changed
         run: |
           if git diff --quiet -- data/inventory.csv; then echo "No inventory changes."; exit 0; fi
           git config user.name "inventory-sync"
           git config user.email "inventory-sync@users.noreply.github.com"
-          git add data/inventory.csv
+          git add data/inventory.csv data/lastmod.json data/og-manifest.json public/og docs/listing-kit.csv docs/ads
           git commit -m "Sync inventory from Google Sheets"
           git push

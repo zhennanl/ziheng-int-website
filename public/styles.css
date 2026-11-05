@@ -219,3 +219,10 @@ html[lang="zh-CN"] .hero h1 { max-width: 16em; }
   .cat-mini { display: block; font-size: .78rem; color: var(--muted); margin-top: 2px; }
   .parts .pn { white-space: normal; overflow-wrap: anywhere; }
 }
+
+/* Part page: specifications + overview */
+.sub-h { font-size: 1.1rem; margin: 28px 0 6px; }
+.part-main .specs + .spec-note { margin: 8px 0 0; }
+.overview { color: var(--ink); max-width: 70ch; line-height: 1.7; }
+.series-row { display: grid; gap: 8px; margin-top: 18px; }
+.series-row .chip { font-size: .9rem; }

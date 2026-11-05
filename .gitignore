@@ -1,4 +1,4 @@
-dist/
-shots/
-node_modules/
 .wrangler/
+dist/
+node_modules/
+shots/

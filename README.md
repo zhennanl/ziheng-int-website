@@ -20,6 +20,12 @@ in English (`/`) and Chinese (`/cn/`), with a language switch on every page.
 - `scripts/filter-inventory.js`: used by the sheet sync; keeps only the approved website columns.
 - `docs/SEO-SETUP.md`: one-time Google Search Console, Bing, analytics and form email setup.
 - `docs/ads/`: Google Ads page feed and keyword lists, regenerated on every build.
+- `data/specs.csv`: package / pins / temperature per part (shown in each part page's Specifications section);
+  `docs/specs-review.xlsx` marks which values still need checking.
+- `public/og/` + `scripts/og-images.js`: link-preview images per part (`npm install && npm run og`); the weekly sync redraws changed ones.
+- `docs/listing-kit.csv` + `docs/LISTING-KIT.md`: ready-to-paste links per part for BrokerForum, LinkedIn, WeChat, WhatsApp and email.
+- `data/lastmod.json`: per-page change dates used in the sitemap (updated by the build; commit it).
+- Product series pages (`/series/...`) are defined in the `SERIES` list in `build.js`.
 
 ## Cloudflare settings (Workers Builds)
 
