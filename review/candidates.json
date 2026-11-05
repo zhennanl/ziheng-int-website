@@ -33,7 +33,8 @@
     "site": "mymectronic.com",
     "page": "https://www.mymectronic.com/part-detail/MAXIM-INTEGRATED---ANALOG-DEVICES/MAX3491ESDT"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "ADM2491EBRWZ",
@@ -57,7 +58,8 @@
     "site": "ichome.com",
     "page": "https://ichome.com/product-detail/analog-devices/adm2491ebrwz"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "ST10F276Z5Q3",
@@ -77,7 +79,8 @@
     "site": "amaxchip.com",
     "page": "https://amaxchip.com/product/ST10F276Z5Q3"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "ST10F276Z5Q3TR",
@@ -97,7 +100,8 @@
     "site": "microchipusa.com",
     "page": "https://www.microchipusa.com/product/stmicroelectronics/microcontrollers/ST10F276Z5Q3TR"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "MPC8280CZUUPEA",
@@ -121,7 +125,8 @@
     "site": "amaxchip.com",
     "page": "https://amaxchip.com/product/MPC8280CZUUPEA"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "MAX488MJA",
@@ -141,7 +146,8 @@
     "site": "microchipusa.com",
     "page": "https://www.microchipusa.com/product/analog-devices-inc-maxim-integrated/drivers-receivers-transceivers/MAX488MJA"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "ADM2582EBRWZ-REEL7",
@@ -165,7 +171,8 @@
     "site": "lcsc.com",
     "page": "https://www.lcsc.com/product-detail/ADI_Analog-Devices_ADM2582EBRWZ_Analog-Devices-ADI-ADM2582EBRWZ_C18532.html"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "MAX6818EAP+",
@@ -193,7 +200,8 @@
     "site": "microchipusa.com",
     "page": "https://www.microchipusa.com/product/analog-devices-inc-maxim-integrated/specialized-ics/MAX6818EAP"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "MT48LC4M32B2P-6A IT:L TR",
@@ -217,7 +225,8 @@
     "site": "lcsc.com",
     "page": "https://www.lcsc.com/product-detail/SDRAM_Micron-Tech-MT48LC4M32B2P-6A-L-TR_C2062038.html"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "X5045PIZ",
@@ -237,7 +246,8 @@
     "site": "lcsc.com",
     "page": "https://lcsc.com/product-detail/Microprocessor-Microcontroller-Supervisors_Renesas-Electronics-Intersil-X5045PZ_C81783.html"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "AD8062ARZ",
@@ -257,7 +267,8 @@
     "site": "jlcpcb.com",
     "page": "https://jlcpcb.com/partdetail/C206882"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "AD823ARZ",
@@ -281,7 +292,8 @@
     "site": "lcsc.com",
     "page": "https://www.lcsc.com/product-detail/C93795.html"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "DS1683S+",
@@ -305,7 +317,8 @@
     "site": "lcsc.com",
     "page": "https://www.lcsc.com/product-detail/real-time-clocks_analog-devices-inc-maxim-integrated-ds1683s-t-r_C2651494.html"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "AD8138ARZ",
@@ -321,7 +334,8 @@
     "site": "lcsc.com",
     "page": "https://lcsc.com/product-detail/Pre-ordered-Products_Analog-Devices_AD8138ARZ-RL_Analog-Devices-ADI-LINEAR-AD8138ARZ-RL_C652360.html"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "70V27L20PFGI",
@@ -337,7 +351,8 @@
     "site": "amaxchip.com",
     "page": "https://amaxchip.com/product/70V27L20PFGI"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "HI-1573PSI",
@@ -353,7 +368,8 @@
     "site": "promelec.ru",
     "page": "https://www.promelec.ru/product/423613/"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "SAA1064T",
@@ -369,7 +385,8 @@
     "site": "promelec.ru",
     "page": "https://www.promelec.ru/product/107830/"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "MAX489MJD",
@@ -385,7 +402,8 @@
     "site": "amaxchip.com",
     "page": "https://amaxchip.com/product/MAX489MJD"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "MAX490MJA",
@@ -401,7 +419,8 @@
     "site": "amaxchip.com",
     "page": "https://amaxchip.com/product/MAX490MJA"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "AD9731BRS",
@@ -417,7 +436,8 @@
     "site": "amaxchip.com",
     "page": "https://amaxchip.com/product/AD9731BRS"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "AD9626BCPZ-250",
@@ -433,7 +453,8 @@
     "site": "amaxchip.com",
     "page": "https://amaxchip.com/product/AD9626BCPZ-250"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "AD8513ARUZ-REEL",
@@ -449,7 +470,8 @@
     "site": "amaxchip.com",
     "page": "https://amaxchip.com/product/AD8513ARUZ-REEL"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "7025L20PFGI",
@@ -465,7 +487,8 @@
     "site": "amaxchip.com",
     "page": "https://amaxchip.com/product/7025L20PFGI"
    }
-  ]
+  ],
+  "status": "published - needs review"
  },
  {
   "pn": "MT29F64G08AJABAWP-IT:B",
@@ -481,6 +504,7 @@
     "site": "microchipusa.com",
     "page": "https://www.microchipusa.com/product/micron-technology-inc/memory-2/MT29F64G08AJABAWP-IT-B"
    }
-  ]
+  ],
+  "status": "published - needs review"
  }
 ]
