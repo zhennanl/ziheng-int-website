@@ -1,5 +1,5 @@
 // Worker entry: the quote form API, everything else is the static site in dist/.
-import { handleRfq } from "./rfq.js";
+import { handleRfq, handleSearchMiss } from "./rfq.js";
 
 export default {
   async fetch(request, env) {
@@ -10,6 +10,7 @@ export default {
       return Response.redirect(url.toString(), 301);
     }
     if (url.pathname === "/api/rfq") return handleRfq(request, env);
+    if (url.pathname === "/api/search-miss") return handleSearchMiss(request);
     return env.ASSETS.fetch(request);
   },
 };

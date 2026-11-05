@@ -226,3 +226,8 @@ html[lang="zh-CN"] .hero h1 { max-width: 16em; }
 .overview { color: var(--ink); max-width: 70ch; line-height: 1.7; }
 .series-row { display: grid; gap: 8px; margin-top: 18px; }
 .series-row .chip { font-size: .9rem; }
+
+/* No match: "we can source it" form */
+.source-block { margin-top: 16px; max-width: 640px; }
+.source-block h2 { font-size: 1.15rem; margin-bottom: .3em; }
+.source-block .rfq-form { margin-top: 12px; }

@@ -28,6 +28,21 @@
     var clearBtn = document.getElementById("clear-filters");
     var norm = function (s) { return s.toLowerCase().replace(/[\s\-_/#.:+()]/g, ""); };
     var keys = rows.map(function (r) { return { raw: r.getAttribute("data-s"), n: norm(r.getAttribute("data-s")), cat: r.getAttribute("data-cat"), mfr: r.getAttribute("data-mfr") }; });
+    // No match: pre-fill the "we can source it" form, and log the searched part number (text only) once typing stops
+    var missTimer = null, lastLogged = "";
+    var onNoResults = function (term) {
+      var srcPart = empty && empty.querySelector("[name=part]");
+      if (srcPart && (!srcPart.value || srcPart.getAttribute("data-auto") === "1")) { srcPart.value = term; srcPart.setAttribute("data-auto", "1"); }
+      clearTimeout(missTimer);
+      missTimer = setTimeout(function () {
+        var t = term.toUpperCase();
+        if (t.length < 3 || !/[0-9]/.test(t) || t === lastLogged) return;
+        lastLogged = t;
+        try { if (window.gtag) window.gtag("event", "search_no_result", { search_term: t }); } catch (e) {}
+        try { fetch("/api/search-miss", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ term: t, lang: ZH ? "zh" : "en" }), keepalive: true }).catch(function () {}); } catch (e) {}
+      }, 1500);
+    };
+    if (empty) { var sp = empty.querySelector("[name=part]"); if (sp) sp.addEventListener("input", function () { sp.setAttribute("data-auto", "0"); }); }
     var updateUrl = function () {
       try {
         var params = new URLSearchParams(location.search);
@@ -53,6 +68,8 @@
       });
       if (count) count.textContent = ZH ? shown + " " + M.parts : shown + (shown === 1 ? " part" : " parts");
       if (empty) empty.hidden = shown !== 0;
+      var tw = document.querySelector(".table-wrap"); if (tw && empty && empty.id === "empty" && empty.tagName === "DIV") tw.hidden = shown === 0;
+      if (shown === 0 && q) onNoResults(input.value.trim());
       if (clearBtn) clearBtn.hidden = !(q || c || m);
     };
     var params = new URLSearchParams(location.search);
@@ -118,6 +135,7 @@
         .then(function (r) {
           if (r.ok) {
             form.reset(); form.querySelector("[name=part]").value = data.part;
+            if (data.kind === "sourcing") track("sourcing_request", data.part);
             status.className = "form-status small ok";
             status.textContent = M.ok(data.part, data.email);
             btn.disabled = false;

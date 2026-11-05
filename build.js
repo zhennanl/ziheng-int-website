@@ -210,6 +210,7 @@ const T = {
     thPn: "Part number", thMfr: "Manufacturer", thCat: "Category", thDesc: "Description", thStatus: "Status",
     allCats: "All categories", allMfrs: "All manufacturers", clearFilters: "Clear filters", filterCat: "Filter by category", filterMfr: "Filter by manufacturer",
     noMatch: "No match in our listed stock.", noMatchLink: "Email us the part number", noMatchTail: ", as we may still be able to source it.",
+    srcH: "Not in our listed stock, but we may be able to source it", srcP: "Our listed stock is only part of what we can supply. Send us the part number and quantity, and we'll check our network and reply, usually within one business day.", srcSend: "Send sourcing request",
     listTitle: name => `${name} in Stock`, listDesc: (name, n, ex) => `${n} ${name} parts in stock at ${cfg.companyName}: ${ex}.`,
     andMore: " and more", listLead: (n, mfr) => `${n} part${n === 1 ? "" : "s"} in stock${mfr ? ` from ${esc(mfr)}` : ""}.`,
     partTitle: p => `${p.pn} ${p.mfr} - In Stock | ${cfg.companyName}`,
@@ -264,6 +265,7 @@ const T = {
     thPn: "型号", thMfr: "品牌", thCat: "类别", thDesc: "描述", thStatus: "状态",
     allCats: "全部类别", allMfrs: "全部品牌", clearFilters: "清除筛选", filterCat: "按类别筛选", filterMfr: "按品牌筛选",
     noMatch: "现有库存中未找到该型号。", noMatchLink: "请将型号发邮件给我们", noMatchTail: "，我们可能仍可为您寻货。",
+    srcH: "现有库存中未找到，但我们可以为您寻货", srcP: "网站所列只是我们可供货型号的一部分。请发送型号和数量，我们会通过供货渠道查询，通常在一个工作日内回复。", srcSend: "提交寻货请求",
     listTitle: name => `${name} 现货`, listDesc: (name, n, ex) => `${cfg.companyName} 现货 ${n} 个${name}型号：${ex}。`,
     andMore: " 等", listLead: (n, mfr) => `${mfr ? `${esc(mfr)} ` : ""}现货 ${n} 个型号。`,
     partTitle: p => `${p.pn} ${p.mfr} 现货 | ${cfg.companyName}`,
@@ -418,7 +420,7 @@ ${cfg.wechatId ? `<dialog id="wechat-dialog" class="dialog">
 </html>`;
   }
 
-  function rfqForm(pn) {
+  function rfqForm(pn, kind) {
     const f = L.form, id = s => "rfq-" + s;
     return `<form class="rfq-form" data-rfq novalidate>
   <div class="field"><label for="${id("pn")}">${f.pn}</label><input id="${id("pn")}" name="part" required maxlength="80" value="${esc(pn)}" autocomplete="off"></div>
@@ -432,6 +434,7 @@ ${cfg.wechatId ? `<dialog id="wechat-dialog" class="dialog">
   <div class="field"><label for="${id("country")}">${f.country}</label><input id="${id("country")}" name="country" maxlength="60" autocomplete="country-name"></div>
   <div class="field"><label for="${id("msg")}">${f.msg}</label><textarea id="${id("msg")}" name="message" rows="3" maxlength="2000" placeholder="${f.msgPh}"></textarea></div>
   <div class="hp" aria-hidden="true"><label for="${id("web")}">Website</label><input id="${id("web")}" name="website" tabindex="-1" autocomplete="off"></div>
+  ${kind === "sourcing" ? `<input type="hidden" name="kind" value="sourcing">` : ""}
   <button class="btn btn-primary" type="submit">${f.send}</button>
   <p class="form-status small" role="status"></p>
 </form>`;
@@ -466,7 +469,11 @@ ${showCat ? `<td class="cat-cell"><a href="${lp(`/category/${catSlug(p.cat)}/`)}
 <thead><tr><th>${L.thPn}</th><th>${L.thMfr}</th>${showCat ? `<th class="cat-cell">${L.thCat}</th>` : ""}<th class="hide-sm">${L.thDesc}</th><th class="hide-xs">${L.thStatus}</th></tr></thead>
 <tbody>${partRows(list, showCat)}</tbody>
 </table></div>
-<p class="muted empty" id="empty" hidden>${L.noMatch} <a href="${esc(mailto(""))}">${L.noMatchLink}</a>${L.noMatchTail}</p>`;
+${withFilter ? `<div class="card source-block" id="empty" hidden>
+  <h2>${L.srcH}</h2>
+  <p class="muted">${L.srcP}</p>
+  ${rfqForm("", "sourcing").replace(`>${L.form.send}</button>`, `>${L.srcSend}</button>`)}
+</div>` : `<p class="muted empty" id="empty" hidden>${L.noMatch} <a href="${esc(mailto(""))}">${L.noMatchLink}</a>${L.noMatchTail}</p>`}`;
   }
 
   const crumbs = items => `<nav class="crumbs" aria-label="Breadcrumb"><a href="${lp("/")}">${L.home}</a> / ${items.map(([h, t]) => h ? `<a href="${lp(h)}">${esc(t)}</a>` : `<span>${esc(t)}</span>`).join(" / ")}</nav>`;

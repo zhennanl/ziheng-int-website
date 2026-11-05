@@ -26,7 +26,9 @@ export async function handleRfq(request, env) {
 
   const visitorCountry = request.headers.get("CF-IPCountry") || "";
   const lang = data.lang === "zh" ? "Chinese site" : "English site";
+  const sourcing = data.kind === "sourcing"; // part not in listed stock: buyer asked us to source it
   const text = [
+    ...(sourcing ? ["SOURCING REQUEST: this part is not in our listed stock.", ""] : []),
     `Part number: ${f.part}`, `Quantity: ${f.quantity}`, `Needed by: ${f.needed_by}`, "",
     `Name: ${f.name}`, `Company: ${f.company}`, `Email: ${f.email}`,
     `Country: ${f.country}${visitorCountry ? ` (visitor location: ${visitorCountry})` : ""}`,
@@ -40,10 +42,24 @@ export async function handleRfq(request, env) {
       from: env.RFQ_FROM || "Ziheng International Website <rfq@ziheng-int.com>",
       to: [env.RFQ_TO || "contact@ziheng-int.com"],
       reply_to: f.email,
-      subject: `RFQ: ${f.part} x ${f.quantity} (${f.company || f.name})`,
+      subject: `${sourcing ? "Sourcing request" : "RFQ"}: ${f.part} x ${f.quantity} (${f.company || f.name})`,
       text,
     }),
   });
   if (!r.ok) return json(502, { error: "The request could not be sent." });
   return json(200, { ok: true });
+}
+
+// POST /api/search-miss: logs a part number that a visitor searched for but we don't list.
+// Only the search text, language and visitor country are logged (no personal data).
+// View in Cloudflare: Workers & Pages > ziheng-int-website > Observability (Logs), filter on "search_miss".
+export async function handleSearchMiss(request) {
+  if (request.method !== "POST") return new Response(null, { status: 405 });
+  let term = "", lang = "en";
+  try { const d = await request.json(); term = String(d.term || ""); lang = d.lang === "zh" ? "zh" : "en"; } catch { /* ignore */ }
+  term = term.trim().replace(/\s+/g, " ").slice(0, 60);
+  if (term.length >= 3 && /[0-9]/.test(term)) {
+    console.log(JSON.stringify({ event: "search_miss", term: term.toUpperCase(), lang, country: request.headers.get("CF-IPCountry") || "" }));
+  }
+  return new Response(null, { status: 204 });
 }
