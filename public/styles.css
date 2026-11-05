@@ -190,3 +190,32 @@ html[lang="zh-CN"] body, [lang="zh-CN"] { font-family: -apple-system, BlinkMacSy
 html[lang="zh-CN"] h1, html[lang="zh-CN"] h2 { letter-spacing: 0; }
 html[lang="zh-CN"] .lead { line-height: 1.75; }
 html[lang="zh-CN"] .hero h1 { max-width: 16em; }
+
+/* Table filters: search + category / manufacturer dropdowns */
+.filter { gap: 10px; }
+.filter .search { flex: 2 1 280px; max-width: none; }
+.filter .select { flex: 1 1 180px; min-width: 0; }
+.filter select { width: 100%; font: inherit; font-size: .95rem; padding: 11px 36px 11px 12px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; color: var(--ink); cursor: pointer; appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235b6676' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; background-size: 18px; }
+.filter select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(31,111,235,.18); }
+.clear-filters { font: inherit; font-size: .9rem; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 6px 4px; }
+.clear-filters:hover { text-decoration: underline; }
+.filter #count { margin-left: auto; white-space: nowrap; }
+.cat-cell a { color: var(--muted); }
+.cat-cell a:hover { color: var(--accent); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+@media (max-width: 640px) {
+  .filter .search, .filter .select { flex: 1 1 100%; }
+  .filter #count { margin-left: 0; }
+}
+@media (max-width: 480px) { .hide-xs { display: none; } }
+@media (max-width: 480px) {
+  .parts td, .parts th { padding: 9px 8px; font-size: .85rem; }
+  .parts .pn { font-size: .82rem; }
+}
+.cat-mini { display: none; }
+@media (max-width: 480px) {
+  .parts .cat-cell { display: none; }
+  .cat-mini { display: block; font-size: .78rem; color: var(--muted); margin-top: 2px; }
+  .parts .pn { white-space: normal; overflow-wrap: anywhere; }
+}

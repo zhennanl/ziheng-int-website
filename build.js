@@ -153,7 +153,8 @@ const T = {
     invTitle: "Electronic Components in Stock", invDesc: n => `Full list of ${n} integrated circuits and electronic components in stock at ${cfg.companyName}. Contact us for a quote.`,
     invH1: "Inventory", invLead: "All parts below are in stock. Click a part number for details and to request a quote.",
     filterPh: "Filter by part number, manufacturer or keyword", partsN: n => `${n} part${n === 1 ? "" : "s"}`,
-    thPn: "Part number", thMfr: "Manufacturer", thDesc: "Description", thStatus: "Status",
+    thPn: "Part number", thMfr: "Manufacturer", thCat: "Category", thDesc: "Description", thStatus: "Status",
+    allCats: "All categories", allMfrs: "All manufacturers", clearFilters: "Clear filters", filterCat: "Filter by category", filterMfr: "Filter by manufacturer",
     noMatch: "No match in our listed stock.", noMatchLink: "Email us the part number", noMatchTail: ", as we may still be able to source it.",
     listTitle: name => `${name} in Stock`, listDesc: (name, n, ex) => `${n} ${name} parts in stock at ${cfg.companyName}: ${ex}.`,
     andMore: " and more", listLead: (n, mfr) => `${n} part${n === 1 ? "" : "s"} in stock${mfr ? ` from ${esc(mfr)}` : ""}.`,
@@ -197,7 +198,8 @@ const T = {
     invTitle: "电子元器件现货库存", invDesc: n => `${cfg.companyName} 现货 ${n} 个集成电路及电子元器件型号完整列表。欢迎询价。`,
     invH1: "库存", invLead: "以下所有型号均有现货。点击型号查看详情并询价。",
     filterPh: "按型号、品牌或关键词筛选", partsN: n => `${n} 个型号`,
-    thPn: "型号", thMfr: "品牌", thDesc: "描述", thStatus: "状态",
+    thPn: "型号", thMfr: "品牌", thCat: "类别", thDesc: "描述", thStatus: "状态",
+    allCats: "全部类别", allMfrs: "全部品牌", clearFilters: "清除筛选", filterCat: "按类别筛选", filterMfr: "按品牌筛选",
     noMatch: "现有库存中未找到该型号。", noMatchLink: "请将型号发邮件给我们", noMatchTail: "，我们可能仍可为您寻货。",
     listTitle: name => `${name} 现货`, listDesc: (name, n, ex) => `${cfg.companyName} 现货 ${n} 个${name}型号：${ex}。`,
     andMore: " 等", listLead: (n, mfr) => `${mfr ? `${esc(mfr)} ` : ""}现货 ${n} 个型号。`,
@@ -359,20 +361,34 @@ ${cfg.wechatId ? `<dialog id="wechat-dialog" class="dialog">
 </form>`;
   }
 
-  function partRows(list) {
-    return list.map(p => `<tr data-s="${esc([p.pn, ...p.aliases, p.mfr, MFR_ALSO.en[p.mfr] || "", MFR_ALSO.zh[p.mfr] || "", p.cat, L.cat(p.cat), p.desc, p.descZh, p.life, L.life(p.life)].join(" ").toLowerCase())}">
+  function partRows(list, showCat) {
+    return list.map(p => `<tr data-s="${esc([p.pn, ...p.aliases, p.mfr, MFR_ALSO.en[p.mfr] || "", MFR_ALSO.zh[p.mfr] || "", p.cat, L.cat(p.cat), p.desc, p.descZh, p.life, L.life(p.life)].join(" ").toLowerCase())}" data-cat="${catSlug(p.cat)}" data-mfr="${catSlug(p.mfr)}">
 <td><a class="pn" href="${lp(`/parts/${p.slug}/`)}">${esc(p.pn)}</a></td>
-<td>${esc(p.mfr)}</td>
+<td>${esc(p.mfr)}${showCat ? `<span class="cat-mini">${esc(L.cat(p.cat))}</span>` : ""}</td>
+${showCat ? `<td class="cat-cell"><a href="${lp(`/category/${catSlug(p.cat)}/`)}">${esc(L.cat(p.cat))}</a></td>` : ""}
 <td class="hide-sm">${esc(L.desc(p))}</td>
-<td><span class="badge">${icon("check")}${L.inStock}</span></td>
+<td class="hide-xs"><span class="badge">${icon("check")}${L.inStock}</span></td>
 </tr>`).join("\n");
   }
 
+  // Part table. With a filter bar: text search plus Category / Manufacturer dropdowns listing only values in this table.
   function partTable(list, withFilter) {
-    return `${withFilter ? `<div class="filter"><label class="search">${icon("search")}<input type="search" id="filter" placeholder="${L.filterPh}" autocomplete="off" aria-label="${L.filterPh}"></label><span class="muted" id="count">${L.partsN(list.length)}</span></div>` : ""}
+    const collator = new Intl.Collator(isEn ? "en" : "zh-CN", { numeric: true });
+    const catOpts = [...new Set(list.map(p => p.cat))].map(c => [catSlug(c), L.cat(c)]).sort((a, b) => collator.compare(a[1], b[1]));
+    const mfrOpts = [...new Set(list.map(p => p.mfr))].map(m => [catSlug(m), m]).sort((a, b) => collator.compare(a[1], b[1]));
+    const showCat = catOpts.length > 1;
+    const select = (id, label, all, opts) => opts.length > 1
+      ? `<label class="select"><span class="sr-only">${label}</span><select id="${id}" aria-label="${label}"><option value="">${all}</option>${opts.map(([v, t]) => `<option value="${v}">${esc(t)}</option>`).join("")}</select></label>` : "";
+    return `${withFilter ? `<div class="filter">
+  <label class="search">${icon("search")}<input type="search" id="filter" placeholder="${L.filterPh}" autocomplete="off" aria-label="${L.filterPh}"></label>
+  ${select("f-cat", L.filterCat, L.allCats, catOpts)}
+  ${select("f-mfr", L.filterMfr, L.allMfrs, mfrOpts)}
+  <button type="button" class="clear-filters" id="clear-filters" hidden>${L.clearFilters}</button>
+  <span class="muted" id="count">${L.partsN(list.length)}</span>
+</div>` : ""}
 <div class="table-wrap"><table class="parts">
-<thead><tr><th>${L.thPn}</th><th>${L.thMfr}</th><th class="hide-sm">${L.thDesc}</th><th>${L.thStatus}</th></tr></thead>
-<tbody>${partRows(list)}</tbody>
+<thead><tr><th>${L.thPn}</th><th>${L.thMfr}</th>${showCat ? `<th class="cat-cell">${L.thCat}</th>` : ""}<th class="hide-sm">${L.thDesc}</th><th class="hide-xs">${L.thStatus}</th></tr></thead>
+<tbody>${partRows(list, showCat)}</tbody>
 </table></div>
 <p class="muted empty" id="empty" hidden>${L.noMatch} <a href="${esc(mailto(""))}">${L.noMatchLink}</a>${L.noMatchTail}</p>`;
   }
