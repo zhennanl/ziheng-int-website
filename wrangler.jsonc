@@ -8,7 +8,9 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // Run the Worker before serving files, so it can redirect www and handle /api/rfq
+    "run_worker_first": true
   },
   // Keep variables set in the Cloudflare dashboard (e.g. RFQ_TO) when deploying.
   "keep_vars": true,
