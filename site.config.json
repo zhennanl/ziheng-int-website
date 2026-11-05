@@ -13,9 +13,48 @@
     "[Placeholder] We support OEMs, contract manufacturers and brokers worldwide with fast quotes and reliable sourcing. Add your founding year, location and specialties here."
   ],
   "highlights": [
-    { "title": "Stock on hand", "text": "[Placeholder] Every part listed on this site is held in our own inventory." },
-    { "title": "Military & hi-rel", "text": "[Placeholder] MIL-STD-883, QML, JAN/JANTX and 54-series parts from leading manufacturers." },
-    { "title": "Obsolete & EOL", "text": "[Placeholder] Hard-to-find and end-of-life components for long-lifecycle programs." },
-    { "title": "Fast response", "text": "[Placeholder] Send us a part number and quantity, and we reply with a quote." }
-  ]
+    {
+      "title": "Stock on hand",
+      "text": "[Placeholder] Every part listed on this site is held in our own inventory."
+    },
+    {
+      "title": "Military & hi-rel",
+      "text": "[Placeholder] MIL-STD-883, QML, JAN/JANTX and 54-series parts from leading manufacturers."
+    },
+    {
+      "title": "Obsolete & EOL",
+      "text": "[Placeholder] Hard-to-find and end-of-life components for long-lifecycle programs."
+    },
+    {
+      "title": "Fast response",
+      "text": "[Placeholder] Send us a part number and quantity, and we reply with a quote."
+    }
+  ],
+  "ga4MeasurementId": "",
+  "quality": {
+    "intro": "[Placeholder] Every part we ship is inspected before it leaves our warehouse. Describe your real process here.",
+    "steps": [
+      {
+        "title": "Supplier vetting",
+        "text": "[Placeholder] Where your stock comes from (OEM excess, franchised channels, approved brokers) and how suppliers are qualified."
+      },
+      {
+        "title": "Visual inspection",
+        "text": "[Placeholder] Markings, date codes, lead condition and packaging checked against the manufacturer's specifications."
+      },
+      {
+        "title": "Testing",
+        "text": "[Placeholder] Additional testing available on request, e.g. X-ray, decapsulation, solderability or electrical testing through a third-party lab."
+      },
+      {
+        "title": "Documentation",
+        "text": "[Placeholder] Certificate of conformance and traceability documents supplied with each shipment where available."
+      },
+      {
+        "title": "Warranty",
+        "text": "[Placeholder] Your warranty or return terms for parts that fail incoming inspection."
+      }
+    ],
+    "certifications": "[Placeholder] List certifications and memberships here (e.g. ISO 9001, AS9120, ERAI). Remove this line if none."
+  }
 }

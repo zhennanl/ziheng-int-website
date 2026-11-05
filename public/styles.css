@@ -158,3 +158,26 @@ table.parts { width: 100%; border-collapse: collapse; font-size: .95rem; }
   .part-photo, .part-photo img, .photo-ph { width: 140px; }
   .part-photo img, .photo-ph { height: 140px; }
 }
+
+/* Quote request form */
+.rfq-form { display: grid; gap: 10px; margin-bottom: 12px; }
+.field { display: grid; gap: 4px; min-width: 0; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.field label { font-size: .85rem; font-weight: 600; color: var(--ink); }
+.field input, .field textarea { font: inherit; font-size: .95rem; padding: 9px 11px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); width: 100%; }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(31,111,235,.18); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-status { margin: 0; min-height: 1.2em; }
+.form-status.ok { color: var(--ok); }
+.form-status.err { color: #b42318; }
+.rfq .or { margin: 4px 0 8px; }
+.rfq .btn-row .btn { width: auto; flex: 1 1 auto; }
+.aliases { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .85rem; font-weight: 400; color: var(--muted); }
+.spec-tiles .tile { align-items: flex-start; }
+.steps { padding-left: 1.2em; display: grid; gap: 18px; }
+.steps h2 { font-size: 1.05rem; margin-bottom: .3em; }
+.steps p { color: var(--muted); margin: 0; }
+.page-head .chips { margin-top: 12px; }
+@media (max-width: 400px) { .field-row { grid-template-columns: 1fr; } }
+.rfq .rfq-form .form-status { margin: 0; min-height: 0; }
+.rfq .rfq-form .form-status:empty { display: none; }

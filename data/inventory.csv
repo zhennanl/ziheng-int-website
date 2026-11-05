@@ -1,187 +1,187 @@
-Part Number,Manufacturer,Category,Description,Date Code,Show on Website
-HCPL6751,Avago (Broadcom),Optocouplers,"Hermetically sealed, high-speed logic gate optocoupler for hi-rel applications.",21+/22+,Yes
-SMJ320F240HFPM40,Texas Instruments,Microcontrollers & Processors,"Military-grade TMS320F240 16-bit DSP controller, 40 MHz, ceramic quad flatpack.",21+/22+,Yes
-6N140A/883,Avago (Broadcom),Optocouplers,Hermetically sealed quad-channel high-gain optocoupler. MIL-STD-883 screened.,21+/22+,Yes
-HDSP-2133,Avago (Broadcom),Displays & LED Drivers,8-character 5x7 dot-matrix alphanumeric intelligent LED display.,,Yes
-IRFY140,International Rectifier,Power MOSFETs,"100V N-channel power MOSFET, hermetic TO-257 package.",21+/22+,Yes
-SG2003J/883B,Microsemi,Drivers & Darlington Arrays,"7-channel high-voltage, high-current Darlington transistor array. MIL-STD-883 screened.",21+/22+/12+,Yes
-LM6172AMJ-QML,Texas Instruments,Amplifiers & Comparators,"Dual high-speed, low-power voltage-feedback op amp, QML military grade.",21+,Yes
-IDT54FCT162245ATEB,IDT (Renesas),Logic ICs,"Military 16-bit bidirectional bus transceiver, 3-state outputs with series resistors.",21+/22+,Yes
-HI1-0548/883,Intersil (Renesas),Analog Switches & Multiplexers,8-channel CMOS analog multiplexer with overvoltage protection. MIL-STD-883 screened.,14+/19+/21+,Yes
-HCPL-5731,Avago (Broadcom),Optocouplers,"Hermetically sealed dual-channel, low input current, high-gain optocoupler.",22+,Yes
-MT48LC4M32B2P-6A IT:L TR,Micron,Memory,"128Mb (4M x 32) SDR SDRAM, 166 MHz, TSOP, industrial temperature.",22+/21+,Yes
-HFA35HB60C,International Rectifier,Diodes & TVS,600V HEXFRED ultrafast soft-recovery dual diode.,21+/22+,Yes
-HS4-3282-8,Intersil (Renesas),Avionics Bus (MIL-STD-1553 / ARINC 429),CMOS ARINC 429 bus interface circuit (dual receiver / transmitter).,22+,Yes
-DEI1282-SMS-G,Device Engineering Inc. (DEI),Interface ICs,"8-channel discrete-to-digital interface IC for avionics discrete signals, 16-pin SOIC.",20+/21+/22+,Yes
-OP200ARC/883,Analog Devices,Amplifiers & Comparators,"Dual low-offset, low-power precision op amp, LCC package. MIL-STD-883 screened.",22+,Yes
-REF02AJ/883C,Analog Devices,Voltage References,+5V precision voltage reference. MIL-STD-883 screened.,21+,Yes
-MT29F64G08AJABAWP-IT:B,Micron,Memory,"64Gb NAND flash memory, TSOP-48, industrial temperature.",21+/22+,Yes
-V24B5M150B,Vicor,DC-DC Converter Modules,"Vicor 24V-input, 5V-output, 150W DC-DC converter module (Mini family).",21+,Yes
-V28C3V3M50BL,Vicor,DC-DC Converter Modules,"Vicor 28V-input, 3.3V-output, 50W DC-DC converter module (Micro family).",23+,Yes
-BU6158156-110k,Data Device Corp. (DDC),Avionics Bus (MIL-STD-1553 / ARINC 429),MIL-STD-1553A/B BC/RT/MT terminal (ACE family).,21+/22+,Yes
-HCPL-5601,Avago (Broadcom),Optocouplers,"Hermetically sealed high-CMR, high-speed optocoupler.",15+/22+,Yes
-IRFM150,International Rectifier,Power MOSFETs,"100V N-channel power MOSFET, hermetic TO-254 package.",21+/22+,Yes
-ST10F276Z5Q3,STMicroelectronics,Microcontrollers & Processors,"ST10 16-bit microcontroller with 832KB flash, PQFP-144.",18+/19+,Yes
-VI-J22-MZ,Vicor,DC-DC Converter Modules,"Vicor VI-J00 series DC-DC converter module, M-grade.",22+,Yes
-HS1-3282-8,Intersil (Renesas),Avionics Bus (MIL-STD-1553 / ARINC 429),"CMOS ARINC 429 bus interface circuit, ceramic DIP.",22+,Yes
-DEI1054-WMB,Device Engineering Inc. (DEI),Interface ICs,"6-channel discrete-to-digital BiCMOS interface for 28V/Open avionics discretes, 16-pin ceramic SOIC.",21+,Yes
-BU-61745G3-290,Data Device Corp. (DDC),Avionics Bus (MIL-STD-1553 / ARINC 429),MIL-STD-1553 BC/RT/MT interface terminal (ACE family).,10+,Yes
-SG109T/883B,Microsemi,Voltage Regulators,"+5V 1A positive voltage regulator, TO-39 metal can. MIL-STD-883 screened.",12+/18+/19+/21+,Yes
-LD87C511,Intel,Microcontrollers & Processors,"8-bit 8051-family microcontroller with EPROM, ceramic DIP.",04+,Yes
-SNJ54LS06J,Texas Instruments,Logic ICs,Military hex inverter buffer/driver with high-voltage open-collector outputs.,22+/21+/16+,Yes
-IRFM460,International Rectifier,Power MOSFETs,"500V N-channel power MOSFET, hermetic TO-254 package.",22+,Yes
-JANTX2N6287,Microsemi,Power Transistors,"JANTX PNP Darlington power transistor, MIL-PRF-19500.",13+/14+/15+/17+,Yes
-MAX489MJD,Maxim Integrated,Interface ICs,"Full-duplex RS-485/RS-422 transceiver, military temperature, CERDIP-14.",07+/08+/18+,Yes
-SG7815AIG/883B,Microsemi,Voltage Regulators,"+15V positive voltage regulator, hermetic package. MIL-STD-883 screened.",21+/06+,Yes
-V28A5M175BL,Vicor,DC-DC Converter Modules,"Vicor 28V-input, 5V-output DC-DC converter module (Maxi family).",22+,Yes
-ISPLSI1032-60LG/883,Lattice Semiconductor,Programmable Logic (FPGA / CPLD / PLD),"Lattice ispLSI 1032 in-system programmable CPLD, 60 MHz. MIL-STD-883 screened.",10+/11+/06+,Yes
-TST-9002,Data Device Corp. (DDC),Other Components,DDC avionics test / interface component.,2130U,Yes
-MAX488MJA,Maxim Integrated,Interface ICs,"Low-power full-duplex RS-485/RS-422 transceiver, military temperature, CERDIP-8.",06+/21+,Yes
-RM642-300-832-9600,Airborn,Connectors,Airborn high-reliability rectangular connector.,2131,Yes
-SG2813J-883B,Microsemi,Drivers & Darlington Arrays,"8-channel high-voltage, high-current Darlington transistor array. MIL-STD-883 screened.",22+,Yes
-IRFM140,International Rectifier,Power MOSFETs,"100V N-channel power MOSFET, hermetic TO-254 package.",22+,Yes
-HI4-0546/883,Intersil (Renesas),Analog Switches & Multiplexers,"16-channel CMOS analog multiplexer with overvoltage protection, LCC. MIL-STD-883 screened.",21+/14+,Yes
-V24C15M50B,Vicor,DC-DC Converter Modules,"Vicor 24V-input, 15V-output, 50W DC-DC converter module (Micro family).",22+,Yes
-AD8513ARUZ-REEL,Analog Devices,Amplifiers & Comparators,"Quad precision, low-noise JFET-input op amp, TSSOP-14.",20+/21+,Yes
-ISPLSI1016-60LH/883(59629476201MXC),Teledyne e2v,Programmable Logic (FPGA / CPLD / PLD),"Lattice ispLSI 1016 in-system programmable CPLD, 60 MHz. MIL-STD-883 screened.",19+,Yes
-LM148J/883,Texas Instruments,Amplifiers & Comparators,"Quad 741-type general-purpose op amp, ceramic DIP. MIL-STD-883 screened.",19+/21+/22+,Yes
-SG7915AIG/883B,Microsemi,Voltage Regulators,"-15V negative voltage regulator, hermetic package. MIL-STD-883 screened.",21+,Yes
-HI-8382UT,Holt Integrated Circuits,Avionics Bus (MIL-STD-1553 / ARINC 429),ARINC 429 differential line driver.,21+,Yes
-SG1548J/883,Microsemi,Other Components,"Microsemi military analog IC, ceramic DIP. MIL-STD-883 screened.",4A2039A,Yes
-5962-8984003LA (GAL20V8B-15LD/883),Teledyne e2v,Programmable Logic (FPGA / CPLD / PLD),"GAL20V8 programmable logic device, 15ns, SMD 5962-8984003LA, QML.",0D2046,Yes
-V24C12M100B,Vicor,DC-DC Converter Modules,"Vicor 24V-input, 12V-output, 100W DC-DC converter module (Micro family).",22+/23+,Yes
-MAX690AMJA/883B,Maxim Integrated,Supervisors & Monitors,Microprocessor supervisory circuit with watchdog and battery backup. MIL-STD-883 screened.,11+/21+,Yes
-AT28C256-20LM/883,Atmel (Microchip),Memory,"256Kb (32K x 8) parallel EEPROM, 200ns, LCC. MIL-STD-883 screened.",2032,Yes
-72V245L15PFGI,IDT (Renesas),Memory,"3.3V synchronous FIFO, 4K x 18, 15ns, TQFP, industrial temperature.",19+,Yes
-SG2824J/883B,Microsemi,Drivers & Darlington Arrays,"8-channel high-voltage, high-current Darlington transistor array. MIL-STD-883 screened.",8C1525,Yes
-JANTX1N5647A,Microsemi,Diodes & TVS,"JANTX 1500W transient voltage suppressor (TVS) diode, MIL-PRF-19500.",21+/22+,Yes
-ST10F276Z5Q3TR,STMicroelectronics,Microcontrollers & Processors,"ST10 16-bit microcontroller with 832KB flash, PQFP-144, tape & reel.",19+/18+,Yes
-ADC-HS12BMM,Datel,Data Converters,"Datel 12-bit high-speed sampling A/D converter, military grade.",08+/18+/20+,Yes
-HCPL-5501#300,Avago (Broadcom),Optocouplers,"Hermetically sealed high-speed optocoupler, gull-wing leads.",Q2041,Yes
-EPC1PI8N,Altera (Intel),Programmable Logic (FPGA / CPLD / PLD),"Altera EPC1 serial configuration device for FPGAs, DIP-8.",1819A,Yes
-JANTX1N5639A,Microsemi,Diodes & TVS,"JANTX 1500W transient voltage suppressor (TVS) diode, MIL-PRF-19500.",21+/22+,Yes
-LM124AWG/883,Texas Instruments,Amplifiers & Comparators,"Quad low-power op amp, ceramic SOIC. MIL-STD-883 screened.",20+/21+,Yes
-MAX314MJE,Maxim Integrated,Analog Switches & Multiplexers,"Quad SPST low on-resistance CMOS analog switch, military temperature, CERDIP-16.",21+,Yes
-GAL20V8B-15LD/883,Lattice Semiconductor,Programmable Logic (FPGA / CPLD / PLD),"GAL20V8 programmable logic device, 15ns, ceramic DIP. MIL-STD-883 screened.",11+/00+/06+,Yes
-JANTX4N24A,Micropac,Optocouplers,JANTX hermetic phototransistor optocoupler.,22+,Yes
-JANTX1N1202A,Microsemi,Diodes & TVS,"JANTX stud-mount silicon rectifier diode, MIL-PRF-19500.",05+/21+/22+,Yes
-SNJ54ABT16374AWD,Texas Instruments,Logic ICs,"Military 16-bit edge-triggered D-type flip-flops, 3-state outputs.",21+,Yes
-MAX3491ESD+T,Maxim Integrated,Interface ICs,"3.3V full-duplex RS-485/RS-422 transceiver, SOIC-14.",20+/21+,Yes
-SNJ54ALS244CJ,Texas Instruments,Logic ICs,"Military octal buffer/line driver, 3-state outputs.",21+/08+,Yes
-BD429,Device Engineering Inc. (DEI),Avionics Bus (MIL-STD-1553 / ARINC 429),"ARINC 429 line driver, 16-pin CERDIP.",09+/11+/21+,Yes
-HS4-3182-8,Intersil (Renesas),Avionics Bus (MIL-STD-1553 / ARINC 429),"ARINC 429 bus line driver, LCC.",21+,Yes
-SG2823J/883B,Microsemi,Drivers & Darlington Arrays,"8-channel high-voltage, high-current Darlington transistor array. MIL-STD-883 screened.",22+,Yes
-JANTX1N3600,Microsemi,Diodes & TVS,"JANTX fast-switching silicon diode, MIL-PRF-19500.",17+/19+,Yes
-MG80C196KB-12/R,REI,Microcontrollers & Processors,"16-bit MCS-96 80C196KB microcontroller, 12 MHz, military grade.",96+/97+,Yes
-LM2588S-ADJ/NOPB,Texas Instruments,Voltage Regulators,"SIMPLE SWITCHER 5A flyback / boost switching regulator, adjustable output.",15+/17+/18+/19+,Yes
-IRFM250,International Rectifier,Power MOSFETs,"200V N-channel power MOSFET, hermetic TO-254 package.",21+,Yes
-ISPLSI1024-60LH/883(5962-9476101MXC),Teledyne e2v,Programmable Logic (FPGA / CPLD / PLD),"Lattice ispLSI 1024 in-system programmable CPLD, 60 MHz. MIL-STD-883 screened.",1B2009A,Yes
-JANTX2N6284,Microsemi,Power Transistors,"JANTX NPN Darlington power transistor, MIL-PRF-19500.",P1846,Yes
-LM101AH/883,Texas Instruments,Amplifiers & Comparators,"General-purpose op amp, TO-99 metal can. MIL-STD-883 screened.",21+,Yes
-SNJ54LS541J,Texas Instruments,Logic ICs,"Military octal buffer/line driver, 3-state outputs.",22+/21+,Yes
-SNJ54128J,Texas Instruments,Logic ICs,Military quad 2-input NOR 50-ohm line drivers.,19+/21+,Yes
-DEI1282-SMS,Device Engineering Inc. (DEI),Interface ICs,"8-channel discrete-to-digital interface IC for avionics discrete signals, 16-pin SOIC.",20+,Yes
-SNJ54LVTH16245AWD,Texas Instruments,Logic ICs,"Military 3.3V 16-bit bus transceiver, 3-state outputs.",22+/21+,Yes
-DK120,Dukane,Other Components,Dukane underwater acoustic locator beacon.,20+,Yes
-GAL16V8D-15LD/883,Teledyne e2v,Programmable Logic (FPGA / CPLD / PLD),"GAL16V8 programmable logic device, 15ns, ceramic DIP. MIL-STD-883 screened.",181731,Yes
-5962-9559601M2A,Analog Devices,Other Components,"Analog Devices QML military part, SMD 5962-9559601M2A.",21+/22+,Yes
-BU-61745G3-190,Data Device Corp. (DDC),Avionics Bus (MIL-STD-1553 / ARINC 429),MIL-STD-1553 BC/RT/MT interface terminal (ACE family).,1143B,Yes
-SNJ54LS245J,Texas Instruments,Logic ICs,"Military octal bus transceiver, 3-state outputs.",22+/13+,Yes
-HI1-0546/883,Intersil (Renesas),Analog Switches & Multiplexers,16-channel CMOS analog multiplexer with overvoltage protection. MIL-STD-883 screened.,16+/17+,Yes
-7705401CA(RM4194D(C)),Teledyne e2v,Voltage Regulators,"RM4194 dual-tracking adjustable voltage regulator, SMD 7705401CA.",11+,Yes
-7025L20PFGI,IDT (Renesas),Memory,"8K x 16 dual-port static RAM, 20ns, TQFP, industrial temperature.",22+/23+,Yes
-OP27AZ/883,Analog Devices,Amplifiers & Comparators,"Low-noise precision op amp, ceramic DIP. MIL-STD-883 screened.",06+/17+/18+/21+,Yes
-GAL22V10D-15LD/883,Teledyne e2v,Programmable Logic (FPGA / CPLD / PLD),"GAL22V10 programmable logic device, 15ns, ceramic DIP. MIL-STD-883 screened.",11+/12+,Yes
-AD584TH/883B,Analog Devices,Voltage References,"Pin-programmable precision voltage reference (2.5/5/7.5/10V), TO-99. MIL-STD-883 screened.",19+/21+/22+,Yes
-IRFM440,International Rectifier,Power MOSFETs,"500V N-channel power MOSFET, hermetic TO-254 package.",M2212,Yes
-SNJ54LS595J,Texas Instruments,Logic ICs,Military 8-bit shift register with output latches.,2108A,Yes
-DS26C31ME/883,Texas Instruments,Interface ICs,"Quad CMOS RS-422 differential line driver, LCC. MIL-STD-883 screened.",12+/21+,Yes
-70V27L20PFGI,IDT (Renesas),Memory,"3.3V 32K x 16 dual-port static RAM, 20ns, TQFP, industrial temperature.",X52226GR,Yes
-SNJ54ALS541J,Texas Instruments,Logic ICs,"Military octal buffer/line driver, 3-state outputs.",17+,Yes
-AD823ARZ,Analog Devices,Amplifiers & Comparators,"Dual 16 MHz rail-to-rail FET-input op amp, SOIC-8.",21+/22+,Yes
-MAX490MJA,Maxim Integrated,Interface ICs,"Low-power full-duplex RS-485/RS-422 transceiver, military temperature, CERDIP-8.",11+/20+,Yes
-SNJ54LVTH245AW,Texas Instruments,Logic ICs,"Military 3.3V octal bus transceiver, 3-state outputs.",21+,Yes
-X5045PIZ,Intersil (Renesas),Supervisors & Monitors,CPU supervisor with watchdog timer and 4Kb SPI EEPROM.,2202,Yes
-XC7VX690T-2FFG11571,Xilinx (AMD),Programmable Logic (FPGA / CPLD / PLD),"Xilinx Virtex-7 XC7VX690T FPGA, speed grade -2, FFG1157 package.",2205,Yes
-MT28FW02GBBA1HPC-OAAT,Micron,Memory,2Gb parallel NOR flash memory.,2202,Yes
-IDT54FCT162244ATEB,IDT (Renesas),Logic ICs,"Military 16-bit buffer/line driver, 3-state outputs with series resistors.",07+/11+/20+/22+,Yes
-HI1-0303/883,Intersil (Renesas),Analog Switches & Multiplexers,Dual SPDT CMOS analog switch. MIL-STD-883 screened.,21+,Yes
-HS1-3182-8,Intersil (Renesas),Avionics Bus (MIL-STD-1553 / ARINC 429),"ARINC 429 bus line driver, ceramic DIP.",21+/22+,Yes
-LM110J/883,National Semiconductor,Amplifiers & Comparators,"Voltage follower amplifier, ceramic DIP. MIL-STD-883 screened.",04+,Yes
-JANTX1N3595-1,Microsemi,Diodes & TVS,"JANTX low-leakage silicon diode, MIL-PRF-19500.",18+/20+,Yes
-DS96F173ME/883,Texas Instruments,Interface ICs,"Quad RS-485/RS-422 differential line receiver, LCC. MIL-STD-883 screened.",1944A,Yes
-SNJ54ABT16240AWD,Texas Instruments,Logic ICs,"Military 16-bit inverting buffer/driver, 3-state outputs.",21+,Yes
-AS27C256-15JM,MSS,Memory,"256Kb UV-erasable EPROM, 150ns, military temperature.",1117,Yes
-AD8138ARZ,Analog Devices,Amplifiers & Comparators,"Low-distortion differential ADC driver amplifier, SOIC-8.",2135,Yes
-HI-1573PSI,Holt Integrated Circuits,Avionics Bus (MIL-STD-1553 / ARINC 429),3.3V MIL-STD-1553 bus transceiver.,2420,Yes
-TPS77733DR,Texas Instruments,Voltage Regulators,"3.3V 750mA low-dropout regulator with reset output, SOIC-8.",22+,Yes
-SAA1064T,NXP,Displays & LED Drivers,4-digit LED display driver with I2C interface.,730,Yes
-VI-J51-MZ,Vicor,DC-DC Converter Modules,"Vicor VI-J00 series DC-DC converter module, M-grade.",22+,Yes
-DEI1084-QMS-G,Device Engineering Inc. (DEI),Avionics Bus (MIL-STD-1553 / ARINC 429),"CMOS ARINC 429 transceiver (dual receiver, single transmitter), 52-pin MQFP.",2113,Yes
-SNJ54LS240J,Texas Instruments,Logic ICs,"Military octal inverting buffer/line driver, 3-state outputs.",22+/21+,Yes
-5962-8778201UA (SG7805AIG-DESC),Microsemi,Voltage Regulators,"+5V positive voltage regulator, SMD 5962-8778201UA, QML.",08+,Yes
-MPC8280CZUUPEA,Freescale (NXP),Microcontrollers & Processors,PowerQUICC II MPC8280 communications processor.,2122,Yes
-MAX6043AAUT25#TG16,Maxim Integrated,Voltage References,"2.5V precision high-voltage voltage reference, SOT23-6.",1847,Yes
-TL16C552AMHV,Texas Instruments,Interface ICs,Military dual UART with FIFOs and parallel port.,14+/13+/12+,Yes
-SNJ54ALS193AJ,Texas Instruments,Logic ICs,Military synchronous 4-bit up/down binary counter.,18+/07+,Yes
-5962-8951801RA,Analog Devices,Other Components,"Analog Devices QML military part, SMD 5962-8951801RA.",1632B,Yes
-SNJ54LS244FK,Texas Instruments,Logic ICs,"Military octal buffer/line driver, 3-state outputs, LCC.",21+/19+,Yes
-AD9731BRS,Analog Devices,Data Converters,10-bit 170 MSPS high-speed D/A converter.,811,Yes
-V28B12M125B,Vicor,DC-DC Converter Modules,"Vicor 28V-input, 12V-output DC-DC converter module (Mini family).",2218(2205),Yes
-TPS79118DBVR,Texas Instruments,Voltage Regulators,"1.8V 100mA ultra-low-noise LDO regulator, SOT-23.",22+/23+,Yes
-V28B5M75B,Vicor,DC-DC Converter Modules,"Vicor 28V-input, 5V-output, 75W DC-DC converter module (Mini family).",22+,Yes
-SN74LVCH16T245DGGR,Texas Instruments,Logic ICs,"16-bit dual-supply bus transceiver / level translator, TSSOP-48.",22+/21+,Yes
-SNJ5404J,Texas Instruments,Logic ICs,Military hex inverters.,21+,Yes
-JANTX1N5519B-1,Microsemi,Diodes & TVS,"JANTX zener diode, MIL-PRF-19500.",10+/11+/20+/22+,Yes
-IRFF230,International Rectifier,Power MOSFETs,"200V N-channel power MOSFET, hermetic TO-39 package.",22+,Yes
-HCPL-5631,Avago (Broadcom),Optocouplers,Hermetically sealed dual-channel high-speed optocoupler.,14+/16+/20+,Yes
-CD54HCT14F3A,Texas Instruments,Logic ICs,"Military hex Schmitt-trigger inverters, ceramic DIP.",14+/20+/22+,Yes
-MAX323MJA,Maxim Integrated,Analog Switches & Multiplexers,"Dual SPST precision CMOS analog switch, military temperature, CERDIP-8.",09+/15+,Yes
-LM747H/883,Texas Instruments,Amplifiers & Comparators,"Dual general-purpose op amp, metal can. MIL-STD-883 screened.",2109B,Yes
-AD9626BCPZ-250,Analog Devices,Data Converters,"12-bit 250 MSPS high-speed A/D converter, LFCSP.",1941,Yes
-SNJ54LS01J,Texas Instruments,Logic ICs,"Military quad 2-input NAND gates, open-collector outputs.",2206B,Yes
-SMJ320C25GBM,Texas Instruments,Microcontrollers & Processors,"Military-grade TMS320C25 16-bit digital signal processor, ceramic PGA.",1524A,Yes
-CD4052BF3A,Texas Instruments,Analog Switches & Multiplexers,Military CMOS dual 4-channel analog multiplexer/demultiplexer.,17+/21+,Yes
-DS26LS31MW/883,Texas Instruments,Interface ICs,"Quad RS-422 differential line driver, ceramic flatpack. MIL-STD-883 screened.",12+/21+,Yes
-CD4049UBF3A,Texas Instruments,Logic ICs,Military CMOS hex inverting buffer/converter.,11+/21+/22+,Yes
-AD590MH/883B,Analog Devices,Sensors,"Two-terminal IC temperature transducer, TO-52 metal can. MIL-STD-883 screened.",1832C+,Yes
-SN54LS04J,Texas Instruments,Logic ICs,"Military hex inverters, ceramic DIP.",2125A,Yes
-MAX6818EAP+,Maxim Integrated,Interface ICs,Octal +/-15kV ESD-protected switch debouncer.,21+,Yes
-MD80C31AH/B,Intel,Microcontrollers & Processors,"Military 80C31 8-bit microcontroller (ROMless), ceramic DIP.",9733,Yes
-SNJ54HC164J,Texas Instruments,Logic ICs,"Military 8-bit serial-in, parallel-out shift register.",21+,Yes
-SNJ54123J,Texas Instruments,Logic ICs,Military dual retriggerable monostable multivibrators.,21+/20+/85+,Yes
-EP3C80F48417N,Altera (Intel),Programmable Logic (FPGA / CPLD / PLD),"Altera Cyclone III EP3C80 FPGA, FBGA-484.",1219A,Yes
-LM741J/883,Texas Instruments,Amplifiers & Comparators,"General-purpose operational amplifier, ceramic DIP. MIL-STD-883 screened.",19+/12+,Yes
-CD54HCT04F3A,Texas Instruments,Logic ICs,"Military hex inverters, ceramic DIP.",19+/21+/22+,Yes
-JANTX1N5804US,Microsemi,Diodes & TVS,"JANTX ultrafast-recovery rectifier, surface mount, MIL-PRF-19500.",L2204,Yes
-SNJ54LS393J,Texas Instruments,Logic ICs,Military dual 4-bit binary counters.,21+/16+,Yes
-SNJ54AHCT138W,Texas Instruments,Logic ICs,"Military 3-line to 8-line decoder/demultiplexer, ceramic flatpack.",2125B,Yes
-HA1-4900-2,Harris / Intersil,Amplifiers & Comparators,"Quad precision voltage comparator, ceramic DIP.",1576,Yes
-OP07AZ/883,Analog Devices,Amplifiers & Comparators,"Ultra-low offset voltage precision op amp, ceramic DIP. MIL-STD-883 screened.",01+,Yes
-IRFG9110,International Rectifier,Power MOSFETs,"Hermetic P-channel power MOSFET array, 14-pin ceramic DIP.",92+/21+/22+,Yes
-CD54HC125F3A,Texas Instruments,Logic ICs,"Military quad bus buffer, 3-state outputs.",21+,Yes
-AHE2805SF/HB,International Rectifier,DC-DC Converter Modules,"International Rectifier 28V-input, 5V-output hi-rel hybrid DC-DC converter.",1738,Yes
-SNJ54LS161AJ,Texas Instruments,Logic ICs,Military synchronous 4-bit binary counter.,21+/18+,Yes
-ADM2491EBRWZ,Analog Devices,Interface ICs,"5 kV isolated RS-485/RS-422 transceiver, wide-body SOIC-16.",2304/2233,Yes
-SNJ54F00J,Texas Instruments,Logic ICs,"Military quad 2-input NAND gates, FAST series.",21+/19+,Yes
-MAX1232MJA/883B,Maxim Integrated,Supervisors & Monitors,Microprocessor monitor with watchdog and reset. MIL-STD-883 screened.,2015,Yes
-AD2700UD/883B,Analog Devices,Voltage References,Precision +10V voltage reference. MIL-STD-883 screened.,06+/21+,Yes
-AD582SD/883B,Analog Devices,Amplifiers & Comparators,Monolithic sample-and-hold amplifier. MIL-STD-883 screened.,905,Yes
-DS1683S+,Maxim Integrated,Supervisors & Monitors,Total elapsed-time recorder / event counter with alarm.,21+,Yes
-CD54HCT273F,Texas Instruments,Logic ICs,Military octal D-type flip-flop with reset.,20+/21+,Yes
-JANTX1N5806US,Microsemi,Diodes & TVS,"JANTX ultrafast-recovery rectifier, surface mount, MIL-PRF-19500.",L2204,Yes
-MAX791ESE+,Maxim Integrated,Supervisors & Monitors,Microprocessor supervisory circuit with watchdog and battery backup.,18+,Yes
-DM54LS154J/883,National Semiconductor,Logic ICs,"4-line to 16-line decoder/demultiplexer, ceramic DIP. MIL-STD-883 screened.",01+,Yes
-SMJ27C256-20JM,Texas Instruments,Memory,"Military 256Kb UV-erasable EPROM, 200ns, ceramic DIP.",99+/00+,Yes
-MAX8211MSA/PR,Maxim Integrated,Supervisors & Monitors,Microprocessor voltage monitor with programmable voltage detection.,1505+/1506+,Yes
-AD8062ARZ,Analog Devices,Amplifiers & Comparators,"Dual 300 MHz rail-to-rail output op amp, SOIC-8.",21+/22+,Yes
-SNJ54LS244J,Texas Instruments,Logic ICs,"Military octal buffer/line driver, 3-state outputs.",21+/19+,Yes
-LTC2051HVHS8#TRPBF,Analog Devices,Amplifiers & Comparators,"Dual zero-drift precision op amp, high-voltage, SOIC-8.",2230,Yes
-SNJ54LS373FK,Texas Instruments,Logic ICs,"Military octal transparent D-type latch, LCC.",2134E,Yes
-ADM2582EBRWZ-REEL7,Analog Devices,Interface ICs,Isolated RS-485/RS-422 transceiver with integrated isolated DC-DC.,22+,Yes
-LMK00804BPWR,Texas Instruments,Clock & Timing,"Low-skew 1:4 LVCMOS clock fanout buffer / level translator, TSSOP-16.",2129+5,Yes
-BU61580S3-110K,Data Device Corp. (DDC),Avionics Bus (MIL-STD-1553 / ARINC 429),MIL-STD-1553 BC/RT/MT advanced communication engine (ACE).,2224,Yes
-TL16C754BPN,Texas Instruments,Interface ICs,"Quad UART with 64-byte FIFOs, LQFP-80.",2324+5,Yes
-PDL09-24S12M,P-Duke,DC-DC Converter Modules,"P-Duke 9W DC-DC converter, 24V input, 12V output.",18+,Yes
-CD4027BF3A,Texas Instruments,Logic ICs,Military CMOS dual J-K master-slave flip-flop.,2133A/03+,Yes
-74HCT221M,Texas Instruments,Logic ICs,Dual monostable multivibrator with reset.,05+,Yes
+Part Number,Manufacturer,Category,Description,Date Code,Show on Website,Grade / Screening,Lifecycle,SMD Number,NSN,Alternate Part Numbers,Manufacturer Page
+HCPL6751,Avago (Broadcom),Optocouplers,"Hermetically sealed, high-speed logic gate optocoupler for hi-rel applications.",21+/22+,Yes,,,,,,https://www.broadcom.com/products/optocouplers/hermetic/digital-optocouplers/100kbd/hcpl-6750
+SMJ320F240HFPM40,Texas Instruments,Microcontrollers & Processors,"Military-grade TMS320F240 16-bit DSP controller, 40 MHz, ceramic quad flatpack.",21+/22+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SMJ320F240/part-details/SMJ320F240HFPM40
+6N140A/883,Avago (Broadcom),Optocouplers,Hermetically sealed quad-channel high-gain optocoupler. MIL-STD-883 screened.,21+/22+,Yes,MIL-STD-883,,,,,https://www.broadcom.com/products/optocouplers/hermetic/digital-optocouplers/100kbd/6n140a
+HDSP-2133,Avago (Broadcom),Displays & LED Drivers,8-character 5x7 dot-matrix alphanumeric intelligent LED display.,,Yes,,,,,,https://www.broadcom.com/products/leds-and-displays/smart-alphanumeric-displays/parallel-interface/hdsp-2133
+IRFY140,International Rectifier,Power MOSFETs,"100V N-channel power MOSFET, hermetic TO-257 package.",21+/22+,Yes,,,,,,https://www.infineon.com/part/IRFY140C
+SG2003J/883B,Microsemi,Drivers & Darlington Arrays,"7-channel high-voltage, high-current Darlington transistor array. MIL-STD-883 screened.",21+/22+/12+,Yes,MIL-STD-883,,,,,
+LM6172AMJ-QML,Texas Instruments,Amplifiers & Comparators,"Dual high-speed, low-power voltage-feedback op amp, QML military grade.",21+,Yes,Military temperature,,,,,https://www.ti.com/product/LM6172QML/part-details/LM6172AMJ-QML
+IDT54FCT162245ATEB,IDT (Renesas),Logic ICs,"Military 16-bit bidirectional bus transceiver, 3-state outputs with series resistors.",21+/22+,Yes,,,,,,
+HI1-0548/883,Intersil (Renesas),Analog Switches & Multiplexers,8-channel CMOS analog multiplexer with overvoltage protection. MIL-STD-883 screened.,14+/19+/21+,Yes,MIL-STD-883,Mature (EOL risk),,,,
+HCPL-5731,Avago (Broadcom),Optocouplers,"Hermetically sealed dual-channel, low input current, high-gain optocoupler.",22+,Yes,,,,,,https://www.broadcom.com/products/optocouplers/hermetic/digital-optocouplers/100kbd/hcpl-5731
+MT48LC4M32B2P-6A IT:L TR,Micron,Memory,"128Mb (4M x 32) SDR SDRAM, 166 MHz, TSOP, industrial temperature.",22+/21+,Yes,,Obsolete / EOL,,,,
+HFA35HB60C,International Rectifier,Diodes & TVS,600V HEXFRED ultrafast soft-recovery dual diode.,21+/22+,Yes,,,,,,https://www.infineon.com/part/HFA35HB60C
+HS4-3282-8,Intersil (Renesas),Avionics Bus (MIL-STD-1553 / ARINC 429),CMOS ARINC 429 bus interface circuit (dual receiver / transmitter).,22+,Yes,Military temperature,Mature (EOL risk),,,,
+DEI1282-SMS-G,Device Engineering Inc. (DEI),Interface ICs,"8-channel discrete-to-digital interface IC for avionics discrete signals, 16-pin SOIC.",20+/21+/22+,Yes,Military temperature,,,,,https://www.deiaz.com/product/DEI1282-SMS-G/
+OP200ARC/883,Analog Devices,Amplifiers & Comparators,"Dual low-offset, low-power precision op amp, LCC package. MIL-STD-883 screened.",22+,Yes,MIL-STD-883,,,,,
+REF02AJ/883C,Analog Devices,Voltage References,+5V precision voltage reference. MIL-STD-883 screened.,21+,Yes,MIL-STD-883,,,,,
+MT29F64G08AJABAWP-IT:B,Micron,Memory,"64Gb NAND flash memory, TSOP-48, industrial temperature.",21+/22+,Yes,Industrial temperature,Obsolete / EOL,,,,
+V24B5M150B,Vicor,DC-DC Converter Modules,"Vicor 24V-input, 5V-output, 150W DC-DC converter module (Mini family).",21+,Yes,,,,,,https://www.vicorpower.com/products?productType=cfg&productKey=V24B5M150B
+V28C3V3M50BL,Vicor,DC-DC Converter Modules,"Vicor 28V-input, 3.3V-output, 50W DC-DC converter module (Micro family).",23+,Yes,,,,,,https://www.vicorpower.com/products?productType=cfg&productKey=V28C3V3M50BL
+BU6158156-110k,Data Device Corp. (DDC),Avionics Bus (MIL-STD-1553 / ARINC 429),MIL-STD-1553A/B BC/RT/MT terminal (ACE family).,21+/22+,Yes,Military / aerospace,,,,,https://www.ddc-web.com/en/databus/milstd1553-1/components-1/bu-65170-bu-65171-bu-61580-bu-61581-bu-61585-bu-61586
+HCPL-5601,Avago (Broadcom),Optocouplers,"Hermetically sealed high-CMR, high-speed optocoupler.",15+/22+,Yes,,,,,,https://www.broadcom.com/products/optocouplers/hermetic/digital-optocouplers/10mbd/hcpl-5601
+IRFM150,International Rectifier,Power MOSFETs,"100V N-channel power MOSFET, hermetic TO-254 package.",21+/22+,Yes,,,,,,https://www.infineon.com/part/IRFM150
+ST10F276Z5Q3,STMicroelectronics,Microcontrollers & Processors,"ST10 16-bit microcontroller with 832KB flash, PQFP-144.",18+/19+,Yes,,Obsolete / EOL,,,,
+VI-J22-MZ,Vicor,DC-DC Converter Modules,"Vicor VI-J00 series DC-DC converter module, M-grade.",22+,Yes,,,,,,https://www.vicorpower.com/products?productType=cfg&productKey=VI-J22-MZ
+HS1-3282-8,Intersil (Renesas),Avionics Bus (MIL-STD-1553 / ARINC 429),"CMOS ARINC 429 bus interface circuit, ceramic DIP.",22+,Yes,,Mature (EOL risk),,,,
+DEI1054-WMB,Device Engineering Inc. (DEI),Interface ICs,"6-channel discrete-to-digital BiCMOS interface for 28V/Open avionics discretes, 16-pin ceramic SOIC.",21+,Yes,Military temperature,,,,,https://www.deiaz.com/product/DEI1054-WMB/
+BU-61745G3-290,Data Device Corp. (DDC),Avionics Bus (MIL-STD-1553 / ARINC 429),MIL-STD-1553 BC/RT/MT interface terminal (ACE family).,10+,Yes,Military / aerospace,Mature (EOL risk),,,,https://www.ddc-web.com/en/connectivity/databus/milstd1553-1/components-1/bu-6174x-bu-6184x-bu-6186x-bu-62743-bu-62843-bu-62864
+SG109T/883B,Microsemi,Voltage Regulators,"+5V 1A positive voltage regulator, TO-39 metal can. MIL-STD-883 screened.",12+/18+/19+/21+,Yes,MIL-STD-883,,,,,
+LD87C511,Intel,Microcontrollers & Processors,"8-bit 8051-family microcontroller with EPROM, ceramic DIP.",04+,Yes,,Obsolete / EOL,,,,
+SNJ54LS06J,Texas Instruments,Logic ICs,Military hex inverter buffer/driver with high-voltage open-collector outputs.,22+/21+/16+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54LS06/part-details/SNJ54LS06J
+IRFM460,International Rectifier,Power MOSFETs,"500V N-channel power MOSFET, hermetic TO-254 package.",22+,Yes,,Obsolete / EOL,,,,https://www.infineon.com/part/IRFM460
+JANTX2N6287,Microsemi,Power Transistors,"JANTX PNP Darlington power transistor, MIL-PRF-19500.",13+/14+/15+/17+,Yes,JANTX (MIL-PRF-19500),,,,,
+MAX489MJD,Maxim Integrated,Interface ICs,"Full-duplex RS-485/RS-422 transceiver, military temperature, CERDIP-14.",07+/08+/18+,Yes,Military temperature,Obsolete / EOL,,,,
+SG7815AIG/883B,Microsemi,Voltage Regulators,"+15V positive voltage regulator, hermetic package. MIL-STD-883 screened.",21+/06+,Yes,MIL-STD-883,Mature (EOL risk),,,,
+V28A5M175BL,Vicor,DC-DC Converter Modules,"Vicor 28V-input, 5V-output DC-DC converter module (Maxi family).",22+,Yes,,,,,,https://www.vicorpower.com/products?productType=cfg&productKey=V28A5M175BL
+ISPLSI1032-60LG/883,Lattice Semiconductor,Programmable Logic (FPGA / CPLD / PLD),"Lattice ispLSI 1032 in-system programmable CPLD, 60 MHz. MIL-STD-883 screened.",10+/11+/06+,Yes,MIL-STD-883,Obsolete / EOL,,,,
+TST-9002,Data Device Corp. (DDC),Other Components,DDC avionics test / interface component.,2130U,Yes,,,,,,
+MAX488MJA,Maxim Integrated,Interface ICs,"Low-power full-duplex RS-485/RS-422 transceiver, military temperature, CERDIP-8.",06+/21+,Yes,Military temperature,Mature (EOL risk),,,,
+RM642-300-832-9600,Airborn,Connectors,Airborn high-reliability rectangular connector.,2131,Yes,Military,,,,,
+SG2813J-883B,Microsemi,Drivers & Darlington Arrays,"8-channel high-voltage, high-current Darlington transistor array. MIL-STD-883 screened.",22+,Yes,MIL-STD-883,,,,,
+IRFM140,International Rectifier,Power MOSFETs,"100V N-channel power MOSFET, hermetic TO-254 package.",22+,Yes,,,,,,https://www.infineon.com/part/IRFM140
+HI4-0546/883,Intersil (Renesas),Analog Switches & Multiplexers,"16-channel CMOS analog multiplexer with overvoltage protection, LCC. MIL-STD-883 screened.",21+/14+,Yes,MIL-STD-883,Mature (EOL risk),,,,
+V24C15M50B,Vicor,DC-DC Converter Modules,"Vicor 24V-input, 15V-output, 50W DC-DC converter module (Micro family).",22+,Yes,,,,,,https://www.vicorpower.com/products?productType=cfg&productKey=V24C15M50B
+AD8513ARUZ-REEL,Analog Devices,Amplifiers & Comparators,"Quad precision, low-noise JFET-input op amp, TSSOP-14.",20+/21+,Yes,,,,,,
+ISPLSI1016-60LH/883(59629476201MXC),Teledyne e2v,Programmable Logic (FPGA / CPLD / PLD),"Lattice ispLSI 1016 in-system programmable CPLD, 60 MHz. MIL-STD-883 screened.",19+,Yes,MIL-STD-883,,5962-9476201MXC,,,
+LM148J/883,Texas Instruments,Amplifiers & Comparators,"Quad 741-type general-purpose op amp, ceramic DIP. MIL-STD-883 screened.",19+/21+/22+,Yes,MIL-STD-883,,,,,https://www.ti.com/product/LM148QML/part-details/LM148J/883
+SG7915AIG/883B,Microsemi,Voltage Regulators,"-15V negative voltage regulator, hermetic package. MIL-STD-883 screened.",21+,Yes,MIL-STD-883,,,,,
+HI-8382UT,Holt Integrated Circuits,Avionics Bus (MIL-STD-1553 / ARINC 429),ARINC 429 differential line driver.,21+,Yes,,Obsolete / EOL,,,,
+SG1548J/883,Microsemi,Other Components,"Microsemi military analog IC, ceramic DIP. MIL-STD-883 screened.",4A2039A,Yes,MIL-STD-883,,,,,
+5962-8984003LA (GAL20V8B-15LD/883),Teledyne e2v,Programmable Logic (FPGA / CPLD / PLD),"GAL20V8 programmable logic device, 15ns, SMD 5962-8984003LA, QML.",0D2046,Yes,MIL-STD-883 / QML,Obsolete / EOL,5962-8984003LA,,,
+V24C12M100B,Vicor,DC-DC Converter Modules,"Vicor 24V-input, 12V-output, 100W DC-DC converter module (Micro family).",22+/23+,Yes,,,,,,https://www.vicorpower.com/products?productType=cfg&productKey=V24C12M100B
+MAX690AMJA/883B,Maxim Integrated,Supervisors & Monitors,Microprocessor supervisory circuit with watchdog and battery backup. MIL-STD-883 screened.,11+/21+,Yes,MIL-STD-883,,,,,
+AT28C256-20LM/883,Atmel (Microchip),Memory,"256Kb (32K x 8) parallel EEPROM, 200ns, LCC. MIL-STD-883 screened.",2032,Yes,MIL-STD-883,,5962-8852504YA,,,
+72V245L15PFGI,IDT (Renesas),Memory,"3.3V synchronous FIFO, 4K x 18, 15ns, TQFP, industrial temperature.",19+,Yes,Industrial temperature,Obsolete / EOL,,,,
+SG2824J/883B,Microsemi,Drivers & Darlington Arrays,"8-channel high-voltage, high-current Darlington transistor array. MIL-STD-883 screened.",8C1525,Yes,MIL-STD-883,,,,,
+JANTX1N5647A,Microsemi,Diodes & TVS,"JANTX 1500W transient voltage suppressor (TVS) diode, MIL-PRF-19500.",21+/22+,Yes,JANTX (MIL-PRF-19500),,,,,
+ST10F276Z5Q3TR,STMicroelectronics,Microcontrollers & Processors,"ST10 16-bit microcontroller with 832KB flash, PQFP-144, tape & reel.",19+/18+,Yes,,Obsolete / EOL,,,,
+ADC-HS12BMM,Datel,Data Converters,"Datel 12-bit high-speed sampling A/D converter, military grade.",08+/18+/20+,Yes,,Mature (EOL risk),,,,
+HCPL-5501#300,Avago (Broadcom),Optocouplers,"Hermetically sealed high-speed optocoupler, gull-wing leads.",Q2041,Yes,,,,,,https://www.broadcom.com/products/optocouplers/hermetic/transistor-output/single-channel-hcpl-5501
+EPC1PI8N,Altera (Intel),Programmable Logic (FPGA / CPLD / PLD),"Altera EPC1 serial configuration device for FPGAs, DIP-8.",1819A,Yes,,Mature (EOL risk),,,,
+JANTX1N5639A,Microsemi,Diodes & TVS,"JANTX 1500W transient voltage suppressor (TVS) diode, MIL-PRF-19500.",21+/22+,Yes,JANTX (MIL-PRF-19500),,,,,
+LM124AWG/883,Texas Instruments,Amplifiers & Comparators,"Quad low-power op amp, ceramic SOIC. MIL-STD-883 screened.",20+/21+,Yes,MIL-STD-883,,,,,https://www.ti.com/product/LM124AQML/part-details/LM124AWG/883
+MAX314MJE,Maxim Integrated,Analog Switches & Multiplexers,"Quad SPST low on-resistance CMOS analog switch, military temperature, CERDIP-16.",21+,Yes,,,,,,
+GAL20V8B-15LD/883,Lattice Semiconductor,Programmable Logic (FPGA / CPLD / PLD),"GAL20V8 programmable logic device, 15ns, ceramic DIP. MIL-STD-883 screened.",11+/00+/06+,Yes,MIL-STD-883,Obsolete / EOL,,,,
+JANTX4N24A,Micropac,Optocouplers,JANTX hermetic phototransistor optocoupler.,22+,Yes,JANTX (MIL-PRF-19500),,,,,
+JANTX1N1202A,Microsemi,Diodes & TVS,"JANTX stud-mount silicon rectifier diode, MIL-PRF-19500.",05+/21+/22+,Yes,JANTX (MIL-PRF-19500),Obsolete / EOL,,,,
+SNJ54ABT16374AWD,Texas Instruments,Logic ICs,"Military 16-bit edge-triggered D-type flip-flops, 3-state outputs.",21+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54ABT16374A/part-details/SNJ54ABT16374AWD
+MAX3491ESD+T,Maxim Integrated,Interface ICs,"3.3V full-duplex RS-485/RS-422 transceiver, SOIC-14.",20+/21+,Yes,,,,,,
+SNJ54ALS244CJ,Texas Instruments,Logic ICs,"Military octal buffer/line driver, 3-state outputs.",21+/08+,Yes,Military (-55°C to +125°C),Mature (EOL risk),,,,https://www.ti.com/product/SN54ALS244C/part-details/SNJ54ALS244CJ
+BD429,Device Engineering Inc. (DEI),Avionics Bus (MIL-STD-1553 / ARINC 429),"ARINC 429 line driver, 16-pin CERDIP.",09+/11+/21+,Yes,,Mature (EOL risk),,,,https://www.deiaz.com/product/BD429/
+HS4-3182-8,Intersil (Renesas),Avionics Bus (MIL-STD-1553 / ARINC 429),"ARINC 429 bus line driver, LCC.",21+,Yes,,Mature (EOL risk),,,,
+SG2823J/883B,Microsemi,Drivers & Darlington Arrays,"8-channel high-voltage, high-current Darlington transistor array. MIL-STD-883 screened.",22+,Yes,MIL-STD-883,,,,,
+JANTX1N3600,Microsemi,Diodes & TVS,"JANTX fast-switching silicon diode, MIL-PRF-19500.",17+/19+,Yes,JANTX (MIL-PRF-19500),,,,,
+MG80C196KB-12/R,REI,Microcontrollers & Processors,"16-bit MCS-96 80C196KB microcontroller, 12 MHz, military grade.",96+/97+,Yes,,Obsolete / EOL,,,,
+LM2588S-ADJ/NOPB,Texas Instruments,Voltage Regulators,"SIMPLE SWITCHER 5A flyback / boost switching regulator, adjustable output.",15+/17+/18+/19+,Yes,,,,,,https://www.ti.com/product/LM2588/part-details/LM2588S-ADJ/NOPB
+IRFM250,International Rectifier,Power MOSFETs,"200V N-channel power MOSFET, hermetic TO-254 package.",21+,Yes,,,,,,https://www.infineon.com/part/IRFM250
+ISPLSI1024-60LH/883(5962-9476101MXC),Teledyne e2v,Programmable Logic (FPGA / CPLD / PLD),"Lattice ispLSI 1024 in-system programmable CPLD, 60 MHz. MIL-STD-883 screened.",1B2009A,Yes,MIL-STD-883,,5962-9476101MXC,,,
+JANTX2N6284,Microsemi,Power Transistors,"JANTX NPN Darlington power transistor, MIL-PRF-19500.",P1846,Yes,JANTX (MIL-PRF-19500),,,,,
+LM101AH/883,Texas Instruments,Amplifiers & Comparators,"General-purpose op amp, TO-99 metal can. MIL-STD-883 screened.",21+,Yes,MIL-STD-883,,,,,https://www.ti.com/product/LM101AQML/part-details/LM101AH/883
+SNJ54LS541J,Texas Instruments,Logic ICs,"Military octal buffer/line driver, 3-state outputs.",22+/21+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54LS541/part-details/SNJ54LS541J
+SNJ54128J,Texas Instruments,Logic ICs,Military quad 2-input NOR 50-ohm line drivers.,19+/21+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54128/part-details/SNJ54128J
+DEI1282-SMS,Device Engineering Inc. (DEI),Interface ICs,"8-channel discrete-to-digital interface IC for avionics discrete signals, 16-pin SOIC.",20+,Yes,,,,,,https://www.deiaz.com/product/DEI1282-SMS/
+SNJ54LVTH16245AWD,Texas Instruments,Logic ICs,"Military 3.3V 16-bit bus transceiver, 3-state outputs.",22+/21+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54LVTH16245A/part-details/SNJ54LVTH16245AWD
+DK120,Dukane,Other Components,Dukane underwater acoustic locator beacon.,20+,Yes,,,,,,
+GAL16V8D-15LD/883,Teledyne e2v,Programmable Logic (FPGA / CPLD / PLD),"GAL16V8 programmable logic device, 15ns, ceramic DIP. MIL-STD-883 screened.",181731,Yes,MIL-STD-883,,,,,
+5962-9559601M2A,Analog Devices,Other Components,"Analog Devices QML military part, SMD 5962-9559601M2A.",21+/22+,Yes,QML (MIL-PRF-38535),,5962-9559601M2A,,,
+BU-61745G3-190,Data Device Corp. (DDC),Avionics Bus (MIL-STD-1553 / ARINC 429),MIL-STD-1553 BC/RT/MT interface terminal (ACE family).,1143B,Yes,Military / aerospace,,,,,https://www.ddc-web.com/en/connectivity/databus/milstd1553-1/components-1/bu-6174x-bu-6184x-bu-6186x-bu-62743-bu-62843-bu-62864
+SNJ54LS245J,Texas Instruments,Logic ICs,"Military octal bus transceiver, 3-state outputs.",22+/13+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54LS245/part-details/SNJ54LS245J
+HI1-0546/883,Intersil (Renesas),Analog Switches & Multiplexers,16-channel CMOS analog multiplexer with overvoltage protection. MIL-STD-883 screened.,16+/17+,Yes,MIL-STD-883,Mature (EOL risk),,,,
+7705401CA(RM4194D(C)),Teledyne e2v,Voltage Regulators,"RM4194 dual-tracking adjustable voltage regulator, SMD 7705401CA.",11+,Yes,,,7705401CA,,,
+7025L20PFGI,IDT (Renesas),Memory,"8K x 16 dual-port static RAM, 20ns, TQFP, industrial temperature.",22+/23+,Yes,,,,,,
+OP27AZ/883,Analog Devices,Amplifiers & Comparators,"Low-noise precision op amp, ceramic DIP. MIL-STD-883 screened.",06+/17+/18+/21+,Yes,MIL-STD-883,Mature (EOL risk),,,,
+GAL22V10D-15LD/883,Teledyne e2v,Programmable Logic (FPGA / CPLD / PLD),"GAL22V10 programmable logic device, 15ns, ceramic DIP. MIL-STD-883 screened.",11+/12+,Yes,MIL-STD-883,,,,,
+AD584TH/883B,Analog Devices,Voltage References,"Pin-programmable precision voltage reference (2.5/5/7.5/10V), TO-99. MIL-STD-883 screened.",19+/21+/22+,Yes,MIL-STD-883,,,,,
+IRFM440,International Rectifier,Power MOSFETs,"500V N-channel power MOSFET, hermetic TO-254 package.",M2212,Yes,,,,,,https://www.infineon.com/part/IRFM440
+SNJ54LS595J,Texas Instruments,Logic ICs,Military 8-bit shift register with output latches.,2108A,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54LS595/part-details/SNJ54LS595J
+DS26C31ME/883,Texas Instruments,Interface ICs,"Quad CMOS RS-422 differential line driver, LCC. MIL-STD-883 screened.",12+/21+,Yes,MIL-STD-883,,,,,https://www.ti.com/product/DS26C31MQML/part-details/DS26C31ME/883
+70V27L20PFGI,IDT (Renesas),Memory,"3.3V 32K x 16 dual-port static RAM, 20ns, TQFP, industrial temperature.",X52226GR,Yes,,,,,,
+SNJ54ALS541J,Texas Instruments,Logic ICs,"Military octal buffer/line driver, 3-state outputs.",17+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54ALS541/part-details/SNJ54ALS541J
+AD823ARZ,Analog Devices,Amplifiers & Comparators,"Dual 16 MHz rail-to-rail FET-input op amp, SOIC-8.",21+/22+,Yes,,,,,,
+MAX490MJA,Maxim Integrated,Interface ICs,"Low-power full-duplex RS-485/RS-422 transceiver, military temperature, CERDIP-8.",11+/20+,Yes,,,,,,
+SNJ54LVTH245AW,Texas Instruments,Logic ICs,"Military 3.3V octal bus transceiver, 3-state outputs.",21+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54LVTH245A/part-details/SNJ54LVTH245AW
+X5045PIZ,Intersil (Renesas),Supervisors & Monitors,CPU supervisor with watchdog timer and 4Kb SPI EEPROM.,2202,Yes,,Mature (EOL risk),,,,
+XC7VX690T-2FFG11571,Xilinx (AMD),Programmable Logic (FPGA / CPLD / PLD),"Xilinx Virtex-7 XC7VX690T FPGA, speed grade -2, FFG1157 package.",2205,Yes,,Mature (EOL risk),,,,
+MT28FW02GBBA1HPC-OAAT,Micron,Memory,2Gb parallel NOR flash memory.,2202,Yes,,,,,,
+IDT54FCT162244ATEB,IDT (Renesas),Logic ICs,"Military 16-bit buffer/line driver, 3-state outputs with series resistors.",07+/11+/20+/22+,Yes,,Mature (EOL risk),,,,
+HI1-0303/883,Intersil (Renesas),Analog Switches & Multiplexers,Dual SPDT CMOS analog switch. MIL-STD-883 screened.,21+,Yes,MIL-STD-883,Mature (EOL risk),,,,
+HS1-3182-8,Intersil (Renesas),Avionics Bus (MIL-STD-1553 / ARINC 429),"ARINC 429 bus line driver, ceramic DIP.",21+/22+,Yes,,Mature (EOL risk),,,,
+LM110J/883,National Semiconductor,Amplifiers & Comparators,"Voltage follower amplifier, ceramic DIP. MIL-STD-883 screened.",04+,Yes,MIL-STD-883,Obsolete / EOL,,,,
+JANTX1N3595-1,Microsemi,Diodes & TVS,"JANTX low-leakage silicon diode, MIL-PRF-19500.",18+/20+,Yes,JANTX (MIL-PRF-19500),,,,,
+DS96F173ME/883,Texas Instruments,Interface ICs,"Quad RS-485/RS-422 differential line receiver, LCC. MIL-STD-883 screened.",1944A,Yes,MIL-STD-883,,,,,https://www.ti.com/product/DS96F173MQML/part-details/DS96F173ME/883
+SNJ54ABT16240AWD,Texas Instruments,Logic ICs,"Military 16-bit inverting buffer/driver, 3-state outputs.",21+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54ABT16240A/part-details/SNJ54ABT16240AWD
+AS27C256-15JM,MSS,Memory,"256Kb UV-erasable EPROM, 150ns, military temperature.",1117,Yes,,,,,,
+AD8138ARZ,Analog Devices,Amplifiers & Comparators,"Low-distortion differential ADC driver amplifier, SOIC-8.",2135,Yes,,,,,,
+HI-1573PSI,Holt Integrated Circuits,Avionics Bus (MIL-STD-1553 / ARINC 429),3.3V MIL-STD-1553 bus transceiver.,2420,Yes,,,,,,
+TPS77733DR,Texas Instruments,Voltage Regulators,"3.3V 750mA low-dropout regulator with reset output, SOIC-8.",22+,Yes,,,,,,https://www.ti.com/product/TPS777/part-details/TPS77733DR
+SAA1064T,NXP,Displays & LED Drivers,4-digit LED display driver with I2C interface.,730,Yes,,,,,,
+VI-J51-MZ,Vicor,DC-DC Converter Modules,"Vicor VI-J00 series DC-DC converter module, M-grade.",22+,Yes,,,,,,https://www.vicorpower.com/products?productType=cfg&productKey=VI-J51-MZ
+DEI1084-QMS-G,Device Engineering Inc. (DEI),Avionics Bus (MIL-STD-1553 / ARINC 429),"CMOS ARINC 429 transceiver (dual receiver, single transmitter), 52-pin MQFP.",2113,Yes,,,,,,https://www.deiaz.com/product/DEI1084-QMS-G/
+SNJ54LS240J,Texas Instruments,Logic ICs,"Military octal inverting buffer/line driver, 3-state outputs.",22+/21+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54LS240/part-details/SNJ54LS240J
+5962-8778201UA (SG7805AIG-DESC),Microsemi,Voltage Regulators,"+5V positive voltage regulator, SMD 5962-8778201UA, QML.",08+,Yes,QML (MIL-PRF-38535),Mature (EOL risk),5962-8778201UA,,,
+MPC8280CZUUPEA,Freescale (NXP),Microcontrollers & Processors,PowerQUICC II MPC8280 communications processor.,2122,Yes,,,,,,
+MAX6043AAUT25#TG16,Maxim Integrated,Voltage References,"2.5V precision high-voltage voltage reference, SOT23-6.",1847,Yes,,,,,,
+TL16C552AMHV,Texas Instruments,Interface ICs,Military dual UART with FIFOs and parallel port.,14+/13+/12+,Yes,,,,,,https://www.ti.com/product/TL16C552AM/part-details/TL16C552AMHV
+SNJ54ALS193AJ,Texas Instruments,Logic ICs,Military synchronous 4-bit up/down binary counter.,18+/07+,Yes,Military (-55°C to +125°C),Mature (EOL risk),,,,https://www.ti.com/product/SN54ALS193A/part-details/SNJ54ALS193AJ
+5962-8951801RA,Analog Devices,Other Components,"Analog Devices QML military part, SMD 5962-8951801RA.",1632B,Yes,QML (MIL-PRF-38535),,5962-8951801RA,,,
+SNJ54LS244FK,Texas Instruments,Logic ICs,"Military octal buffer/line driver, 3-state outputs, LCC.",21+/19+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54LS244/part-details/SNJ54LS244FK
+AD9731BRS,Analog Devices,Data Converters,10-bit 170 MSPS high-speed D/A converter.,811,Yes,,,,,,
+V28B12M125B,Vicor,DC-DC Converter Modules,"Vicor 28V-input, 12V-output DC-DC converter module (Mini family).",2218(2205),Yes,,,,,,https://www.vicorpower.com/products?productType=cfg&productKey=V28B12M125B
+TPS79118DBVR,Texas Instruments,Voltage Regulators,"1.8V 100mA ultra-low-noise LDO regulator, SOT-23.",22+/23+,Yes,,,,,,https://www.ti.com/product/TPS791/part-details/TPS79118DBVR
+V28B5M75B,Vicor,DC-DC Converter Modules,"Vicor 28V-input, 5V-output, 75W DC-DC converter module (Mini family).",22+,Yes,,,,,,https://www.vicorpower.com/products?productType=cfg&productKey=V28B5M75B
+SN74LVCH16T245DGGR,Texas Instruments,Logic ICs,"16-bit dual-supply bus transceiver / level translator, TSSOP-48.",22+/21+,Yes,,,,,,https://www.ti.com/product/SN74LVCH16T245/part-details/SN74LVCH16T245DGGR
+SNJ5404J,Texas Instruments,Logic ICs,Military hex inverters.,21+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN5404/part-details/SNJ5404J
+JANTX1N5519B-1,Microsemi,Diodes & TVS,"JANTX zener diode, MIL-PRF-19500.",10+/11+/20+/22+,Yes,JANTX (MIL-PRF-19500),Mature (EOL risk),,,,
+IRFF230,International Rectifier,Power MOSFETs,"200V N-channel power MOSFET, hermetic TO-39 package.",22+,Yes,,,,,,https://www.infineon.com/part/IRFF230
+HCPL-5631,Avago (Broadcom),Optocouplers,Hermetically sealed dual-channel high-speed optocoupler.,14+/16+/20+,Yes,,,,,,https://www.broadcom.com/products/optocouplers/hermetic/digital-optocouplers/10mbd/hcpl-5631
+CD54HCT14F3A,Texas Instruments,Logic ICs,"Military hex Schmitt-trigger inverters, ceramic DIP.",14+/20+/22+,Yes,,,,,,https://www.ti.com/product/CD54HCT14/part-details/CD54HCT14F3A
+MAX323MJA,Maxim Integrated,Analog Switches & Multiplexers,"Dual SPST precision CMOS analog switch, military temperature, CERDIP-8.",09+/15+,Yes,,Mature (EOL risk),,,,
+LM747H/883,Texas Instruments,Amplifiers & Comparators,"Dual general-purpose op amp, metal can. MIL-STD-883 screened.",2109B,Yes,MIL-STD-883,,,,,https://www.ti.com/product/LM747QML/part-details/LM747H/883
+AD9626BCPZ-250,Analog Devices,Data Converters,"12-bit 250 MSPS high-speed A/D converter, LFCSP.",1941,Yes,,,,,,
+SNJ54LS01J,Texas Instruments,Logic ICs,"Military quad 2-input NAND gates, open-collector outputs.",2206B,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54LS01/part-details/SNJ54LS01J
+SMJ320C25GBM,Texas Instruments,Microcontrollers & Processors,"Military-grade TMS320C25 16-bit digital signal processor, ceramic PGA.",1524A,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SMJ320C25/part-details/SMJ320C25GBM
+CD4052BF3A,Texas Instruments,Analog Switches & Multiplexers,Military CMOS dual 4-channel analog multiplexer/demultiplexer.,17+/21+,Yes,,,,,,https://www.ti.com/product/CD4052B-MIL/part-details/CD4052BF3A
+DS26LS31MW/883,Texas Instruments,Interface ICs,"Quad RS-422 differential line driver, ceramic flatpack. MIL-STD-883 screened.",12+/21+,Yes,MIL-STD-883,,,,,https://www.ti.com/product/DS26LS31MQML/part-details/DS26LS31MW/883
+CD4049UBF3A,Texas Instruments,Logic ICs,Military CMOS hex inverting buffer/converter.,11+/21+/22+,Yes,,,,,,https://www.ti.com/product/CD4049UB-MIL/part-details/CD4049UBF3A
+AD590MH/883B,Analog Devices,Sensors,"Two-terminal IC temperature transducer, TO-52 metal can. MIL-STD-883 screened.",1832C+,Yes,MIL-STD-883,,,,,
+SN54LS04J,Texas Instruments,Logic ICs,"Military hex inverters, ceramic DIP.",2125A,Yes,,,,,,https://www.ti.com/product/SN54LS04/part-details/SN54LS04J
+MAX6818EAP+,Maxim Integrated,Interface ICs,Octal +/-15kV ESD-protected switch debouncer.,21+,Yes,,,,,,
+MD80C31AH/B,Intel,Microcontrollers & Processors,"Military 80C31 8-bit microcontroller (ROMless), ceramic DIP.",9733,Yes,,,,,,
+SNJ54HC164J,Texas Instruments,Logic ICs,"Military 8-bit serial-in, parallel-out shift register.",21+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54HC164/part-details/SNJ54HC164J
+SNJ54123J,Texas Instruments,Logic ICs,Military dual retriggerable monostable multivibrators.,21+/20+/85+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54123/part-details/SNJ54123J
+EP3C80F48417N,Altera (Intel),Programmable Logic (FPGA / CPLD / PLD),"Altera Cyclone III EP3C80 FPGA, FBGA-484.",1219A,Yes,,Mature (EOL risk),,,,
+LM741J/883,Texas Instruments,Amplifiers & Comparators,"General-purpose operational amplifier, ceramic DIP. MIL-STD-883 screened.",19+/12+,Yes,MIL-STD-883,,,,,https://www.ti.com/product/LM741QML/part-details/LM741J/883
+CD54HCT04F3A,Texas Instruments,Logic ICs,"Military hex inverters, ceramic DIP.",19+/21+/22+,Yes,,,,,,https://www.ti.com/product/CD54HCT04/part-details/CD54HCT04F3A
+JANTX1N5804US,Microsemi,Diodes & TVS,"JANTX ultrafast-recovery rectifier, surface mount, MIL-PRF-19500.",L2204,Yes,JANTX (MIL-PRF-19500),,,,,
+SNJ54LS393J,Texas Instruments,Logic ICs,Military dual 4-bit binary counters.,21+/16+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54LS393/part-details/SNJ54LS393J
+SNJ54AHCT138W,Texas Instruments,Logic ICs,"Military 3-line to 8-line decoder/demultiplexer, ceramic flatpack.",2125B,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54AHCT138/part-details/SNJ54AHCT138W
+HA1-4900-2,Harris / Intersil,Amplifiers & Comparators,"Quad precision voltage comparator, ceramic DIP.",1576,Yes,,Mature (EOL risk),,,,
+OP07AZ/883,Analog Devices,Amplifiers & Comparators,"Ultra-low offset voltage precision op amp, ceramic DIP. MIL-STD-883 screened.",01+,Yes,MIL-STD-883,Obsolete / EOL,,,,
+IRFG9110,International Rectifier,Power MOSFETs,"Hermetic P-channel power MOSFET array, 14-pin ceramic DIP.",92+/21+/22+,Yes,,,,,,https://www.infineon.com/part/IRFG9110
+CD54HC125F3A,Texas Instruments,Logic ICs,"Military quad bus buffer, 3-state outputs.",21+,Yes,,,,,,https://www.ti.com/product/CD54HC125/part-details/CD54HC125F3A
+AHE2805SF/HB,International Rectifier,DC-DC Converter Modules,"International Rectifier 28V-input, 5V-output hi-rel hybrid DC-DC converter.",1738,Yes,,,,,,
+SNJ54LS161AJ,Texas Instruments,Logic ICs,Military synchronous 4-bit binary counter.,21+/18+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54LS161A/part-details/SNJ54LS161AJ
+ADM2491EBRWZ,Analog Devices,Interface ICs,"5 kV isolated RS-485/RS-422 transceiver, wide-body SOIC-16.",2304/2233,Yes,,,,,,
+SNJ54F00J,Texas Instruments,Logic ICs,"Military quad 2-input NAND gates, FAST series.",21+/19+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54F00/part-details/SNJ54F00J
+MAX1232MJA/883B,Maxim Integrated,Supervisors & Monitors,Microprocessor monitor with watchdog and reset. MIL-STD-883 screened.,2015,Yes,MIL-STD-883,,,,,
+AD2700UD/883B,Analog Devices,Voltage References,Precision +10V voltage reference. MIL-STD-883 screened.,06+/21+,Yes,MIL-STD-883,Mature (EOL risk),,,,
+AD582SD/883B,Analog Devices,Amplifiers & Comparators,Monolithic sample-and-hold amplifier. MIL-STD-883 screened.,905,Yes,MIL-STD-883,,,,,
+DS1683S+,Maxim Integrated,Supervisors & Monitors,Total elapsed-time recorder / event counter with alarm.,21+,Yes,,,,,,
+CD54HCT273F,Texas Instruments,Logic ICs,Military octal D-type flip-flop with reset.,20+/21+,Yes,,,,,,https://www.ti.com/product/CD54HCT273/part-details/CD54HCT273F
+JANTX1N5806US,Microsemi,Diodes & TVS,"JANTX ultrafast-recovery rectifier, surface mount, MIL-PRF-19500.",L2204,Yes,JANTX (MIL-PRF-19500),,,,,
+MAX791ESE+,Maxim Integrated,Supervisors & Monitors,Microprocessor supervisory circuit with watchdog and battery backup.,18+,Yes,,,,,,
+DM54LS154J/883,National Semiconductor,Logic ICs,"4-line to 16-line decoder/demultiplexer, ceramic DIP. MIL-STD-883 screened.",01+,Yes,MIL-STD-883,Obsolete / EOL,,,,
+SMJ27C256-20JM,Texas Instruments,Memory,"Military 256Kb UV-erasable EPROM, 200ns, ceramic DIP.",99+/00+,Yes,Military (-55°C to +125°C),Obsolete / EOL,,,,
+MAX8211MSA/PR,Maxim Integrated,Supervisors & Monitors,Microprocessor voltage monitor with programmable voltage detection.,1505+/1506+,Yes,,Obsolete / EOL,,,,
+AD8062ARZ,Analog Devices,Amplifiers & Comparators,"Dual 300 MHz rail-to-rail output op amp, SOIC-8.",21+/22+,Yes,,,,,,
+SNJ54LS244J,Texas Instruments,Logic ICs,"Military octal buffer/line driver, 3-state outputs.",21+/19+,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54LS244/part-details/SNJ54LS244J
+LTC2051HVHS8#TRPBF,Analog Devices,Amplifiers & Comparators,"Dual zero-drift precision op amp, high-voltage, SOIC-8.",2230,Yes,,,,,,
+SNJ54LS373FK,Texas Instruments,Logic ICs,"Military octal transparent D-type latch, LCC.",2134E,Yes,Military (-55°C to +125°C),,,,,https://www.ti.com/product/SN54LS373/part-details/SNJ54LS373FK
+ADM2582EBRWZ-REEL7,Analog Devices,Interface ICs,Isolated RS-485/RS-422 transceiver with integrated isolated DC-DC.,22+,Yes,,,,,,
+LMK00804BPWR,Texas Instruments,Clock & Timing,"Low-skew 1:4 LVCMOS clock fanout buffer / level translator, TSSOP-16.",2129+5,Yes,,,,,,https://www.ti.com/product/LMK00804B/part-details/LMK00804BPWR
+BU61580S3-110K,Data Device Corp. (DDC),Avionics Bus (MIL-STD-1553 / ARINC 429),MIL-STD-1553 BC/RT/MT advanced communication engine (ACE).,2224,Yes,Military / aerospace,,,,,https://www.ddc-web.com/en/databus/milstd1553-1/components-1/bu-65170-bu-65171-bu-61580-bu-61581-bu-61585-bu-61586
+TL16C754BPN,Texas Instruments,Interface ICs,"Quad UART with 64-byte FIFOs, LQFP-80.",2324+5,Yes,,,,,,https://www.ti.com/product/TL16C754B/part-details/TL16C754BPN
+PDL09-24S12M,P-Duke,DC-DC Converter Modules,"P-Duke 9W DC-DC converter, 24V input, 12V output.",18+,Yes,,,,,,
+CD4027BF3A,Texas Instruments,Logic ICs,Military CMOS dual J-K master-slave flip-flop.,2133A/03+,Yes,,Obsolete / EOL,,,,https://www.ti.com/product/CD4027B-MIL/part-details/CD4027BF3A
+74HCT221M,Texas Instruments,Logic ICs,Dual monostable multivibrator with reset.,05+,Yes,,Obsolete / EOL,,,,

@@ -4,13 +4,17 @@ Static website for Ziheng International: a home page, a searchable inventory, an
 
 ## How it works
 
-- `data/inventory.csv` holds the parts (Part Number, Manufacturer, Category, Description, Date Code, Show on Website).
+- `data/inventory.csv` holds the parts (Part Number, Manufacturer, Category, Description, Date Code, Show on Website,
+  Grade / Screening, Lifecycle, SMD Number, NSN, Alternate Part Numbers, Manufacturer Page).
   It contains **public information only**: never add quantity, cost or buyer data.
 - `site.config.json` holds the company name, email, WeChat, WhatsApp, phone, address and About text.
   Empty fields are hidden on the site.
 - `node build.js` generates the site into `dist/` (no dependencies to install).
 - Cloudflare Pages runs the build on every push to `main`.
 - `.github/workflows/sync-inventory.yml` copies the Google Sheet into `data/inventory.csv` daily.
+- `functions/api/rfq.js` handles the quote request form (emails via Resend; see `docs/SEO-SETUP.md`).
+- `docs/SEO-SETUP.md`: one-time Google Search Console, Bing, analytics and form email setup.
+- `docs/ads/`: Google Ads page feed and keyword lists, regenerated on every build.
 
 ## Cloudflare Pages settings
 

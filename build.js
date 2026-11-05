@@ -32,7 +32,8 @@ function parseCSV(text) {
 const raw = parseCSV(fs.readFileSync(path.join(ROOT, "data", "inventory.csv"), "utf8"));
 const header = raw[0].map(h => h.trim().toLowerCase());
 const col = name => header.findIndex(h => h.startsWith(name));
-const C = { pn: col("part"), mfr: col("manufacturer"), cat: col("category"), desc: col("description"), dc: col("date"), show: col("show") };
+const C = { pn: col("part"), mfr: col("manufacturer"), cat: col("category"), desc: col("description"), dc: col("date"), show: col("show"),
+  grade: col("grade"), life: col("lifecycle"), smd: col("smd"), nsn: col("nsn"), alt: col("alternate"), mpage: col("manufacturer page") };
 if (C.pn < 0) throw new Error("inventory.csv needs a 'Part Number' column");
 
 const slugify = s => s.toUpperCase().replace(/[^A-Z0-9.]+/g, "-").replace(/^-+|-+$/g, "") || "PART";
@@ -54,8 +55,41 @@ for (const r of raw.slice(1)) {
     cat: get(r, C.cat) || "Other Components",
     desc: get(r, C.desc),
     dc: get(r, C.dc),
+    grade: get(r, C.grade),
+    life: get(r, C.life),
+    smd: get(r, C.smd),
+    nsn: get(r, C.nsn),
+    altManual: get(r, C.alt).split(/[,;\n]+/).map(x => x.trim()).filter(Boolean),
+    mpage: /^https?:\/\//.test(get(r, C.mpage)) ? get(r, C.mpage) : "",
   });
 }
+
+// Spelling variants buyers type for the same part number (OP07AZ/883 -> OP07AZ883, OP07AZ-883 ...)
+function aliases(p) {
+  const out = new Set();
+  const add = v => { v = v.trim(); if (v && v.toUpperCase() !== p.pn.toUpperCase()) out.add(v); };
+  const pieces = /[()]/.test(p.pn) ? p.pn.split(/[()]/).map(x => x.trim()).filter(x => x.length > 4) : [p.pn];
+  for (const x of pieces) {
+    add(x);
+    add(x.replace(/[\/\s#:+]+/g, "-").replace(/-+/g, "-").replace(/-$/, ""));
+    add(x.replace(/[^A-Za-z0-9]/g, ""));
+    add(x.replace(/[\/#:+\s]/g, ""));
+  }
+  for (const x of p.altManual) add(x);
+  if (p.smd) { add(p.smd); add(p.smd.replace(/-/g, "")); }
+  return [...out].filter(v => !/[()]/.test(v)).slice(0, 10);
+}
+// Former / current owner names, so pages match searches for either brand
+const MFR_ALSO = {
+  "Maxim Integrated": "now part of Analog Devices", "Microsemi": "now part of Microchip Technology",
+  "International Rectifier": "now part of Infineon Technologies", "Intersil (Renesas)": "now part of Renesas Electronics",
+  "IDT (Renesas)": "Integrated Device Technology, now part of Renesas Electronics", "Avago (Broadcom)": "Avago Technologies, now Broadcom",
+  "Atmel (Microchip)": "now part of Microchip Technology", "Altera (Intel)": "Altera, formerly part of Intel", "Xilinx (AMD)": "now part of AMD",
+  "Freescale (NXP)": "now part of NXP Semiconductors", "National Semiconductor": "now part of Texas Instruments",
+  "Harris / Intersil": "Harris Semiconductor, later Intersil, now Renesas", "Teledyne e2v": "Teledyne e2v (formerly e2v technologies)",
+  "Data Device Corp. (DDC)": "Data Device Corporation", "Device Engineering Inc. (DEI)": "Device Engineering Incorporated",
+};
+for (const p of parts) p.aliases = aliases(p);
 parts.sort((a, b) => a.pn.localeCompare(b.pn, "en", { numeric: true }));
 
 // Part photos: drop a file named <slug>.jpg / .png / .webp into public/images/parts/
@@ -66,6 +100,8 @@ for (const p of parts) {
   p.img = f ? `/images/parts/${f}` : "";
 }
 
+const isMil = p => !!p.grade && !/industrial/i.test(p.grade);
+const gradeSlug = g => catSlug(g.replace(/\(.*?\)/g, "")) || "military";
 const groupBy = (arr, k) => arr.reduce((m, p) => (m.get(p[k]) ? m.get(p[k]).push(p) : m.set(p[k], [p]), m), new Map());
 const cats = [...groupBy(parts, "cat")].sort((a, b) => b[1].length - a[1].length);
 const mfrs = [...groupBy(parts, "mfr")].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
@@ -106,7 +142,7 @@ function icon(name) {
 }
 
 function layout({ title, description, canonical, body, jsonld, active, image }) {
-  const nav = [["/", "Home"], ["/parts/", "Inventory"], ["/about/", "About"], ["/contact/", "Contact"]]
+  const nav = [["/parts/", "Inventory"], ["/military-parts/", "Military"], ["/obsolete-parts/", "Obsolete"], ["/quality/", "Quality"], ["/about/", "About"], ["/contact/", "Contact"]]
     .map(([h, t]) => `<a href="${h}"${active === h ? ' aria-current="page"' : ""}>${t}</a>`).join("");
   return `<!doctype html>
 <html lang="en">
@@ -124,6 +160,8 @@ function layout({ title, description, canonical, body, jsonld, active, image }) 
 ${image ? `<meta property="og:image" content="${esc(url(image))}">` : ""}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/styles.css">
+${cfg.ga4MeasurementId ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${esc(cfg.ga4MeasurementId)}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config",${JSON.stringify(cfg.ga4MeasurementId)});</script>` : ""}
 ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, "\\u003c")}</script>` : ""}
 </head>
 <body>
@@ -154,11 +192,15 @@ ${body}
       <p><a href="/parts/">Full inventory</a></p>
       <p><a href="/#categories">By category</a></p>
       <p><a href="/#manufacturers">By manufacturer</a></p>
+      <p><a href="/military-parts/">Military &amp; hi-rel parts</a></p>
+      <p><a href="/obsolete-parts/">Obsolete &amp; EOL parts</a></p>
+      <p><a href="/quality/">Quality &amp; anti-counterfeit</a></p>
     </div>
   </div>
   <div class="wrap legal muted">© ${YEAR} ${esc(cfg.companyName)}. All trademarks belong to their respective owners. ${esc(cfg.companyName)} is an independent distributor and is not affiliated with the manufacturers listed.</div>
 </footer>
 ${cfg.wechatId ? wechatDialog() : ""}
+<script>window.SITE=${JSON.stringify({ email: cfg.email, company: cfg.companyName })};</script>
 <script src="/site.js" defer></script>
 </body>
 </html>`;
@@ -173,8 +215,27 @@ function wechatDialog() {
 </dialog>`;
 }
 
+function rfqForm(pn) {
+  const id = s => "rfq-" + s;
+  return `<form class="rfq-form" data-rfq novalidate>
+  <div class="field"><label for="${id("pn")}">Part number</label><input id="${id("pn")}" name="part" required maxlength="80" value="${esc(pn)}" autocomplete="off"></div>
+  <div class="field-row">
+    <div class="field"><label for="${id("qty")}">Quantity</label><input id="${id("qty")}" name="quantity" inputmode="numeric" maxlength="20" required></div>
+    <div class="field"><label for="${id("date")}">Needed by</label><input id="${id("date")}" name="needed_by" maxlength="40" placeholder="e.g. ASAP, March"></div>
+  </div>
+  <div class="field"><label for="${id("name")}">Your name</label><input id="${id("name")}" name="name" required maxlength="80" autocomplete="name"></div>
+  <div class="field"><label for="${id("company")}">Company</label><input id="${id("company")}" name="company" maxlength="120" autocomplete="organization"></div>
+  <div class="field"><label for="${id("email")}">Email</label><input id="${id("email")}" name="email" type="email" required maxlength="120" autocomplete="email"></div>
+  <div class="field"><label for="${id("country")}">Country</label><input id="${id("country")}" name="country" maxlength="60" autocomplete="country-name"></div>
+  <div class="field"><label for="${id("msg")}">Notes (optional)</label><textarea id="${id("msg")}" name="message" rows="3" maxlength="2000" placeholder="Date code, packaging, other parts"></textarea></div>
+  <div class="hp" aria-hidden="true"><label for="${id("web")}">Website</label><input id="${id("web")}" name="website" tabindex="-1" autocomplete="off"></div>
+  <button class="btn btn-primary" type="submit">Send quote request</button>
+  <p class="form-status small" role="status"></p>
+</form>`;
+}
+
 function partRows(list) {
-  return list.map(p => `<tr data-s="${esc((p.pn + " " + p.mfr + " " + p.cat + " " + p.desc).toLowerCase())}">
+  return list.map(p => `<tr data-s="${esc([p.pn, ...p.aliases, p.mfr, MFR_ALSO[p.mfr] || "", p.cat, p.desc, p.grade, p.life, p.nsn].join(" ").toLowerCase())}">
 <td><a class="pn" href="/parts/${p.slug}/">${esc(p.pn)}</a></td>
 <td>${esc(p.mfr)}</td>
 <td class="hide-sm">${esc(p.desc)}</td>
@@ -228,6 +289,14 @@ write("/", layout({
 <section class="wrap section">
   <div class="highlights">${cfg.highlights.map(h => `<div class="card"><h3>${esc(h.title)}</h3><p>${esc(h.text)}</p></div>`).join("")}</div>
 </section>
+<section class="wrap section">
+  <h2>Our specialties</h2>
+  <div class="tiles spec-tiles">
+    <a class="tile" href="/military-parts/"><span><strong>Military &amp; hi-rel</strong><br><span class="muted small">MIL-STD-883, QML, JANTX, 54-series</span></span><span class="tile-n">${parts.filter(p => isMil(p)).length}</span></a>
+    <a class="tile" href="/obsolete-parts/"><span><strong>Obsolete &amp; EOL</strong><br><span class="muted small">Discontinued and hard-to-find parts</span></span><span class="tile-n">${parts.filter(p => p.life).length}</span></a>
+    <a class="tile" href="/category/${catSlug("Avionics Bus (MIL-STD-1553 / ARINC 429)")}/"><span><strong>Avionics bus</strong><br><span class="muted small">MIL-STD-1553 and ARINC 429</span></span><span class="tile-n">${(cats.find(c => c[0].startsWith("Avionics")) || [0, []])[1].length}</span></a>
+  </div>
+</section>
 <section class="wrap section" id="categories">
   <h2>Browse by category</h2>
   <div class="tiles">${cats.map(([c, l]) => `<a class="tile" href="/category/${catSlug(c)}/"><span>${esc(c)}</span><span class="tile-n">${l.length}</span></a>`).join("")}</div>
@@ -280,6 +349,8 @@ for (const p of parts) {
     jsonld: [{
       "@context": "https://schema.org", "@type": "Product", name: p.pn, mpn: p.pn, sku: p.pn,
       brand: { "@type": "Brand", name: p.mfr }, category: p.cat, description: desc, url: url(`/parts/${p.slug}/`),
+      ...(p.aliases.length ? { alternateName: p.aliases } : {}),
+      ...(p.nsn ? { identifier: { "@type": "PropertyValue", propertyID: "NSN", value: p.nsn } } : {}),
       ...(p.img ? { image: url(p.img) } : {}),
     }, {
       "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
@@ -304,17 +375,24 @@ for (const p of parts) {
     <p class="lead">${esc(desc)}</p>
     <dl class="specs">
       <div><dt>Part number</dt><dd>${esc(p.pn)}</dd></div>
-      <div><dt>Manufacturer</dt><dd><a href="/manufacturer/${catSlug(p.mfr)}/">${esc(p.mfr)}</a></dd></div>
+      <div><dt>Manufacturer</dt><dd><a href="/manufacturer/${catSlug(p.mfr)}/">${esc(p.mfr)}</a>${MFR_ALSO[p.mfr] ? ` <span class="muted">(${esc(MFR_ALSO[p.mfr])})</span>` : ""}</dd></div>
       <div><dt>Category</dt><dd><a href="/category/${catSlug(p.cat)}/">${esc(p.cat)}</a></dd></div>
+      ${p.grade ? `<div><dt>Grade / screening</dt><dd>${isMil(p) ? `<a href="/military-parts/${gradeSlug(p.grade)}/">${esc(p.grade)}</a>` : esc(p.grade)}</dd></div>` : ""}
+      ${p.smd ? `<div><dt>SMD number</dt><dd>${esc(p.smd)}</dd></div>` : ""}
+      ${p.nsn ? `<div><dt>NSN</dt><dd>${esc(p.nsn)}</dd></div>` : ""}
+      ${p.life ? `<div><dt>Lifecycle</dt><dd><a href="/obsolete-parts/">${esc(p.life)}</a></dd></div>` : ""}
       ${p.dc ? `<div><dt>Date code</dt><dd>${esc(p.dc)}</dd></div>` : ""}
       <div><dt>Availability</dt><dd>In stock</dd></div>
+      ${p.mpage ? `<div><dt>Manufacturer info</dt><dd><a href="${esc(p.mpage)}" target="_blank" rel="noopener nofollow">Product page and datasheet ↗</a></dd></div>` : ""}
+      ${p.aliases.length ? `<div><dt>Also listed as</dt><dd class="aliases">${p.aliases.map(esc).join(", ")}</dd></div>` : ""}
     </dl>
   </div>
   <aside class="rfq card">
     <h2>Request a quote</h2>
-    <p>Tell us the quantity and target date for <strong>${esc(p.pn)}</strong>. We usually reply within one business day.</p>
+    <p>We usually reply within one business day.</p>
+    ${rfqForm(p.pn)}
+    <p class="muted small or">Or contact us directly:</p>
     ${contactButtons(p.pn)}
-    <p class="muted small">Email: <a href="${esc(mailto(p.pn))}">${esc(cfg.email)}</a></p>
   </aside>
 </div>
 </section>
@@ -346,8 +424,53 @@ write("/contact/", layout({
     ${cfg.address ? `<div><dt>Address</dt><dd>${esc(cfg.address)}</dd></div>` : ""}
   </dl>
   ${contactButtons("")}
-</div></section>`,
+</div>
+<div class="card contact-card"><h2>Request a quote</h2>${rfqForm("")}</div></section>`,
 }), "0.6");
+
+// Military & obsolete hubs
+function hub(pathName, title, h1, lead, list, intro) {
+  write(pathName, layout({
+    title: `${title} | ${cfg.companyName}`,
+    description: `${list.length} ${title.toLowerCase()} in stock at ${cfg.companyName}, including ${list.slice(0, 5).map(p => p.pn).join(", ")}. Request a quote.`,
+    canonical: pathName, active: pathName.split("/").slice(0, 2).join("/") + "/",
+    body: `<section class="wrap section page-head">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>${esc(h1)}</span></nav>
+<h1>${esc(h1)}</h1><p class="lead">${lead}</p>${intro || ""}</section>
+<section class="wrap">${partTable(list, list.length > 12)}</section>`,
+  }), "0.8");
+}
+const milParts = parts.filter(isMil);
+const grades = [...groupBy(milParts, "grade")].sort((a, b) => b[1].length - a[1].length);
+hub("/military-parts/", "Military & Hi-Rel Components", "Military & hi-rel components",
+  `${milParts.length} military-grade and screened parts in stock: MIL-STD-883, QML (MIL-PRF-38535), JANTX (MIL-PRF-19500) and military-temperature devices.`,
+  milParts, `<div class="chips">${grades.map(([g, l]) => `<a class="chip" href="/military-parts/${gradeSlug(g)}/">${esc(g)} <span class="muted">${l.length}</span></a>`).join("")}</div>`);
+for (const [g, l] of grades) {
+  hub(`/military-parts/${gradeSlug(g)}/`, `${g} Parts`, `${g} parts`, `${l.length} ${esc(g)} part${l.length === 1 ? "" : "s"} in stock. <a href="/military-parts/">All military parts</a>`, l);
+}
+const eolParts = parts.filter(p => p.life);
+hub("/obsolete-parts/", "Obsolete & EOL Electronic Components", "Obsolete & end-of-life components",
+  `${eolParts.length} discontinued, end-of-life and hard-to-find parts in stock for repair, sustainment and long-lifecycle programs.`, eolParts);
+
+const q = cfg.quality || { intro: "", steps: [], certifications: "" };
+write("/quality/", layout({
+  title: `Quality & Anti-Counterfeit | ${cfg.companyName}`,
+  description: `How ${cfg.companyName} sources, inspects and documents electronic components to avoid counterfeit parts.`,
+  canonical: "/quality/", active: "/quality/",
+  body: `<section class="wrap section page-head narrow"><h1>Quality &amp; anti-counterfeit</h1><p class="lead">${esc(q.intro)}</p></section>
+<section class="wrap section narrow"><ol class="steps">${q.steps.map(x => `<li><h2>${esc(x.title)}</h2><p>${esc(x.text)}</p></li>`).join("")}</ol>
+${q.certifications ? `<p class="card">${esc(q.certifications)}</p>` : ""}</section>`,
+}), "0.5");
+
+// Google Ads helpers (docs/ads/): Dynamic Search Ads page feed + keyword lists
+const ADS = path.join(ROOT, "docs", "ads");
+fs.mkdirSync(ADS, { recursive: true });
+const csvq = v => `"${String(v).replace(/"/g, '""')}"`;
+fs.writeFileSync(path.join(ADS, "page-feed.csv"), ["Page URL,Custom label",
+  ...parts.map(p => [url(`/parts/${p.slug}/`), [catSlug(p.cat), isMil(p) ? "military" : "", p.life ? "obsolete" : ""].filter(Boolean).join(";")].map(csvq).join(","))].join("\n") + "\n");
+const kw = new Set();
+for (const p of parts.filter(p => isMil(p) || p.life)) for (const v of [p.pn, ...p.aliases.slice(0, 2)]) kw.add(`[${v.toLowerCase()}]`);
+fs.writeFileSync(path.join(ADS, "exact-match-keywords.txt"), [...kw].join("\n") + "\n");
 
 // 404
 fs.writeFileSync(path.join(OUT, "404.html"), layout({
