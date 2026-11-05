@@ -19,7 +19,7 @@ Cloudflare > ziheng-int.com > **Caching > Configuration > Crawler Hints**: turn 
 Cloudflare then tells Bing and other IndexNow search engines when pages change, so new parts get picked up quickly.
 
 ## 4. Visitor statistics
-- Simple: Cloudflare > **Workers & Pages** > your project > **Metrics > Web Analytics**: enable (free, no cookies).
+- Simple: Cloudflare > **Analytics & Logs > Web Analytics** > Add a site > `ziheng-int.com` (free, no cookies).
 - For Google Ads conversion tracking: create a Google Analytics 4 property, copy its Measurement ID (`G-XXXXXXX`)
   into `ga4MeasurementId` in `site.config.json`. In GA4, mark the `generate_lead` event as a key event.
   Note: in some regions (e.g. the EU) GA4 requires a cookie consent banner; tell Claude if you need one.
@@ -29,9 +29,9 @@ Without this step the form still works: it opens the visitor's email app with th
 To receive requests directly:
 1. Create a free account at https://resend.com, **Domains** > Add `ziheng-int.com`. Add the DNS records it shows in Cloudflare DNS.
 2. **API Keys** > Create key (sending access).
-3. Cloudflare > Workers & Pages > your project > **Settings > Variables and secrets** > add secret `RESEND_API_KEY` with that key.
-   Optional variables: `RFQ_TO` (default contact@ziheng-int.com), `RFQ_FROM`.
-4. Redeploy (Deployments > latest > Retry deployment), then send a test request from any part page.
+3. Cloudflare > Workers & Pages > **ziheng-int-website** > **Settings > Variables and secrets** > Add > Type **Secret**,
+   name `RESEND_API_KEY`, value = the key. Optional variables: `RFQ_TO` (default contact@ziheng-int.com), `RFQ_FROM`.
+4. Send a test request from any part page. It should arrive in contact@ziheng-int.com within a minute.
 
 ## 6. China (optional)
 Google is not used in mainland China. For domestic buyers, submit the site at https://ziyuan.baidu.com (Baidu)

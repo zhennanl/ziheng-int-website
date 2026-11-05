@@ -20,14 +20,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Download sheet
+      - name: Download sheet and keep only website columns
         env:
           SHEET_CSV_URL: ${{ vars.SHEET_CSV_URL }}
         run: |
           if [ -z "$SHEET_CSV_URL" ]; then echo "SHEET_CSV_URL variable is not set; skipping."; exit 0; fi
           curl -fsSL "$SHEET_CSV_URL" -o /tmp/inventory.csv
-          head -1 /tmp/inventory.csv | grep -qi "part number" || { echo "Downloaded file does not look like the inventory sheet"; exit 1; }
-          cp /tmp/inventory.csv data/inventory.csv
+          # Keep only the approved website columns; everything else (stock, cost...) is dropped here.
+          node scripts/filter-inventory.js /tmp/inventory.csv
       - name: Check the site still builds
         run: node build.js
       - name: Commit if changed

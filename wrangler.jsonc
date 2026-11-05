@@ -1,0 +1,16 @@
+// Cloudflare Worker settings for ziheng-int.com (deployed by Cloudflare Workers Builds on every push to main).
+// Build command: node build.js   Deploy command: npx wrangler deploy
+{
+  "name": "ziheng-int-website",
+  "main": "worker/index.js",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  // Keep variables set in the Cloudflare dashboard (e.g. RFQ_TO) when deploying.
+  "keep_vars": true,
+  "observability": { "enabled": true }
+}
