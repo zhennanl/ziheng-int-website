@@ -26,6 +26,9 @@ in English (`/`) and Chinese (`/cn/`), with a language switch on every page.
 - `docs/listing-kit.csv` + `docs/LISTING-KIT.md`: ready-to-paste links per part for BrokerForum, LinkedIn, WeChat, WhatsApp and email.
 - `data/lastmod.json`: per-page change dates used in the sitemap (updated by the build; commit it).
 - Product series pages (`/series/...`) are defined in the `SERIES` list in `build.js`.
+- `data/xref.json`: base-number pages (`/xref/<base>/`) with ordering-code decoders and variant lists, also shown as
+  variant tables on series pages; `docs/xref-review.xlsx` is the checklist. Restore point before this feature:
+  branch `backup-before-xref-pages`.
 
 ## Cloudflare settings (Workers Builds)
 

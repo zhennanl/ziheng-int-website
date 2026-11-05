@@ -1,0 +1,2037 @@
+[
+ {
+  "base": "MAX488",
+  "mfr": "Maxim Integrated",
+  "funcEn": "Low-power full-duplex RS-485/RS-422 transceiver, slew-rate limited (250 kbps)",
+  "funcZh": "低功耗全双工 RS-485/RS-422 收发器，限摆率（250 kbps）",
+  "decoder": [
+   [
+    "C",
+    "0°C to +70°C (commercial)",
+    "0°C 至 +70°C（商业级）"
+   ],
+   [
+    "E",
+    "-40°C to +85°C (extended)",
+    "-40°C 至 +85°C（扩展级）"
+   ],
+   [
+    "M",
+    "-55°C to +125°C",
+    "-55°C 至 +125°C"
+   ],
+   [
+    "PA",
+    "8-pin plastic DIP",
+    "8 引脚塑封 DIP"
+   ],
+   [
+    "SA",
+    "8-pin SOIC",
+    "8 引脚 SOIC"
+   ],
+   [
+    "JA",
+    "8-pin ceramic DIP (CERDIP)",
+    "8 引脚陶瓷 DIP（CERDIP）"
+   ],
+   [
+    "+",
+    "Lead-free (RoHS)",
+    "无铅（RoHS）"
+   ],
+   [
+    "T (after +)",
+    "Tape and reel",
+    "卷带包装"
+   ]
+  ],
+  "variants": [
+   [
+    "MAX488CPA+",
+    "0 to 70",
+    "8-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX488CSA+",
+    "0 to 70",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX488EPA+",
+    "-40 to 85",
+    "8-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX488ESA+",
+    "-40 to 85",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX488MJA",
+    "-55 to 125",
+    "8-pin CERDIP",
+    "",
+    ""
+   ]
+  ],
+  "stocked": [
+   "MAX488MJA"
+  ]
+ },
+ {
+  "base": "MAX489",
+  "mfr": "Maxim Integrated",
+  "funcEn": "Full-duplex RS-485/RS-422 transceiver with driver and receiver enables, slew-rate limited (250 kbps)",
+  "funcZh": "带收发使能的全双工 RS-485/RS-422 收发器，限摆率（250 kbps）",
+  "decoder": [
+   [
+    "C",
+    "0°C to +70°C (commercial)",
+    "0°C 至 +70°C（商业级）"
+   ],
+   [
+    "E",
+    "-40°C to +85°C (extended)",
+    "-40°C 至 +85°C（扩展级）"
+   ],
+   [
+    "M",
+    "-55°C to +125°C",
+    "-55°C 至 +125°C"
+   ],
+   [
+    "PD",
+    "14-pin plastic DIP",
+    "14 引脚塑封 DIP"
+   ],
+   [
+    "SD",
+    "14-pin SOIC",
+    "14 引脚 SOIC"
+   ],
+   [
+    "JD",
+    "14-pin ceramic DIP (CERDIP)",
+    "14 引脚陶瓷 DIP（CERDIP）"
+   ],
+   [
+    "+",
+    "Lead-free (RoHS)",
+    "无铅（RoHS）"
+   ],
+   [
+    "T (after +)",
+    "Tape and reel",
+    "卷带包装"
+   ]
+  ],
+  "variants": [
+   [
+    "MAX489CPD+",
+    "0 to 70",
+    "14-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX489CSD+",
+    "0 to 70",
+    "14-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX489EPD+",
+    "-40 to 85",
+    "14-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX489ESD+",
+    "-40 to 85",
+    "14-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX489MJD",
+    "-55 to 125",
+    "14-pin CERDIP",
+    "",
+    ""
+   ]
+  ],
+  "stocked": [
+   "MAX489MJD"
+  ]
+ },
+ {
+  "base": "MAX490",
+  "mfr": "Maxim Integrated",
+  "funcEn": "Low-power full-duplex RS-485/RS-422 transceiver (2.5 Mbps)",
+  "funcZh": "低功耗全双工 RS-485/RS-422 收发器（2.5 Mbps）",
+  "decoder": [
+   [
+    "C",
+    "0°C to +70°C (commercial)",
+    "0°C 至 +70°C（商业级）"
+   ],
+   [
+    "E",
+    "-40°C to +85°C (extended)",
+    "-40°C 至 +85°C（扩展级）"
+   ],
+   [
+    "M",
+    "-55°C to +125°C",
+    "-55°C 至 +125°C"
+   ],
+   [
+    "PA",
+    "8-pin plastic DIP",
+    "8 引脚塑封 DIP"
+   ],
+   [
+    "SA",
+    "8-pin SOIC",
+    "8 引脚 SOIC"
+   ],
+   [
+    "JA",
+    "8-pin ceramic DIP (CERDIP)",
+    "8 引脚陶瓷 DIP（CERDIP）"
+   ],
+   [
+    "+",
+    "Lead-free (RoHS)",
+    "无铅（RoHS）"
+   ],
+   [
+    "T (after +)",
+    "Tape and reel",
+    "卷带包装"
+   ]
+  ],
+  "variants": [
+   [
+    "MAX490CPA+",
+    "0 to 70",
+    "8-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX490CSA+",
+    "0 to 70",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX490EPA+",
+    "-40 to 85",
+    "8-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX490ESA+",
+    "-40 to 85",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX490MJA",
+    "-55 to 125",
+    "8-pin CERDIP",
+    "",
+    ""
+   ]
+  ],
+  "stocked": [
+   "MAX490MJA"
+  ]
+ },
+ {
+  "base": "MAX3491",
+  "mfr": "Maxim Integrated",
+  "funcEn": "3.3V full-duplex RS-485/RS-422 transceiver (10 Mbps)",
+  "funcZh": "3.3V 全双工 RS-485/RS-422 收发器（10 Mbps）",
+  "decoder": [
+   [
+    "C",
+    "0°C to +70°C",
+    "0°C 至 +70°C"
+   ],
+   [
+    "E",
+    "-40°C to +85°C",
+    "-40°C 至 +85°C"
+   ],
+   [
+    "SD",
+    "14-pin SOIC",
+    "14 引脚 SOIC"
+   ],
+   [
+    "PD",
+    "14-pin plastic DIP",
+    "14 引脚塑封 DIP"
+   ],
+   [
+    "+",
+    "Lead-free (RoHS)",
+    "无铅（RoHS）"
+   ],
+   [
+    "T (after +)",
+    "Tape and reel",
+    "卷带包装"
+   ]
+  ],
+  "variants": [
+   [
+    "MAX3491CSD+",
+    "0 to 70",
+    "14-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX3491CSD+T",
+    "0 to 70",
+    "14-pin SOIC",
+    "Tape and reel",
+    "卷带包装"
+   ],
+   [
+    "MAX3491ESD+",
+    "-40 to 85",
+    "14-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX3491ESD+T",
+    "-40 to 85",
+    "14-pin SOIC",
+    "Tape and reel",
+    "卷带包装"
+   ],
+   [
+    "MAX3491CPD+",
+    "0 to 70",
+    "14-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX3491EPD+",
+    "-40 to 85",
+    "14-pin PDIP",
+    "",
+    ""
+   ]
+  ],
+  "stocked": [
+   "MAX3491ESD+T"
+  ]
+ },
+ {
+  "base": "MAX690",
+  "mfr": "Maxim Integrated",
+  "funcEn": "Microprocessor supervisor with reset, watchdog and battery backup",
+  "funcZh": "带复位、看门狗和电池备份的微处理器监控电路",
+  "decoder": [
+   [
+    "C",
+    "0°C to +70°C (commercial)",
+    "0°C 至 +70°C（商业级）"
+   ],
+   [
+    "E",
+    "-40°C to +85°C (extended)",
+    "-40°C 至 +85°C（扩展级）"
+   ],
+   [
+    "M",
+    "-55°C to +125°C",
+    "-55°C 至 +125°C"
+   ],
+   [
+    "PA",
+    "8-pin plastic DIP",
+    "8 引脚塑封 DIP"
+   ],
+   [
+    "SA",
+    "8-pin SOIC",
+    "8 引脚 SOIC"
+   ],
+   [
+    "JA",
+    "8-pin ceramic DIP (CERDIP)",
+    "8 引脚陶瓷 DIP（CERDIP）"
+   ],
+   [
+    "+",
+    "Lead-free (RoHS)",
+    "无铅（RoHS）"
+   ],
+   [
+    "T (after +)",
+    "Tape and reel",
+    "卷带包装"
+   ],
+   [
+    "A (after 690)",
+    "Tighter reset-threshold accuracy",
+    "更高精度的复位阈值"
+   ],
+   [
+    "/883B",
+    "High-reliability screened version",
+    "高可靠性筛选版本"
+   ]
+  ],
+  "variants": [
+   [
+    "MAX690CPA+",
+    "0 to 70",
+    "8-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX690CSA+",
+    "0 to 70",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX690EPA+",
+    "-40 to 85",
+    "8-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX690ESA+",
+    "-40 to 85",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX690MJA",
+    "-55 to 125",
+    "8-pin CERDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX690ACSA+",
+    "0 to 70",
+    "8-pin SOIC",
+    "A version",
+    "A 版本"
+   ],
+   [
+    "MAX690AESA+",
+    "-40 to 85",
+    "8-pin SOIC",
+    "A version",
+    "A 版本"
+   ],
+   [
+    "MAX690AMJA",
+    "-55 to 125",
+    "8-pin CERDIP",
+    "A version",
+    "A 版本"
+   ],
+   [
+    "MAX690AMJA/883B",
+    "-55 to 125",
+    "8-pin CERDIP",
+    "A version, screened",
+    "A 版本，筛选"
+   ]
+  ],
+  "stocked": [
+   "MAX690AMJA/883B"
+  ]
+ },
+ {
+  "base": "MAX1232",
+  "mfr": "Maxim Integrated",
+  "funcEn": "Microprocessor monitor with reset and watchdog",
+  "funcZh": "带复位和看门狗的微处理器监控器",
+  "decoder": [
+   [
+    "C",
+    "0°C to +70°C (commercial)",
+    "0°C 至 +70°C（商业级）"
+   ],
+   [
+    "E",
+    "-40°C to +85°C (extended)",
+    "-40°C 至 +85°C（扩展级）"
+   ],
+   [
+    "M",
+    "-55°C to +125°C",
+    "-55°C 至 +125°C"
+   ],
+   [
+    "PA",
+    "8-pin plastic DIP",
+    "8 引脚塑封 DIP"
+   ],
+   [
+    "SA",
+    "8-pin SOIC",
+    "8 引脚 SOIC"
+   ],
+   [
+    "JA",
+    "8-pin ceramic DIP (CERDIP)",
+    "8 引脚陶瓷 DIP（CERDIP）"
+   ],
+   [
+    "+",
+    "Lead-free (RoHS)",
+    "无铅（RoHS）"
+   ],
+   [
+    "T (after +)",
+    "Tape and reel",
+    "卷带包装"
+   ],
+   [
+    "/883B",
+    "High-reliability screened version",
+    "高可靠性筛选版本"
+   ]
+  ],
+  "variants": [
+   [
+    "MAX1232CPA+",
+    "0 to 70",
+    "8-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX1232CSA+",
+    "0 to 70",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX1232EPA+",
+    "-40 to 85",
+    "8-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX1232ESA+",
+    "-40 to 85",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX1232MJA",
+    "-55 to 125",
+    "8-pin CERDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX1232MJA/883B",
+    "-55 to 125",
+    "8-pin CERDIP",
+    "Screened",
+    "筛选"
+   ]
+  ],
+  "stocked": [
+   "MAX1232MJA/883B"
+  ]
+ },
+ {
+  "base": "MAX314",
+  "mfr": "Maxim Integrated",
+  "funcEn": "Quad SPST low on-resistance CMOS analog switch",
+  "funcZh": "四路 SPST 低导通电阻 CMOS 模拟开关",
+  "decoder": [
+   [
+    "C",
+    "0°C to +70°C (commercial)",
+    "0°C 至 +70°C（商业级）"
+   ],
+   [
+    "E",
+    "-40°C to +85°C (extended)",
+    "-40°C 至 +85°C（扩展级）"
+   ],
+   [
+    "M",
+    "-55°C to +125°C",
+    "-55°C 至 +125°C"
+   ],
+   [
+    "PE",
+    "16-pin plastic DIP",
+    "16 引脚塑封 DIP"
+   ],
+   [
+    "SE",
+    "16-pin SOIC",
+    "16 引脚 SOIC"
+   ],
+   [
+    "JE",
+    "16-pin ceramic DIP (CERDIP)",
+    "16 引脚陶瓷 DIP（CERDIP）"
+   ],
+   [
+    "+",
+    "Lead-free (RoHS)",
+    "无铅（RoHS）"
+   ],
+   [
+    "T (after +)",
+    "Tape and reel",
+    "卷带包装"
+   ]
+  ],
+  "variants": [
+   [
+    "MAX314CPE+",
+    "0 to 70",
+    "16-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX314CSE+",
+    "0 to 70",
+    "16-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX314EPE+",
+    "-40 to 85",
+    "16-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX314ESE+",
+    "-40 to 85",
+    "16-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX314MJE",
+    "-55 to 125",
+    "16-pin CERDIP",
+    "",
+    ""
+   ]
+  ],
+  "stocked": [
+   "MAX314MJE"
+  ]
+ },
+ {
+  "base": "MAX323",
+  "mfr": "Maxim Integrated",
+  "funcEn": "Dual SPST precision CMOS analog switch",
+  "funcZh": "双路 SPST 精密 CMOS 模拟开关",
+  "decoder": [
+   [
+    "C",
+    "0°C to +70°C (commercial)",
+    "0°C 至 +70°C（商业级）"
+   ],
+   [
+    "E",
+    "-40°C to +85°C (extended)",
+    "-40°C 至 +85°C（扩展级）"
+   ],
+   [
+    "M",
+    "-55°C to +125°C",
+    "-55°C 至 +125°C"
+   ],
+   [
+    "PA",
+    "8-pin plastic DIP",
+    "8 引脚塑封 DIP"
+   ],
+   [
+    "SA",
+    "8-pin SOIC",
+    "8 引脚 SOIC"
+   ],
+   [
+    "JA",
+    "8-pin ceramic DIP (CERDIP)",
+    "8 引脚陶瓷 DIP（CERDIP）"
+   ],
+   [
+    "+",
+    "Lead-free (RoHS)",
+    "无铅（RoHS）"
+   ],
+   [
+    "T (after +)",
+    "Tape and reel",
+    "卷带包装"
+   ]
+  ],
+  "variants": [
+   [
+    "MAX323CPA+",
+    "0 to 70",
+    "8-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX323CSA+",
+    "0 to 70",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX323EPA+",
+    "-40 to 85",
+    "8-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "MAX323ESA+",
+    "-40 to 85",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "MAX323MJA",
+    "-55 to 125",
+    "8-pin CERDIP",
+    "",
+    ""
+   ]
+  ],
+  "stocked": [
+   "MAX323MJA"
+  ]
+ },
+ {
+  "base": "OP07",
+  "mfr": "Analog Devices",
+  "funcEn": "Ultra-low offset voltage precision op amp",
+  "funcZh": "超低失调电压精密运算放大器",
+  "decoder": [
+   [
+    "A / E / C / G (grade)",
+    "Performance grade (A is the tightest specifications)",
+    "性能等级（A 级指标最严）"
+   ],
+   [
+    "Z (ADI legacy codes)",
+    "Ceramic DIP (CERDIP)",
+    "陶瓷 DIP（CERDIP）"
+   ],
+   [
+    "J (ADI legacy codes)",
+    "TO-99 metal can",
+    "TO-99 金属壳"
+   ],
+   [
+    "P",
+    "Plastic DIP",
+    "塑封 DIP"
+   ],
+   [
+    "S",
+    "SOIC",
+    "SOIC"
+   ],
+   [
+    "/883",
+    "High-reliability screened version, -55°C to +125°C",
+    "高可靠性筛选版本，-55°C 至 +125°C"
+   ]
+  ],
+  "variants": [
+   [
+    "OP07AZ/883",
+    "-55 to 125",
+    "8-pin CERDIP",
+    "A grade, screened",
+    "A 级，筛选"
+   ],
+   [
+    "OP07AJ/883",
+    "-55 to 125",
+    "TO-99 metal can",
+    "A grade, screened",
+    "A 级，筛选"
+   ],
+   [
+    "OP07EZ",
+    "-40 to 85",
+    "8-pin CERDIP",
+    "E grade",
+    "E 级"
+   ],
+   [
+    "OP07CP",
+    "-40 to 85",
+    "8-pin PDIP",
+    "C grade",
+    "C 级"
+   ],
+   [
+    "OP07CS",
+    "-40 to 85",
+    "8-pin SOIC",
+    "C grade",
+    "C 级"
+   ]
+  ],
+  "stocked": [
+   "OP07AZ/883"
+  ]
+ },
+ {
+  "base": "OP27",
+  "mfr": "Analog Devices",
+  "funcEn": "Low-noise precision op amp",
+  "funcZh": "低噪声精密运算放大器",
+  "decoder": [
+   [
+    "A / E / C / G (grade)",
+    "Performance grade (A is the tightest specifications)",
+    "性能等级（A 级指标最严）"
+   ],
+   [
+    "Z (ADI legacy codes)",
+    "Ceramic DIP (CERDIP)",
+    "陶瓷 DIP（CERDIP）"
+   ],
+   [
+    "J (ADI legacy codes)",
+    "TO-99 metal can",
+    "TO-99 金属壳"
+   ],
+   [
+    "P",
+    "Plastic DIP",
+    "塑封 DIP"
+   ],
+   [
+    "S",
+    "SOIC",
+    "SOIC"
+   ],
+   [
+    "/883",
+    "High-reliability screened version, -55°C to +125°C",
+    "高可靠性筛选版本，-55°C 至 +125°C"
+   ]
+  ],
+  "variants": [
+   [
+    "OP27AZ/883",
+    "-55 to 125",
+    "8-pin CERDIP",
+    "A grade, screened",
+    "A 级，筛选"
+   ],
+   [
+    "OP27AJ/883",
+    "-55 to 125",
+    "TO-99 metal can",
+    "A grade, screened",
+    "A 级，筛选"
+   ],
+   [
+    "OP27EZ",
+    "-40 to 85",
+    "8-pin CERDIP",
+    "E grade",
+    "E 级"
+   ],
+   [
+    "OP27GP",
+    "-40 to 85",
+    "8-pin PDIP",
+    "G grade",
+    "G 级"
+   ],
+   [
+    "OP27GS",
+    "-40 to 85",
+    "8-pin SOIC",
+    "G grade",
+    "G 级"
+   ]
+  ],
+  "stocked": [
+   "OP27AZ/883"
+  ]
+ },
+ {
+  "base": "AD8138",
+  "mfr": "Analog Devices",
+  "funcEn": "Low-distortion differential ADC driver",
+  "funcZh": "低失真差分 ADC 驱动器",
+  "decoder": [
+   [
+    "A / B (grade)",
+    "Temperature and performance grade",
+    "温度及性能等级"
+   ],
+   [
+    "R",
+    "SOIC",
+    "SOIC"
+   ],
+   [
+    "RM",
+    "MSOP",
+    "MSOP"
+   ],
+   [
+    "Z",
+    "Lead-free (RoHS)",
+    "无铅（RoHS）"
+   ],
+   [
+    "-R7 / -REEL7",
+    "7-inch tape and reel",
+    "7 英寸卷带"
+   ],
+   [
+    "-RL / -REEL",
+    "13-inch tape and reel",
+    "13 英寸卷带"
+   ]
+  ],
+  "variants": [
+   [
+    "AD8138ARZ",
+    "-40 to 85",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "AD8138ARZ-REEL7",
+    "-40 to 85",
+    "8-pin SOIC",
+    "7-inch reel",
+    "7 英寸卷带"
+   ],
+   [
+    "AD8138ARZ-REEL",
+    "-40 to 85",
+    "8-pin SOIC",
+    "13-inch reel",
+    "13 英寸卷带"
+   ],
+   [
+    "AD8138ARMZ",
+    "-40 to 85",
+    "8-pin MSOP",
+    "",
+    ""
+   ]
+  ],
+  "stocked": [
+   "AD8138ARZ"
+  ]
+ },
+ {
+  "base": "AD8062",
+  "mfr": "Analog Devices",
+  "funcEn": "Dual 300 MHz rail-to-rail output op amp (single: AD8061, with disable: AD8063)",
+  "funcZh": "双路 300 MHz 轨到轨输出运算放大器（单路：AD8061，带关断：AD8063）",
+  "decoder": [
+   [
+    "A / B (grade)",
+    "Temperature and performance grade",
+    "温度及性能等级"
+   ],
+   [
+    "R",
+    "SOIC",
+    "SOIC"
+   ],
+   [
+    "RM",
+    "MSOP",
+    "MSOP"
+   ],
+   [
+    "Z",
+    "Lead-free (RoHS)",
+    "无铅（RoHS）"
+   ],
+   [
+    "-R7 / -REEL7",
+    "7-inch tape and reel",
+    "7 英寸卷带"
+   ],
+   [
+    "-RL / -REEL",
+    "13-inch tape and reel",
+    "13 英寸卷带"
+   ]
+  ],
+  "variants": [
+   [
+    "AD8062ARZ",
+    "-40 to 85",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "AD8062ARZ-REEL7",
+    "-40 to 85",
+    "8-pin SOIC",
+    "7-inch reel",
+    "7 英寸卷带"
+   ],
+   [
+    "AD8062ARMZ",
+    "-40 to 85",
+    "8-pin MSOP",
+    "",
+    ""
+   ]
+  ],
+  "stocked": [
+   "AD8062ARZ"
+  ]
+ },
+ {
+  "base": "AD823",
+  "mfr": "Analog Devices",
+  "funcEn": "Dual 16 MHz rail-to-rail FET-input op amp (newer: AD823A)",
+  "funcZh": "双路 16 MHz 轨到轨 FET 输入运算放大器（新版：AD823A）",
+  "decoder": [
+   [
+    "A / B (grade)",
+    "Temperature and performance grade",
+    "温度及性能等级"
+   ],
+   [
+    "R",
+    "SOIC",
+    "SOIC"
+   ],
+   [
+    "RM",
+    "MSOP",
+    "MSOP"
+   ],
+   [
+    "Z",
+    "Lead-free (RoHS)",
+    "无铅（RoHS）"
+   ],
+   [
+    "-R7 / -REEL7",
+    "7-inch tape and reel",
+    "7 英寸卷带"
+   ],
+   [
+    "-RL / -REEL",
+    "13-inch tape and reel",
+    "13 英寸卷带"
+   ]
+  ],
+  "variants": [
+   [
+    "AD823ARZ",
+    "-40 to 85",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "AD823ARZ-R7",
+    "-40 to 85",
+    "8-pin SOIC",
+    "7-inch reel",
+    "7 英寸卷带"
+   ],
+   [
+    "AD823ARZ-RL",
+    "-40 to 85",
+    "8-pin SOIC",
+    "13-inch reel",
+    "13 英寸卷带"
+   ],
+   [
+    "AD823AARZ",
+    "-40 to 85",
+    "8-pin SOIC",
+    "AD823A (newer version)",
+    "AD823A（新版）"
+   ]
+  ],
+  "stocked": [
+   "AD823ARZ"
+  ]
+ },
+ {
+  "base": "ADM2491E",
+  "mfr": "Analog Devices",
+  "funcEn": "5 kV isolated RS-485/RS-422 transceiver",
+  "funcZh": "5 kV 隔离式 RS-485/RS-422 收发器",
+  "decoder": [
+   [
+    "B",
+    "-40°C to +85°C",
+    "-40°C 至 +85°C"
+   ],
+   [
+    "RW",
+    "16-pin wide-body SOIC",
+    "16 引脚宽体 SOIC"
+   ],
+   [
+    "Z",
+    "Lead-free (RoHS)",
+    "无铅（RoHS）"
+   ],
+   [
+    "-REEL7",
+    "7-inch tape and reel",
+    "7 英寸卷带"
+   ]
+  ],
+  "variants": [
+   [
+    "ADM2491EBRWZ",
+    "-40 to 85",
+    "16-pin wide SOIC",
+    "",
+    ""
+   ],
+   [
+    "ADM2491EBRWZ-REEL7",
+    "-40 to 85",
+    "16-pin wide SOIC",
+    "7-inch reel",
+    "7 英寸卷带"
+   ]
+  ],
+  "stocked": [
+   "ADM2491EBRWZ"
+  ]
+ },
+ {
+  "base": "ADM2582E",
+  "mfr": "Analog Devices",
+  "funcEn": "Isolated RS-485/RS-422 transceiver with integrated isolated DC-DC (16 Mbps; 500 kbps version: ADM2587E)",
+  "funcZh": "集成隔离 DC-DC 的隔离式 RS-485/RS-422 收发器（16 Mbps；500 kbps 版本：ADM2587E）",
+  "decoder": [
+   [
+    "B",
+    "-40°C to +85°C",
+    "-40°C 至 +85°C"
+   ],
+   [
+    "RW",
+    "20-pin wide-body SOIC",
+    "20 引脚宽体 SOIC"
+   ],
+   [
+    "Z",
+    "Lead-free (RoHS)",
+    "无铅（RoHS）"
+   ],
+   [
+    "-REEL7",
+    "7-inch tape and reel",
+    "7 英寸卷带"
+   ]
+  ],
+  "variants": [
+   [
+    "ADM2582EBRWZ",
+    "-40 to 85",
+    "20-pin wide SOIC",
+    "",
+    ""
+   ],
+   [
+    "ADM2582EBRWZ-REEL7",
+    "-40 to 85",
+    "20-pin wide SOIC",
+    "7-inch reel",
+    "7 英寸卷带"
+   ],
+   [
+    "ADM2587EBRWZ",
+    "-40 to 85",
+    "20-pin wide SOIC",
+    "500 kbps version",
+    "500 kbps 版本"
+   ]
+  ],
+  "stocked": [
+   "ADM2582EBRWZ-REEL7"
+  ]
+ },
+ {
+  "base": "LTC2051",
+  "mfr": "Analog Devices (Linear Technology)",
+  "funcEn": "Dual zero-drift precision op amp",
+  "funcZh": "双路零漂移精密运算放大器",
+  "decoder": [
+   [
+    "HV",
+    "High-voltage version (higher supply range)",
+    "高压版本（更宽电源范围）"
+   ],
+   [
+    "C / I / H",
+    "0°C to +70°C / -40°C to +85°C / -40°C to +125°C",
+    "0°C 至 +70°C / -40°C 至 +85°C / -40°C 至 +125°C"
+   ],
+   [
+    "S8",
+    "8-pin SOIC",
+    "8 引脚 SOIC"
+   ],
+   [
+    "MS8",
+    "8-pin MSOP",
+    "8 引脚 MSOP"
+   ],
+   [
+    "#PBF",
+    "Lead-free",
+    "无铅"
+   ],
+   [
+    "#TRPBF",
+    "Lead-free, tape and reel",
+    "无铅，卷带包装"
+   ]
+  ],
+  "variants": [
+   [
+    "LTC2051HVHS8#PBF",
+    "-40 to 125",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "LTC2051HVHS8#TRPBF",
+    "-40 to 125",
+    "8-pin SOIC",
+    "Tape and reel",
+    "卷带包装"
+   ],
+   [
+    "LTC2051HVIS8#PBF",
+    "-40 to 85",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "LTC2051HVCS8#PBF",
+    "0 to 70",
+    "8-pin SOIC",
+    "",
+    ""
+   ],
+   [
+    "LTC2051IS8#PBF",
+    "-40 to 85",
+    "8-pin SOIC",
+    "Standard-voltage version",
+    "标准电压版本"
+   ]
+  ],
+  "stocked": [
+   "LTC2051HVHS8#TRPBF"
+  ]
+ },
+ {
+  "base": "HCPL-573x",
+  "mfr": "Broadcom (Avago)",
+  "funcEn": "Hermetic dual-channel, low input current, high-gain optocoupler",
+  "funcZh": "气密封装双通道、低输入电流、高增益光耦",
+  "decoder": [
+   [
+    "0 (last digit, e.g. HCPL-5730)",
+    "Commercial version",
+    "商业版本"
+   ],
+   [
+    "1 (last digit, e.g. HCPL-5731)",
+    "Class H hermetic version",
+    "H 级气密版本"
+   ],
+   [
+    "K (last character)",
+    "Class K hermetic version",
+    "K 级气密版本"
+   ],
+   [
+    "#300",
+    "Gull-wing surface-mount leads",
+    "鸥翼形表面贴装引脚"
+   ]
+  ],
+  "variants": [
+   [
+    "HCPL-5730",
+    "-55 to 125",
+    "8-pin hermetic DIP",
+    "Commercial",
+    "商业版本"
+   ],
+   [
+    "HCPL-5731",
+    "-55 to 125",
+    "8-pin hermetic DIP",
+    "Class H",
+    "H 级"
+   ],
+   [
+    "HCPL-573K",
+    "-55 to 125",
+    "8-pin hermetic DIP",
+    "Class K",
+    "K 级"
+   ]
+  ],
+  "stocked": [
+   "HCPL-5731"
+  ]
+ },
+ {
+  "base": "HCPL-560x",
+  "mfr": "Broadcom (Avago)",
+  "funcEn": "Hermetic high-CMR, high-speed optocoupler",
+  "funcZh": "气密封装高共模抑制、高速光耦",
+  "decoder": [
+   [
+    "0 (last digit, e.g. HCPL-5730)",
+    "Commercial version",
+    "商业版本"
+   ],
+   [
+    "1 (last digit, e.g. HCPL-5731)",
+    "Class H hermetic version",
+    "H 级气密版本"
+   ],
+   [
+    "K (last character)",
+    "Class K hermetic version",
+    "K 级气密版本"
+   ],
+   [
+    "#300",
+    "Gull-wing surface-mount leads",
+    "鸥翼形表面贴装引脚"
+   ]
+  ],
+  "variants": [
+   [
+    "HCPL-5600",
+    "-55 to 125",
+    "8-pin hermetic DIP",
+    "Commercial",
+    "商业版本"
+   ],
+   [
+    "HCPL-5601",
+    "-55 to 125",
+    "8-pin hermetic DIP",
+    "Class H",
+    "H 级"
+   ],
+   [
+    "HCPL-560K",
+    "-55 to 125",
+    "8-pin hermetic DIP",
+    "Class K",
+    "K 级"
+   ]
+  ],
+  "stocked": [
+   "HCPL-5601"
+  ]
+ },
+ {
+  "base": "HCPL-563x",
+  "mfr": "Broadcom (Avago)",
+  "funcEn": "Hermetic dual-channel high-speed optocoupler",
+  "funcZh": "气密封装双通道高速光耦",
+  "decoder": [
+   [
+    "0 (last digit, e.g. HCPL-5730)",
+    "Commercial version",
+    "商业版本"
+   ],
+   [
+    "1 (last digit, e.g. HCPL-5731)",
+    "Class H hermetic version",
+    "H 级气密版本"
+   ],
+   [
+    "K (last character)",
+    "Class K hermetic version",
+    "K 级气密版本"
+   ],
+   [
+    "#300",
+    "Gull-wing surface-mount leads",
+    "鸥翼形表面贴装引脚"
+   ]
+  ],
+  "variants": [
+   [
+    "HCPL-5630",
+    "-55 to 125",
+    "8-pin hermetic DIP",
+    "Commercial",
+    "商业版本"
+   ],
+   [
+    "HCPL-5631",
+    "-55 to 125",
+    "8-pin hermetic DIP",
+    "Class H",
+    "H 级"
+   ],
+   [
+    "HCPL-563K",
+    "-55 to 125",
+    "8-pin hermetic DIP",
+    "Class K",
+    "K 级"
+   ]
+  ],
+  "stocked": [
+   "HCPL-5631"
+  ]
+ },
+ {
+  "base": "HCPL-550x",
+  "mfr": "Broadcom (Avago)",
+  "funcEn": "Hermetic high-speed transistor-output optocoupler",
+  "funcZh": "气密封装高速晶体管输出光耦",
+  "decoder": [
+   [
+    "0 (last digit, e.g. HCPL-5730)",
+    "Commercial version",
+    "商业版本"
+   ],
+   [
+    "1 (last digit, e.g. HCPL-5731)",
+    "Class H hermetic version",
+    "H 级气密版本"
+   ],
+   [
+    "K (last character)",
+    "Class K hermetic version",
+    "K 级气密版本"
+   ],
+   [
+    "#300",
+    "Gull-wing surface-mount leads",
+    "鸥翼形表面贴装引脚"
+   ]
+  ],
+  "variants": [
+   [
+    "HCPL-5500",
+    "-55 to 125",
+    "8-pin hermetic DIP",
+    "Commercial",
+    "商业版本"
+   ],
+   [
+    "HCPL-5501",
+    "-55 to 125",
+    "8-pin hermetic DIP",
+    "Class H",
+    "H 级"
+   ],
+   [
+    "HCPL-5501#300",
+    "-55 to 125",
+    "8-pin hermetic DIP, gull-wing",
+    "Class H, gull-wing leads",
+    "H 级，鸥翼形引脚"
+   ],
+   [
+    "HCPL-550K",
+    "-55 to 125",
+    "8-pin hermetic DIP",
+    "Class K",
+    "K 级"
+   ]
+  ],
+  "stocked": [
+   "HCPL-5501#300"
+  ]
+ },
+ {
+  "base": "HI-548",
+  "mfr": "Intersil (Renesas)",
+  "funcEn": "8-channel CMOS analog multiplexer with overvoltage protection",
+  "funcZh": "带过压保护的 8 通道 CMOS 模拟多路复用器",
+  "decoder": [
+   [
+    "HI1-",
+    "Ceramic DIP",
+    "陶瓷 DIP"
+   ],
+   [
+    "HI3-",
+    "Plastic DIP",
+    "塑封 DIP"
+   ],
+   [
+    "HI4-",
+    "Ceramic LCC",
+    "陶瓷 LCC"
+   ],
+   [
+    "-2",
+    "-55°C to +125°C",
+    "-55°C 至 +125°C"
+   ],
+   [
+    "-5",
+    "0°C to +75°C",
+    "0°C 至 +75°C"
+   ],
+   [
+    "-9",
+    "-40°C to +85°C",
+    "-40°C 至 +85°C"
+   ],
+   [
+    "/883",
+    "High-reliability screened version, -55°C to +125°C",
+    "高可靠性筛选版本，-55°C 至 +125°C"
+   ]
+  ],
+  "variants": [
+   [
+    "HI1-0548/883",
+    "-55 to 125",
+    "16-pin ceramic DIP",
+    "Screened",
+    "筛选"
+   ],
+   [
+    "HI1-0548-2",
+    "-55 to 125",
+    "16-pin ceramic DIP",
+    "",
+    ""
+   ],
+   [
+    "HI3-0548-5",
+    "0 to 75",
+    "16-pin plastic DIP",
+    "",
+    ""
+   ],
+   [
+    "HI4-0548/883",
+    "-55 to 125",
+    "20-pin ceramic LCC",
+    "Screened",
+    "筛选"
+   ]
+  ],
+  "stocked": [
+   "HI1-0548/883"
+  ]
+ },
+ {
+  "base": "HI-546",
+  "mfr": "Intersil (Renesas)",
+  "funcEn": "16-channel CMOS analog multiplexer with overvoltage protection",
+  "funcZh": "带过压保护的 16 通道 CMOS 模拟多路复用器",
+  "decoder": [
+   [
+    "HI1-",
+    "Ceramic DIP",
+    "陶瓷 DIP"
+   ],
+   [
+    "HI3-",
+    "Plastic DIP",
+    "塑封 DIP"
+   ],
+   [
+    "HI4-",
+    "Ceramic LCC",
+    "陶瓷 LCC"
+   ],
+   [
+    "-2",
+    "-55°C to +125°C",
+    "-55°C 至 +125°C"
+   ],
+   [
+    "-5",
+    "0°C to +75°C",
+    "0°C 至 +75°C"
+   ],
+   [
+    "-9",
+    "-40°C to +85°C",
+    "-40°C 至 +85°C"
+   ],
+   [
+    "/883",
+    "High-reliability screened version, -55°C to +125°C",
+    "高可靠性筛选版本，-55°C 至 +125°C"
+   ]
+  ],
+  "variants": [
+   [
+    "HI1-0546/883",
+    "-55 to 125",
+    "28-pin ceramic DIP",
+    "Screened",
+    "筛选"
+   ],
+   [
+    "HI1-0546-2",
+    "-55 to 125",
+    "28-pin ceramic DIP",
+    "",
+    ""
+   ],
+   [
+    "HI3-0546-5",
+    "0 to 75",
+    "28-pin plastic DIP",
+    "",
+    ""
+   ],
+   [
+    "HI4-0546/883",
+    "-55 to 125",
+    "ceramic LCC",
+    "Screened",
+    "筛选"
+   ]
+  ],
+  "stocked": [
+   "HI1-0546/883",
+   "HI4-0546/883"
+  ]
+ },
+ {
+  "base": "HS-3282",
+  "mfr": "Intersil (Renesas)",
+  "funcEn": "CMOS ARINC 429 bus interface circuit (dual receiver, transmitter)",
+  "funcZh": "CMOS ARINC 429 总线接口电路（双接收器、发送器）",
+  "decoder": [
+   [
+    "HS1-",
+    "Ceramic DIP",
+    "陶瓷 DIP"
+   ],
+   [
+    "HS4-",
+    "Ceramic LCC",
+    "陶瓷 LCC"
+   ],
+   [
+    "-8",
+    "-55°C to +125°C, screened",
+    "-55°C 至 +125°C，筛选"
+   ],
+   [
+    "-9",
+    "-40°C to +85°C",
+    "-40°C 至 +85°C"
+   ]
+  ],
+  "variants": [
+   [
+    "HS1-3282-8",
+    "-55 to 125",
+    "40-pin ceramic DIP",
+    "",
+    ""
+   ],
+   [
+    "HS4-3282-8",
+    "-55 to 125",
+    "44-pin ceramic LCC",
+    "",
+    ""
+   ],
+   [
+    "HS1-3282-9",
+    "-40 to 85",
+    "40-pin ceramic DIP",
+    "",
+    ""
+   ]
+  ],
+  "stocked": [
+   "HS1-3282-8",
+   "HS4-3282-8"
+  ]
+ },
+ {
+  "base": "HS-3182",
+  "mfr": "Intersil (Renesas)",
+  "funcEn": "ARINC 429 bus line driver",
+  "funcZh": "ARINC 429 总线线路驱动器",
+  "decoder": [
+   [
+    "HS1-",
+    "Ceramic DIP",
+    "陶瓷 DIP"
+   ],
+   [
+    "HS4-",
+    "Ceramic LCC",
+    "陶瓷 LCC"
+   ],
+   [
+    "-8",
+    "-55°C to +125°C, screened",
+    "-55°C 至 +125°C，筛选"
+   ],
+   [
+    "-9",
+    "-40°C to +85°C",
+    "-40°C 至 +85°C"
+   ]
+  ],
+  "variants": [
+   [
+    "HS1-3182-8",
+    "-55 to 125",
+    "16-pin ceramic DIP",
+    "",
+    ""
+   ],
+   [
+    "HS4-3182-8",
+    "-55 to 125",
+    "ceramic LCC",
+    "",
+    ""
+   ],
+   [
+    "HS1-3182-9",
+    "-40 to 85",
+    "16-pin ceramic DIP",
+    "",
+    ""
+   ]
+  ],
+  "stocked": [
+   "HS1-3182-8",
+   "HS4-3182-8"
+  ]
+ },
+ {
+  "base": "LM124",
+  "mfr": "Texas Instruments",
+  "funcEn": "Quad low-power op amp (family: LM124, LM224, LM324, LM2902)",
+  "funcZh": "四路低功耗运算放大器（同系列：LM124、LM224、LM324、LM2902）",
+  "decoder": [
+   [
+    "LM1xx",
+    "-55°C to +125°C version",
+    "-55°C 至 +125°C 版本"
+   ],
+   [
+    "LM2xx",
+    "-25°C to +85°C version",
+    "-25°C 至 +85°C 版本"
+   ],
+   [
+    "LM3xx",
+    "0°C to +70°C version",
+    "0°C 至 +70°C 版本"
+   ],
+   [
+    "J",
+    "Ceramic DIP",
+    "陶瓷 DIP"
+   ],
+   [
+    "H",
+    "TO-99 metal can",
+    "TO-99 金属壳"
+   ],
+   [
+    "N",
+    "Plastic DIP",
+    "塑封 DIP"
+   ],
+   [
+    "D / M",
+    "SOIC",
+    "SOIC"
+   ],
+   [
+    "/883",
+    "High-reliability screened version",
+    "高可靠性筛选版本"
+   ],
+   [
+    "A (after 124)",
+    "Tighter offset specifications",
+    "更严格的失调指标"
+   ],
+   [
+    "WG",
+    "Ceramic flatpack (SOIC-style)",
+    "陶瓷扁平封装"
+   ]
+  ],
+  "variants": [
+   [
+    "LM124AWG/883",
+    "-55 to 125",
+    "14-pin ceramic flatpack",
+    "A grade, screened",
+    "A 级，筛选"
+   ],
+   [
+    "LM124J",
+    "-55 to 125",
+    "14-pin ceramic DIP",
+    "",
+    ""
+   ],
+   [
+    "LM124AJ",
+    "-55 to 125",
+    "14-pin ceramic DIP",
+    "A grade",
+    "A 级"
+   ],
+   [
+    "LM224N",
+    "-25 to 85",
+    "14-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "LM324N",
+    "0 to 70",
+    "14-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "LM324D",
+    "0 to 70",
+    "14-pin SOIC",
+    "",
+    ""
+   ]
+  ],
+  "stocked": [
+   "LM124AWG/883"
+  ]
+ },
+ {
+  "base": "LM148",
+  "mfr": "Texas Instruments",
+  "funcEn": "Quad 741-type op amp (family: LM148, LM248, LM348)",
+  "funcZh": "四路 741 型运算放大器（同系列：LM148、LM248、LM348）",
+  "decoder": [
+   [
+    "LM1xx",
+    "-55°C to +125°C version",
+    "-55°C 至 +125°C 版本"
+   ],
+   [
+    "LM2xx",
+    "-25°C to +85°C version",
+    "-25°C 至 +85°C 版本"
+   ],
+   [
+    "LM3xx",
+    "0°C to +70°C version",
+    "0°C 至 +70°C 版本"
+   ],
+   [
+    "J",
+    "Ceramic DIP",
+    "陶瓷 DIP"
+   ],
+   [
+    "H",
+    "TO-99 metal can",
+    "TO-99 金属壳"
+   ],
+   [
+    "N",
+    "Plastic DIP",
+    "塑封 DIP"
+   ],
+   [
+    "D / M",
+    "SOIC",
+    "SOIC"
+   ],
+   [
+    "/883",
+    "High-reliability screened version",
+    "高可靠性筛选版本"
+   ]
+  ],
+  "variants": [
+   [
+    "LM148J/883",
+    "-55 to 125",
+    "14-pin ceramic DIP",
+    "Screened",
+    "筛选"
+   ],
+   [
+    "LM148J",
+    "-55 to 125",
+    "14-pin ceramic DIP",
+    "",
+    ""
+   ],
+   [
+    "LM348N",
+    "0 to 70",
+    "14-pin PDIP",
+    "",
+    ""
+   ],
+   [
+    "LM348M",
+    "0 to 70",
+    "14-pin SOIC",
+    "",
+    ""
+   ]
+  ],
+  "stocked": [
+   "LM148J/883"
+  ]
+ },
+ {
+  "base": "LM741",
+  "mfr": "Texas Instruments",
+  "funcEn": "General-purpose operational amplifier",
+  "funcZh": "通用运算放大器",
+  "decoder": [
+   [
+    "J",
+    "Ceramic DIP",
+    "陶瓷 DIP"
+   ],
+   [
+    "H",
+    "TO-99 metal can",
+    "TO-99 金属壳"
+   ],
+   [
+    "N",
+    "Plastic DIP",
+    "塑封 DIP"
+   ],
+   [
+    "D / M",
+    "SOIC",
+    "SOIC"
+   ],
+   [
+    "/883",
+    "High-reliability screened version",
+    "高可靠性筛选版本"
+   ],
+   [
+    "LM741 / LM741C",
+    "-55°C to +125°C / 0°C to +70°C",
+    "-55°C 至 +125°C / 0°C 至 +70°C"
+   ]
+  ],
+  "variants": [
+   [
+    "LM741J/883",
+    "-55 to 125",
+    "8-pin ceramic DIP",
+    "Screened",
+    "筛选"
+   ],
+   [
+    "LM741H",
+    "-55 to 125",
+    "TO-99 metal can",
+    "",
+    ""
+   ],
+   [
+    "LM741H/883",
+    "-55 to 125",
+    "TO-99 metal can",
+    "Screened",
+    "筛选"
+   ],
+   [
+    "LM741CN",
+    "0 to 70",
+    "8-pin PDIP",
+    "",
+    ""
+   ]
+  ],
+  "stocked": [
+   "LM741J/883"
+  ]
+ }
+]

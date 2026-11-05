@@ -231,3 +231,13 @@ html[lang="zh-CN"] .hero h1 { max-width: 16em; }
 .source-block { margin-top: 16px; max-width: 640px; }
 .source-block h2 { font-size: 1.15rem; margin-bottom: .3em; }
 .source-block .rfq-form { margin-top: 12px; }
+
+/* Base-number (xref) pages and series variant tables */
+.xref-stock { margin-top: 14px; }
+.chip-stock { display: inline-flex; align-items: center; gap: 6px; background: var(--ok-bg); border-color: transparent; color: var(--ok); font-weight: 600; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .9rem; }
+.chip-stock .ic { width: 15px; height: 15px; }
+.pn-plain { color: var(--ink); font-weight: 500; }
+.xref-table .badge { text-decoration: none; }
+.decoder { max-width: 760px; }
+.source-ask { max-width: 640px; }
+.source-ask h2 { font-size: 1.15rem; }

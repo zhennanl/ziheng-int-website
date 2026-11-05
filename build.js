@@ -136,6 +136,16 @@ for (const sr of SERIES) sr.parts = parts.filter(p => sr.re.test(p.pn));
 const series = SERIES.filter(sr => sr.parts.length >= 3);
 for (const p of parts) p.series = series.find(sr => sr.parts.includes(p)) || null;
 
+// Base-number pages (/xref/<base>/): ordering options and variants for a part number family (data/xref.json)
+const XREF = fs.existsSync(path.join(ROOT, "data", "xref.json")) ? JSON.parse(fs.readFileSync(path.join(ROOT, "data", "xref.json"), "utf8")) : [];
+for (const f of XREF) {
+  f.slug = catSlug(f.base);
+  f.stockedParts = f.stocked.map(pn => parts.find(p => p.pn === pn)).filter(Boolean);
+  for (const p of f.stockedParts) { p.xref = f; p.variantPNs = f.variants.map(v => v[0]).filter(v => v !== p.pn); }
+}
+const xrefs = XREF.filter(f => f.stockedParts.length);
+for (const sr of series) sr.xrefs = xrefs.filter(f => f.stockedParts.some(p => sr.parts.includes(p)));
+
 // Sitemap dates: a page's date changes only when its content changes (tracked in data/lastmod.json)
 const TODAY = new Date().toISOString().slice(0, 10);
 const LASTMOD_FILE = path.join(ROOT, "data", "lastmod.json");
@@ -146,7 +156,8 @@ const dated = key => val => {
   if (!lastmod[key] || lastmod[key].h !== h) lastmod[key] = { h, d: TODAY };
   return lastmod[key].d;
 };
-for (const p of parts) p.date = dated("part:" + p.slug)([p.pn, p.mfr, p.cat, p.desc, p.descZh, p.dc, p.life, p.aliases, p.pkg, p.pins, p.temp, p.mpage, p.img, p.series && p.series.slug]);
+for (const p of parts) p.date = dated("part:" + p.slug)([p.pn, p.mfr, p.cat, p.desc, p.descZh, p.dc, p.life, p.aliases, p.pkg, p.pins, p.temp, p.mpage, p.img, p.series && p.series.slug, p.xref && p.xref.slug]);
+for (const f of xrefs) f.date = dated("xref:" + f.slug)([f.base, f.mfr, f.funcEn, f.funcZh, f.decoder, f.variants, f.stocked, f.stockedParts.map(p => p.date)]);
 const maxDate = list => list.reduce((m, p) => (p.date > m ? p.date : m), "2026-01-01");
 
 const groupBy = (arr, k) => arr.reduce((m, p) => (m.get(p[k]) ? m.get(p[k]).push(p) : m.set(p[k], [p]), m), new Map());
@@ -206,7 +217,14 @@ const T = {
     ctaH: "Can't find your part?", ctaP: "Our listed stock changes often. Send us the part number and quantity you need.",
     invTitle: "Electronic Components in Stock", invDesc: n => `Full list of ${n} integrated circuits and electronic components in stock at ${cfg.companyName}. Contact us for a quote.`,
     invH1: "Inventory", invLead: "All parts below are in stock. Click a part number for details and to request a quote.",
-    filterPh: "Filter by part number, manufacturer or keyword", seriesH: "Product series", allParts: "Full inventory", partsN: n => `${n} part${n === 1 ? "" : "s"}`,
+    filterPh: "Filter by part number, manufacturer or keyword", seriesH: "Product series", allParts: "Full inventory",
+    xr: { title: b => `${b} Ordering Options and Variants`, h1: b => `${b}: ordering options and variants`,
+      lead: (f, c) => `${f.funcEn}, from ${f.mfr}. This page explains the ${f.base} ordering codes and lists common variants. ${c} has the variant${f.stockedParts.length > 1 ? "s" : ""} marked "In stock" ready to ship; other variants are available on request.`,
+      decH: "How to read the part number", code: "Code", meaning: "Meaning", varH: f => `${f.base} variants`, pn: "Part number", temp: "Temperature (°C)", pkg: "Package", note: "Notes", avail: "Availability",
+      onReq: "On request", stockLink: "In stock", note2: "Variant list for reference; confirm ordering codes against the manufacturer's datasheet. Not every combination is produced.",
+      askH: "Need a different variant?", askP: "Send us the exact part number and quantity. We'll check our stock and supply network and reply, usually within one business day.",
+      desc: (f, c) => `${f.base} ordering options: ${f.variants.slice(0, 6).map(v => v[0]).join(", ")}. ${f.stockedParts.map(p => p.pn).join(", ")} in stock at ${c}.`,
+      seriesH: "Ordering variants in this series", seriesP: "Common variants of the part numbers in this series. Variants marked \"In stock\" link to our stock; others are available on request.", base: "Base number" }, partsN: n => `${n} part${n === 1 ? "" : "s"}`,
     thPn: "Part number", thMfr: "Manufacturer", thCat: "Category", thDesc: "Description", thStatus: "Status",
     allCats: "All categories", allMfrs: "All manufacturers", clearFilters: "Clear filters", filterCat: "Filter by category", filterMfr: "Filter by manufacturer",
     noMatch: "No match in our listed stock.", noMatchLink: "Email us the part number", noMatchTail: ", as we may still be able to source it.",
@@ -216,7 +234,7 @@ const T = {
     partTitle: p => `${p.pn} ${p.mfr} - In Stock | ${cfg.companyName}`,
     partDesc: (p, d) => `${p.pn} by ${p.mfr} in stock. ${d}${p.dc ? ` Date code ${p.dc}.` : ""} Request a quote from ${cfg.companyName}.`,
     photoRef: "Image for reference", photoPh: "Photo on request",
-    lbl: { pn: "Part number", mfr: "Manufacturer", cat: "Category", life: "Lifecycle", dc: "Date code", avail: "Availability", minfo: "Datasheet", minfoLink: "Manufacturer product page and datasheet ↗", alias: "Also listed as", series: "Product series",
+    lbl: { pn: "Part number", mfr: "Manufacturer", cat: "Category", life: "Lifecycle", dc: "Date code", avail: "Availability", minfo: "Datasheet", minfoLink: "Manufacturer product page and datasheet ↗", alias: "Also listed as", series: "Product series", ordering: "Ordering options",
       specsH: "Specifications", pkg: "Package", pins: "Pin count", temp: "Operating temperature", specNote: "Specifications are for reference. Please confirm against the manufacturer's datasheet.", overviewH: "Overview" },
     overview: (p, d, c, f) => [
       `${p.pn} from ${p.mfr} is available from stock at ${c}${p.dc ? ` (date code ${p.dc})` : ""}.`,
@@ -261,7 +279,14 @@ const T = {
     ctaH: "没有找到所需型号？", ctaP: "我们的库存经常更新。请将型号和需求数量发给我们。",
     invTitle: "电子元器件现货库存", invDesc: n => `${cfg.companyName} 现货 ${n} 个集成电路及电子元器件型号完整列表。欢迎询价。`,
     invH1: "库存", invLead: "以下所有型号均有现货。点击型号查看详情并询价。",
-    filterPh: "按型号、品牌或关键词筛选", seriesH: "产品系列", allParts: "全部库存", partsN: n => `${n} 个型号`,
+    filterPh: "按型号、品牌或关键词筛选", seriesH: "产品系列", allParts: "全部库存",
+    xr: { title: b => `${b} 订货型号及变体`, h1: b => `${b}：订货型号及变体`,
+      lead: (f, c) => `${f.funcZh}，品牌 ${f.mfr}。本页说明 ${f.base} 的订货代码并列出常见变体型号。标注"现货"的型号 ${c} 有库存可发货，其他型号可按需询价。`,
+      decH: "型号代码说明", code: "代码", meaning: "含义", varH: f => `${f.base} 变体型号`, pn: "型号", temp: "温度（°C）", pkg: "封装", note: "备注", avail: "供货",
+      onReq: "可询价", stockLink: "现货", note2: "变体列表仅供参考，订货代码请以原厂规格书为准，并非所有组合均有生产。",
+      askH: "需要其他型号？", askP: "请发送准确型号和数量，我们会查询库存及供货渠道，通常在一个工作日内回复。",
+      desc: (f, c) => `${f.base} 订货型号：${f.variants.slice(0, 6).map(v => v[0]).join("、")}。${c} 现货：${f.stockedParts.map(p => p.pn).join("、")}。`,
+      seriesH: "本系列订货变体", seriesP: "本系列型号的常见变体。标注\"现货\"的型号链接到我们的库存，其他型号可按需询价。", base: "基础型号" }, partsN: n => `${n} 个型号`,
     thPn: "型号", thMfr: "品牌", thCat: "类别", thDesc: "描述", thStatus: "状态",
     allCats: "全部类别", allMfrs: "全部品牌", clearFilters: "清除筛选", filterCat: "按类别筛选", filterMfr: "按品牌筛选",
     noMatch: "现有库存中未找到该型号。", noMatchLink: "请将型号发邮件给我们", noMatchTail: "，我们可能仍可为您寻货。",
@@ -271,7 +296,7 @@ const T = {
     partTitle: p => `${p.pn} ${p.mfr} 现货 | ${cfg.companyName}`,
     partDesc: (p, d) => `${p.pn}（${p.mfr}）现货。${d}${p.dc ? `批号 ${p.dc}。` : ""}欢迎向 ${cfg.companyName} 询价。`,
     photoRef: "图片仅供参考", photoPh: "可索取实物照片",
-    lbl: { pn: "型号", mfr: "品牌", cat: "类别", life: "生命周期", dc: "批号", avail: "库存状态", minfo: "规格书", minfoLink: "原厂产品页面及规格书 ↗", alias: "其他写法", series: "产品系列",
+    lbl: { pn: "型号", mfr: "品牌", cat: "类别", life: "生命周期", dc: "批号", avail: "库存状态", minfo: "规格书", minfoLink: "原厂产品页面及规格书 ↗", alias: "其他写法", series: "产品系列", ordering: "订货型号说明",
       specsH: "规格参数", pkg: "封装", pins: "引脚数", temp: "工作温度", specNote: "规格参数仅供参考，请以原厂规格书为准。", overviewH: "概述" },
     overview: (p, d, c, f) => [
       `${c} 现货供应 ${p.mfr} ${p.pn}${p.dc ? `（批号 ${p.dc}）` : ""}。`,
@@ -441,7 +466,7 @@ ${cfg.wechatId ? `<dialog id="wechat-dialog" class="dialog">
   }
 
   function partRows(list, showCat) {
-    return list.map(p => `<tr data-s="${esc([p.pn, ...p.aliases, p.mfr, MFR_ALSO.en[p.mfr] || "", MFR_ALSO.zh[p.mfr] || "", p.cat, L.cat(p.cat), p.desc, p.descZh, p.life, L.life(p.life)].join(" ").toLowerCase())}" data-cat="${catSlug(p.cat)}" data-mfr="${catSlug(p.mfr)}">
+    return list.map(p => `<tr data-s="${esc([p.pn, ...p.aliases, p.mfr, MFR_ALSO.en[p.mfr] || "", MFR_ALSO.zh[p.mfr] || "", p.cat, L.cat(p.cat), p.desc, p.descZh, p.life, L.life(p.life), ...(p.variantPNs || [])].join(" ").toLowerCase())}" data-cat="${catSlug(p.cat)}" data-mfr="${catSlug(p.mfr)}">
 <td><a class="pn" href="${lp(`/parts/${p.slug}/`)}">${esc(p.pn)}</a></td>
 <td>${esc(p.mfr)}${showCat ? `<span class="cat-mini">${esc(L.cat(p.cat))}</span>` : ""}</td>
 ${showCat ? `<td class="cat-cell"><a href="${lp(`/category/${catSlug(p.cat)}/`)}">${esc(L.cat(p.cat))}</a></td>` : ""}
@@ -599,6 +624,7 @@ ${crumbs([[`/category/${catSlug(pt.cat)}/`, catName], [null, pt.pn]])}
       <div><dt>${L.lbl.pn}</dt><dd>${esc(pt.pn)}</dd></div>
       <div><dt>${L.lbl.mfr}</dt><dd><a href="${lp(`/manufacturer/${catSlug(pt.mfr)}/`)}">${esc(pt.mfr)}</a>${note ? ` <span class="muted">(${esc(note)})</span>` : ""}</dd></div>
       <div><dt>${L.lbl.cat}</dt><dd><a href="${lp(`/category/${catSlug(pt.cat)}/`)}">${esc(catName)}</a></dd></div>
+      ${pt.xref ? `<div><dt>${L.lbl.ordering}</dt><dd><a href="${lp(`/xref/${pt.xref.slug}/`)}">${esc(L.xr.h1(pt.xref.base))}</a></dd></div>` : ""}
       ${pt.series ? `<div><dt>${L.lbl.series}</dt><dd><a href="${lp(`/series/${pt.series.slug}/`)}">${esc(isEn ? pt.series.en : pt.series.zh)}</a></dd></div>` : ""}
       ${pt.life ? `<div><dt>${L.lbl.life}</dt><dd><a href="${lp("/obsolete-parts/")}">${esc(L.life(pt.life))}</a></dd></div>` : ""}
       ${pt.dc ? `<div><dt>${L.lbl.dc}</dt><dd>${esc(pt.dc)}</dd></div>` : ""}
@@ -631,7 +657,7 @@ ${related.length ? `<section class="wrap section"><h2>${esc(L.related(catName))}
   }
 
   // Obsolete hub and product series pages
-  function hub(p, title, h1, lead, list, intro) {
+  function hub(p, title, h1, lead, list, intro, after) {
     write(L, p, layout({
       title: `${title} | ${company}`,
       description: L.hubDesc(title, list.length, list.slice(0, 5).map(x => x.pn).join(", ")),
@@ -639,14 +665,44 @@ ${related.length ? `<section class="wrap section"><h2>${esc(L.related(catName))}
       body: `<section class="wrap section page-head">
 ${crumbs([[null, h1]])}
 <h1>${esc(h1)}</h1><p class="lead">${lead}</p>${intro || ""}</section>
-<section class="wrap">${partTable(list, list.length > 12)}</section>`,
+<section class="wrap">${partTable(list, list.length > 12)}</section>${after || ""}`,
     }));
     reg(p, "0.8", maxDate(list));
   }
   hub("/obsolete-parts/", L.eolTitle, L.eolH1, L.eolLead(eolParts.length), eolParts);
+  const XR = L.xr;
+  const tempTxt = t => t ? (isEn ? t.replace(/^(-?\d+) to (\d+)$/, "$1 to +$2") : t.replace(/^(-?\d+) to (\d+)$/, "$1 至 +$2")) : "";
+  const variantTable = (rows, showBase) => `<div class="table-wrap"><table class="parts xref-table">
+<thead><tr>${showBase ? `<th>${XR.base}</th>` : ""}<th>${XR.pn}</th><th>${XR.temp}</th><th class="hide-xs">${XR.pkg}</th><th class="hide-sm">${XR.note}</th><th>${XR.avail}</th></tr></thead>
+<tbody>${rows.map(([f, v]) => { const sp = f.stockedParts.find(p => p.pn === v[0]); return `<tr>${showBase ? `<td><a href="${lp(`/xref/${f.slug}/`)}">${esc(f.base)}</a></td>` : ""}<td class="pn-cell">${sp ? `<a class="pn" href="${lp(`/parts/${sp.slug}/`)}">${esc(v[0])}</a>` : `<span class="pn pn-plain">${esc(v[0])}</span>`}</td><td>${esc(tempTxt(v[1] || (sp && sp.temp) || ""))}</td><td class="hide-xs">${esc(v[2] || (sp && sp.pkg) || "")}</td><td class="hide-sm">${esc(isEn ? v[3] : v[4])}</td><td>${sp ? `<a class="badge" href="${lp(`/parts/${sp.slug}/`)}">${icon("check")}${XR.stockLink}</a>` : `<span class="muted small">${XR.onReq}</span>`}</td></tr>`; }).join("\n")}</tbody>
+</table></div>`;
   for (const sr of series) {
     const t = isEn ? sr.en : sr.zh;
-    hub(`/series/${sr.slug}/`, t, t, `${esc(isEn ? sr.enLead : sr.zhLead)} <a href="${lp("/parts/")}">${L.allParts}</a>`, sr.parts);
+    const rows = sr.xrefs.flatMap(f => f.variants.map(v => [f, v]));
+    const after = rows.length ? `<section class="wrap section"><h2>${XR.seriesH}</h2><p class="muted">${XR.seriesP}</p>${variantTable(rows, true)}<p class="muted small spec-note">${XR.note2}</p></section>` : "";
+    hub(`/series/${sr.slug}/`, t, t, `${esc(isEn ? sr.enLead : sr.zhLead)} <a href="${lp("/parts/")}">${L.allParts}</a>`, sr.parts, "", after);
+  }
+  for (const f of xrefs) {
+    const p = `/xref/${f.slug}/`;
+    write(L, p, layout({
+      title: `${XR.title(f.base)} | ${company}`, description: XR.desc(f, company), p, image: f.stockedParts[0].og || "",
+      jsonld: [{ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+        { "@type": "ListItem", position: 1, name: L.home, item: url(lp("/")) },
+        { "@type": "ListItem", position: 2, name: L.inventory, item: url(lp("/parts/")) },
+        { "@type": "ListItem", position: 3, name: XR.h1(f.base), item: url(lp(p)) }] }],
+      body: `<section class="wrap section page-head narrow-wide">
+${crumbs([["/parts/", L.inventory], [null, XR.h1(f.base)]])}
+<h1>${esc(XR.h1(f.base))}</h1>
+<p class="lead">${esc(XR.lead(f, company))}</p>
+<div class="chips xref-stock">${f.stockedParts.map(sp => `<a class="chip chip-stock" href="${lp(`/parts/${sp.slug}/`)}">${icon("check")}${esc(sp.pn)} · ${XR.stockLink}</a>`).join("")}</div>
+</section>
+<section class="wrap section"><h2>${XR.decH}</h2>
+<div class="table-wrap decoder"><table class="parts"><thead><tr><th>${XR.code}</th><th>${XR.meaning}</th></tr></thead>
+<tbody>${f.decoder.map(d => `<tr><td class="pn-cell"><span class="pn pn-plain">${esc(d[0])}</span></td><td>${esc(isEn ? d[1] : d[2])}</td></tr>`).join("")}</tbody></table></div></section>
+<section class="wrap section"><h2>${esc(XR.varH(f))}</h2>${variantTable(f.variants.map(v => [f, v]), false)}<p class="muted small spec-note">${XR.note2}</p></section>
+<section class="wrap section"><div class="card source-ask"><h2>${XR.askH}</h2><p class="muted">${XR.askP}</p>${rfqForm("", "sourcing")}</div></section>`,
+    }));
+    reg(p, "0.7", f.date);
   }
 
   // Quality, About, Contact
